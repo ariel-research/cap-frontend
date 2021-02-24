@@ -1,0 +1,12 @@
+table {
+    margin-top: 50px;
+    margin-left: 10%;
+    width: 80%;
+    align-items: center;
+}
+
+th {
+    height: 40px;
+    text-align: center; 
+    vertical-align: middle;
+}

@@ -1,0 +1,44 @@
+.App {
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #cfd0d1;
+  color: rgb(85, 83, 83);
+  text-align: right;
+}
+
+.App-header {
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.layout{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.courses{
+  text-align: center;
+  margin-left: 200px;
+  color: black;
+  border: 6px solid black;
+  margin-bottom: 5px;
+  padding-bottom: 15px;
+}
+
+ul {
+  text-align: right;
+  }
+
+.itemName{
+  font-size: 1.5rem;
+  padding-right: 50px;
+  padding-top: 10px;
+}
+
+.itemName:hover{
+  background-color: #6d76f7;
+  border-radius: 4px;
+  transition: all 0.2s ease-out ;
+  cursor: pointer;
+}
