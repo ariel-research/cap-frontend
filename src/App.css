@@ -17,6 +17,19 @@
   grid-gap: 20px;
 }
 
+
+.semester-button{
+  background: #11c3ff linear-gradient(to bottom, transparent, #009bcf);
+  border: 1px solid white;
+  border-radius: 5px;
+  display: inline;
+  color: white;
+  font: bold 12px Arial, Helvetica, sans-serif;
+  padding: 10px 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
 .courses{
   text-align: center;
   margin-left: 200px;

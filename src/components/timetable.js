@@ -1,43 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import './timetable.css';
-import { API } from "../api-service";
 
 
 function Timetable(props)
 {
-    const [courses_A, setCourses_A] = useState([]);
-    const [courses_B, setCourses_B] = useState([]);
-
-    useEffect(()=>{
-        API.getCoursesA()
-          .then(resp => setCourses_A(resp))
-          .catch(error => console.log(error))
-        API.getCoursesB()
-          .then(resp => setCourses_B(resp))
-          .catch(error => console.log(error))
-      }, [])
-
-
-
-
-
-
-
+    const courses = props.course_group 
 
     return(
         <div>
             <div>
-                {courses_A && courses_A.map( course => {
-                return (
-                <div key={course.course_id}>
-                    {course.course_id}
-                </div>
-                )
-            })}
-            </div>
-
-            <div>
-                {courses_B && courses_B.map( course => {
+                {courses && courses.map( course => {
                 return (
                 <div key={course.course_id}>
                     {course.course_id}
