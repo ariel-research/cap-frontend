@@ -11,7 +11,7 @@ export const MenuItems = [
     },
     {
         title: 'מידע על קורסי הבחירה',
-        url:'#',
+        url:'/courses_info',
         cName: 'nav-links'
     },
     {

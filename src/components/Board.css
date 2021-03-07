@@ -3,7 +3,7 @@ body
     background-color: #cfd0d1;
 }
 
-.container{
+.container-rank{
     display: flex;
     justify-content: space-around;
     padding-top: 50px;

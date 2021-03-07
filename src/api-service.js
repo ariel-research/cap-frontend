@@ -1,7 +1,33 @@
-const TOKEN = "51cac34c27be7bc14410b54629dfc51896f52589"
 
 export class API {
-    static getCourse_group()
+    static loginUser(body)
+    {
+        return fetch("http://127.0.0.1:8000/auth/",
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+        .then(resp => resp.json())
+    }
+    static registerUser(body)
+    {
+        return fetch("http://127.0.0.1:8000/api/users/",
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+        .then(resp => resp.json())
+    }
+
+    static getCourse_group(token)
     {
         return fetch("http://127.0.0.1:8000/api/course_group/",
         {
@@ -9,13 +35,13 @@ export class API {
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${TOKEN}`
+                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static getCoursesA()
+    static getCoursesA(token)
     {
         return fetch("http://127.0.0.1:8000/api/courses/get_semester_a/",
         {
@@ -23,13 +49,13 @@ export class API {
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${TOKEN}`
+                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static getCoursesB()
+    static getCoursesB(token)
     {
         return fetch("http://127.0.0.1:8000/api/courses/get_semester_b/",
         {
@@ -37,13 +63,13 @@ export class API {
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${TOKEN}`
+                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static getLast_ranking()
+    static getLast_ranking(token)
     {
         return fetch("http://127.0.0.1:8000/api/course_group/get_last_rating/",
         {
@@ -51,13 +77,13 @@ export class API {
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${TOKEN}`
+                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static rank_courses(course_group)
+    static rank_courses(course_group, token)
     {
         return fetch("http://127.0.0.1:8000/api/ranking/rank_courses/",
         {
@@ -65,7 +91,7 @@ export class API {
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${TOKEN}`
+                'Authorization': `Token ${token}`
             },
             body: JSON.stringify( {ranks: course_group} )
         })

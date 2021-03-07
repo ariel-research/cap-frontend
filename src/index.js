@@ -1,19 +1,29 @@
-import React from 'react';
+import React, {useState , createContext} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Route, BrowserRouter  } from 'react-router-dom';
-import Ranking from './Ranking'
-ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Route exact path="/" component={App} />
-      <Route exact path="/ranking" component={Ranking} />
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import Ranking from './Ranking';
+import Auth from './auth';
+import { CookiesProvider } from "react-cookie";
+
+function Router() {
+
+  return (
+    <React.StrictMode>
+      <CookiesProvider>
+        <BrowserRouter>
+          <Route exact path="/" component={Auth} />
+          <Route exact path="/courses_info" component={App} />
+          <Route exact path="/ranking" component={Ranking} />
+        </BrowserRouter>
+      </CookiesProvider>
+    </React.StrictMode>
+  )
+}
+
+ReactDOM.render(<Router/>, document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

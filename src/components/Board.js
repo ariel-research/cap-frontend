@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import './Board.css';
 import { API } from "../api-service";
+import { useCookies } from "react-cookie";
 
 function Board(props)
 {
 
     const [course_group, setCourse_group] = useState([]);
+    const [ token ] = useCookies(['mr-token']);
 
     useEffect(()=>{
-      API.getLast_ranking()
+      API.getLast_ranking(token['mr-token'])
         .then(resp => setCourse_group(resp))
         .catch(error => console.log(error))
     }, [])
@@ -16,7 +18,7 @@ function Board(props)
 
     return (
         <div>
-            <div className='container'>
+            <div className='container-rank'>
                 <div className='course_group'>
                     <h1>דירוג עדיפויות</h1>
                     <div>{ course_group.map((course_group, index) => {

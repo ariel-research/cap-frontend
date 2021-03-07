@@ -2,13 +2,15 @@ import React, {useState, useEffect} from 'react';
 import './Board.css';
 import { API } from "../api-service";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { useCookies } from "react-cookie";
 
 function BoardEditable(props)
 {
     const [course_group, setCourse_group] = useState([]);
+    const [ token ] = useCookies(['mr-token']);
 
     useEffect(()=>{
-      API.getLast_ranking()
+      API.getLast_ranking(token['mr-token'])
         .then(resp => setCourse_group(resp))
         .catch(error => console.log(error))
     }, [])
@@ -23,7 +25,7 @@ function BoardEditable(props)
 
     return (
         <div>
-            <div className='container'>
+            <div className='container-rank'>
                 <div className='course_group'>
                     <h1>דירוג עדיפויות</h1>
                     <DragDropContext onDragEnd={handleOnDragEnd}>

@@ -5,6 +5,7 @@ import Course_groupDetails from './components/course_group-details';
 import Navbar from "./components/Navbar/Navbar";
 import {API} from './api-service';
 import Timetable from "./components/timetable";
+import { useCookies } from "react-cookie";
 
 function App() {
 
@@ -14,18 +15,24 @@ function App() {
   const [selectedCourse_group, setSelectedCourse_group ] = useState(null);
   const [A_or_B, setA_or_B] = useState(false); //false is A
 
-  
+  const [ token ] = useCookies(['mr-token']);
+
   useEffect(()=>{
-    API.getCourse_group()
+    API.getCourse_group(token['mr-token'])
     .then(resp => setCourse_group(resp))
     .catch(error => console.log(error))
-    API.getCoursesA()
+    API.getCoursesA(token['mr-token'])
       .then(resp => setCourses_A(resp))
       .catch(error => console.log(error))
-    API.getCoursesB()
+    API.getCoursesB(token['mr-token'])
       .then(resp => setCourses_B(resp))
       .catch(error => console.log(error))
   }, [])
+
+  useEffect( () => {
+    console.log(token);
+    if(!token['mr-token']) window.location.href = '/';
+  }, [token])
 
   const course_groupClicked = course_group =>
   {
@@ -50,8 +57,8 @@ function App() {
         <Course_groupList course_group={course_group} course_groupClicked= {course_groupClicked} />
       </div>
       <div className="layout-button">
-            <button class="semester-button" onClick={buttonClicked(false)}>סמסטר א</button>
-            <button class="semester-button" onClick={buttonClicked(true)}>סמסטר ב</button>
+            <button className="semester-button" onClick={buttonClicked(false)}>סמסטר א</button>
+            <button className="semester-button" onClick={buttonClicked(true)}>סמסטר ב</button>
       </div>
       <div>
         {A_or_B ? (
