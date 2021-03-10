@@ -31,7 +31,7 @@ function Auth()
   
     return (
         <div className="auth">
-            <h3>כניסה למערכת</h3>
+              <h3>כניסה למערכת</h3>
             <div className="container">
                 <div className="row-container">
                     <input id="password" type="password" placeholder="" value={password}

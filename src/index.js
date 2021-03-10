@@ -7,6 +7,7 @@ import { Route, BrowserRouter  } from 'react-router-dom';
 import Ranking from './Ranking';
 import Auth from './auth';
 import { CookiesProvider } from "react-cookie";
+import Office from './Office'
 
 function Router() {
 
@@ -17,6 +18,7 @@ function Router() {
           <Route exact path="/" component={Auth} />
           <Route exact path="/courses_info" component={App} />
           <Route exact path="/ranking" component={Ranking} />
+          <Route exact path="/office" component={Office} />
         </BrowserRouter>
       </CookiesProvider>
     </React.StrictMode>

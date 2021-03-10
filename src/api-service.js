@@ -97,4 +97,18 @@ export class API {
         })
         .then(resp => resp.json())
     }
+    static office_set_data(course_group, token)
+    {
+        return fetch("http://127.0.0.1:8000/api/office/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            },
+            body: JSON.stringify()
+        })
+        .then(resp => resp.json())
+    }
 }
