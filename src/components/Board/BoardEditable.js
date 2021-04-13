@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './Board.css';
-import { API } from "../api-service";
+import { API } from "../../api-service";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useCookies } from "react-cookie";
 
@@ -53,7 +53,7 @@ function BoardEditable(props)
                     </DragDropContext>
                 </div>
             </div>
-            <button class="btn btn-lg btn-primary" onClick={props.SaveClicked(course_group)}>שמור</button>
+            <button className="btn btn-lg btn-primary" onClick={props.SaveClicked(course_group)}>שמור</button>
 
 
         </div>

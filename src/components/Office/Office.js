@@ -1,7 +1,7 @@
 
 import React, {useState, useEffect, Component} from 'react';
-import {API} from './api-service';
-import Navbar from "./components/Navbar/Navbar_Office";
+import {API} from '../../api-service';
+import Navbar_Office from './Navbar_Office';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -63,29 +63,38 @@ alertDate = () => {
 
 render () {
     return (
-        <div className="App">
-          <Navbar/>     
+        <div className="App" data-testid="office">
+          <Navbar_Office />     
           <header className="App-header">
             <div className="headline">ברוכים/ות הבאים/ות </div> 
           </header>  
           <div className="headline2"> : על מנת שנוכל לתחיל בתהליך, נדרש  </div>
           <div className="one">  (1) </div><br/>
           <div className="headlineOne">  הגדרת תאריך תחילת הדירוג וסופו </div>
-              <br/><br/><div className="dateP">
-              <DateRangePicker 
+              <br/><br/><div className="dateP" data-testid="datepicker">
+              {/* <DateRangePicker 
+              
+              data-testid="start_date_picker"
               startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-              startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+              startDateId="startDateId" // PropTypes.string.isRequired,
               endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-              endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+              endDateId="endDateId" // PropTypes.string.isRequired,
               onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
               focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
               onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-              /> <button className="saveButton" onClick={this.alertDate}>שמירה</button></div>
+              /> */}
+              <input type="date" data-testid="start_date_field"></input>
+              <input type="date" data-testid="end_date_field"></input>
+              <button className="saveButton" data-testid="save_button" 
+                onClick={()=>{
+                  console.log("Clicked");
+                  this.alertDate();
+                }}>שמירה</button></div>
               <div className="two">  (2) </div><br/>
                <div className="headlineTwo">  הוספת קבצי סטודנטים/ות </div><br />
               <div className="studentFile">
                         <input type="file" onChange={this.onFileChange} id="myuniqueid" />
-                        <label for="myuniqueid">בחר/י</label>
+                        <label htmlFor="myuniqueid">בחר/י</label>
                         <button className="uploadButton" onClick={this.onFileUpload}>העלאת הקובץ</button>
                         {this.fileData()}
               </div>
@@ -94,5 +103,5 @@ render () {
       );
     }
   }  
-    export default Office;
+  export default Office;
 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './Board.css';
-import { API } from "../api-service";
+import { API } from "../../api-service";
 import { useCookies } from "react-cookie";
 
 function Board(props)
@@ -32,7 +32,7 @@ function Board(props)
                     </div>
                 </div>
             </div>
-            <button class="btn btn-lg btn-primary" onClick={props.EditClicked}>עריכה</button>
+            <button className="btn btn-lg btn-primary" onClick={props.EditClicked}>עריכה</button>
         </div>
         
     );

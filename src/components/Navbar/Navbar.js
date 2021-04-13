@@ -1,6 +1,6 @@
 import React, {Component, useState, useEffect} from 'react'
 import {MenuItems} from "./MenuItems"
-import {OfficeItems} from "./OfficeItems"
+import {OfficeItems} from "../Office/OfficeItems"
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 
@@ -18,7 +18,7 @@ class Navbar extends Component
     render()
     {
         return(
-            <nav className="NavbarItems">
+            <nav className="NavbarItems" data-testid="nb">
                 <h1 className="navbar-logo">
                     CAP
                     <i className="fab fa-react"></i>

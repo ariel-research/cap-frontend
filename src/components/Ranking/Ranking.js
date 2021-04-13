@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import BoardEditable from "./components/BoardEditable";
-import Board from "./components/Board";
-import Navbar from "./components/Navbar/Navbar";
-import Course_groupDetails from './components/course_group-details';
-import { API } from "./api-service";
+import BoardEditable from "../Board/BoardEditable";
+import Board from "../Board/Board";
+import Navbar from "../Navbar/Navbar";
+import Course_groupDetails from '../course_group-details';
+import { API } from "../../api-service";
 import { useCookies } from "react-cookie";
 
 function Ranking(props)
@@ -34,7 +34,7 @@ function Ranking(props)
     if(edit === false)
     {
         return(
-            <div className="Rank">
+            <div className="Rank" data-testid="Rank">
                 <Navbar/>
                 <Board EditClicked= {EditClicked}/>      
             </div>
@@ -43,7 +43,7 @@ function Ranking(props)
     if(edit === true)
     {
         return(
-            <div className="Rank">
+            <div className="Rank" data-testid="RankEdit">
                 <Navbar/>
                 <BoardEditable SaveClicked= {SaveClicked}/>      
             </div>

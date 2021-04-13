@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Route, BrowserRouter  } from 'react-router-dom';
-import Ranking from './Ranking';
+import { Route, BrowserRouter, Link } from 'react-router-dom';
+import Ranking from './components/Ranking/Ranking';
 import Auth from './auth';
 import { CookiesProvider } from "react-cookie";
-import Office from './Office'
+import Office from './components/Office/Office'
 
 function Router() {
 
@@ -15,7 +15,7 @@ function Router() {
     <React.StrictMode>
       <CookiesProvider>
         <BrowserRouter>
-          <Route exact path="/" component={Auth} />
+          <Route exact path="/" component={Auth}/>
           <Route exact path="/courses_info" component={App} />
           <Route exact path="/ranking" component={Ranking} />
           <Route exact path="/office" component={Office} />
