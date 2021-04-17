@@ -4,6 +4,7 @@ import { API } from "../../api-service";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useCookies } from "react-cookie";
 
+
 function BoardEditable(props)
 {
     const [course_group, setCourse_group] = useState([]);
@@ -25,6 +26,7 @@ function BoardEditable(props)
 
     return (
         <div>
+            <h2 color="red">{props.time_message}</h2>
             <div className='container-rank'>
                 <div className='course_group'>
                     <h1>דירוג עדיפויות</h1>
@@ -53,8 +55,9 @@ function BoardEditable(props)
                     </DragDropContext>
                 </div>
             </div>
-            <button className="btn btn-lg btn-primary" onClick={props.SaveClicked(course_group)}>שמור</button>
-
+            <div class="col text-center">
+                <button class="btn btn-lg btn-primary" onClick={props.SaveClicked(course_group)}>שמור</button>
+            </div>
 
         </div>
         

@@ -18,6 +18,7 @@ function Board(props)
 
     return (
         <div>
+            <h2 color="red">{props.time_message}</h2>
             <div className='container-rank'>
                 <div className='course_group'>
                     <h1>דירוג עדיפויות</h1>
@@ -32,7 +33,9 @@ function Board(props)
                     </div>
                 </div>
             </div>
-            <button className="btn btn-lg btn-primary" onClick={props.EditClicked}>עריכה</button>
+            <div class="col text-center">
+                <button class="btn btn-lg btn-primary" onClick={props.EditClicked}>עריכה</button>
+            </div>
         </div>
         
     );

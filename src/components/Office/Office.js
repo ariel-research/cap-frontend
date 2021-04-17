@@ -1,11 +1,9 @@
 
-import React, {useState, useEffect, Component} from 'react';
-import {API} from '../../api-service';
+import React, { Component} from 'react';
 import Navbar_Office from './Navbar_Office';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import { DateRangePicker } from'react-dates';
 
 
 class Office extends Component {

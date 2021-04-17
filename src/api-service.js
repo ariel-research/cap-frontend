@@ -29,7 +29,7 @@ export class API {
 
     static getCourse_group(token)
     {
-        return fetch("http://127.0.0.1:8000/api/course_group/",
+        return fetch("http://127.0.0.1:8000/api/course_group/get_course_group/",
         {
             method: 'GET',
             headers: 
@@ -72,6 +72,20 @@ export class API {
     static getLast_ranking(token)
     {
         return fetch("http://127.0.0.1:8000/api/course_group/get_last_rating/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
+
+    static getTime(token)
+    {
+        return fetch("http://127.0.0.1:8000/api/office/get_time/",
         {
             method: 'GET',
             headers: 
