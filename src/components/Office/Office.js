@@ -1,76 +1,78 @@
 
-import React, { Component} from 'react';
+import React, { useState, useEffect, Component } from 'react';
+import { API } from '../../api-service';
 import Navbar_Office from './Navbar_Office';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import { DateRangePicker } from 'react-dates';
 
 
 class Office extends Component {
-constructor(props){
-  super(props);
-  this.state = {
-    startDate: null,
-    endDate: null,
-    selectedFile: null
-   
+  constructor(props) {
+    super(props);
+    this.state = {
+      startDate: null,
+      endDate: null,
+      selectedFile: null
+
+    }
   }
-}
 
-//////////// -Files uploading- ////////////
-// On file select (from the pop up)
-onFileChange = event => { 
-  // Update the state
-  this.setState({ selectedFile: event.target.files[0] });
-};
-// On file upload (click the upload button)
-onFileUpload = () => {  
-  // Create an object of formData
-  const formData = new FormData();
-  // Update the formData object
-  formData.append(
-    "myFile",
-    this.state.selectedFile,
-    this.state.selectedFile.name
-  );
-   // Details of the uploaded file
-   console.log(this.state.selectedFile);
-    
-   // Request made to the backend api
-   // Send formData object
-   Office.post("api/uploadfile", formData);
- };
- fileData = () => {
-  if (this.state.selectedFile) {
-    return (
-      <div>
-      <p>Last Modified:{" "}{this.state.selectedFile.lastModifiedDate.toDateString()}</p>
-      </div>
+  //////////// -Files uploading- ////////////
+  // On file select (from the pop up)
+  onFileChange = event => {
+    // Update the state
+    this.setState({ selectedFile: event.target.files[0] });
+  };
+  // On file upload (click the upload button)
+  onFileUpload = () => {
+    // Create an object of formData
+    const formData = new FormData();
+    // Update the formData object
+    formData.append(
+      "myFile",
+      this.state.selectedFile,
+      this.state.selectedFile.name
     );
-  } else {
-    return (
-      <div className="emptyFile"><br/>עדיין לא הועלה אף קובץ</div>  
-    );
+    // Details of the uploaded file
+    console.log(this.state.selectedFile);
+
+    // Request made to the backend api
+    // Send formData object
+    Office.post("api/uploadfile", formData);
+  };
+  fileData = () => {
+    if (this.state.selectedFile) {
+      return (
+        <div>
+          <p data-testid="lastModifiedOfFile">Last Modified:{" "}{this.state.selectedFile.lastModifiedDate.toDateString()}</p>
+        </div>
+      );
+    } else {
+      return (
+        <div data-testid="lastModifiedOfFile" className="emptyFile"><br />עדיין לא הועלה אף קובץ</div>
+      );
+    }
+  };
+  //////////// - End Files uploading- ////////////
+
+  alertDate = () => {
+    alert("התאריכים נרשמו במערכת");
   }
-};
-//////////// - End Files uploading- ////////////
 
-alertDate = () => {
-  alert("התאריכים נרשמו במערכת");
-}
-
-render () {
+  render() {
     return (
-        <div className="App" data-testid="office">
-          <Navbar_Office />     
-          <header className="App-header">
-            <div className="headline">ברוכים/ות הבאים/ות </div> 
-          </header>  
-          <div className="headline2"> : על מנת שנוכל לתחיל בתהליך, נדרש  </div>
-          <div className="one">  (1) </div><br/>
-          <div className="headlineOne">  הגדרת תאריך תחילת הדירוג וסופו </div>
-              <br/><br/><div className="dateP" data-testid="datepicker">
-              {/* <DateRangePicker 
+      <div className="App" data-testid="office">
+        <Navbar_Office />
+        <header className="App-header">
+          <div className="headline">ברוכים/ות הבאים/ות </div>
+        </header>
+        <div className="headline2"> : על מנת שנוכל לתחיל בתהליך, נדרש  </div>
+        <div className="one">  (1) </div><br />
+        <div className="headlineOne">  הגדרת תאריך תחילת הדירוג וסופו </div>
+        <br /><br /><div className="dateP" data-testid="datepicker">
+          {/* <DateRangePicker 
               
               data-testid="start_date_picker"
               startDate={this.state.startDate} // momentPropTypes.momentObj or null,
@@ -81,25 +83,25 @@ render () {
               focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
               onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
               /> */}
-              <input type="date" data-testid="start_date_field"></input>
-              <input type="date" data-testid="end_date_field"></input>
-              <button className="saveButton" data-testid="save_button" 
-                onClick={()=>{
-                  console.log("Clicked");
-                  this.alertDate();
-                }}>שמירה</button></div>
-              <div className="two">  (2) </div><br/>
-               <div className="headlineTwo">  הוספת קבצי סטודנטים/ות </div><br />
-              <div className="studentFile">
-                        <input type="file" onChange={this.onFileChange} id="myuniqueid" />
-                        <label htmlFor="myuniqueid">בחר/י</label>
-                        <button className="uploadButton" onClick={this.onFileUpload}>העלאת הקובץ</button>
-                        {this.fileData()}
-              </div>
-                  
+          <input type="date" data-testid="start_date_field"></input>
+          <input type="date" data-testid="end_date_field"></input>
+          <button className="saveButton" data-testid="save_button"
+            onClick={() => {
+              console.log("Clicked");
+              this.alertDate();
+            }}>שמירה</button></div>
+        <div className="two">  (2) </div><br />
+        <div className="headlineTwo">  הוספת קבצי סטודנטים/ות </div><br />
+        <div className="studentFile">
+          <input type="file" onChange={this.onFileChange} id="myuniqueid" data-testid="fileUpload"/>
+          <label htmlFor="myuniqueid">בחר/י</label>
+          <button className="uploadButton" onClick={this.onFileUpload}>העלאת הקובץ</button>
+          {this.fileData()}
         </div>
-      );
-    }
-  }  
-  export default Office;
+
+      </div>
+    );
+  }
+}
+export default Office;
 

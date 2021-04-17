@@ -9,7 +9,7 @@ import Auth from './auth';
 import { CookiesProvider } from "react-cookie";
 import Office from './components/Office/Office'
 
-function Router() {
+export default function Router() {
 
   return (
     <React.StrictMode>

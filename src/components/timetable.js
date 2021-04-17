@@ -11,7 +11,7 @@ function Timetable(props)
             <div>
                 {courses && courses.map( course => {
                 return (
-                <div key={course.course_id}>
+                <div data-testid="userCourseId" key={course.course_id}>
                     {course.course_id}
                 </div>
                 )
