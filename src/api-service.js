@@ -83,6 +83,20 @@ export class API {
         .then(resp => resp.json())
     }
 
+    static getTime(token)
+    {
+        return fetch("http://127.0.0.1:8000/api/office/get_time/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
+
     static rank_courses(course_group, token)
     {
         return fetch("http://127.0.0.1:8000/api/ranking/rank_courses/",

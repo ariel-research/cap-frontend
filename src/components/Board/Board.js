@@ -1,39 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import './Board.css';
 import { API } from "../../api-service";
 import { useCookies } from "react-cookie";
 
-function Board(props) {
+function Board(props)
+{
 
     const [course_group, setCourse_group] = useState([]);
-    const [token] = useCookies(['mr-token']);
+    const [ token ] = useCookies(['mr-token']);
 
-    useEffect(() => {
-        API.getLast_ranking(token['mr-token'])
-            .then(resp => setCourse_group(resp))
-            .catch(error => console.log(error))
+    useEffect(()=>{
+      API.getLast_ranking(token['mr-token'])
+        .then(resp => setCourse_group(resp))
+        .catch(error => console.log(error))
     }, [])
 
 
     return (
         <div>
+            <h2 color="red">{props.time_message}</h2>
             <div className='container-rank'>
                 <div className='course_group'>
                     <h1>דירוג עדיפויות</h1>
-                    <div data-testid="card">{course_group.map((course_group, index) => {
+                    <div>{ course_group.map((course_group, index) => {
                         return (
                             <div key={index} className='item'>
-                                <div data-testid="groupName" className='name'>{course_group.name}</div>
-                                <div data-testid="groupIndex" className='index'>{index + 1}</div>
+                                <div className='name'>{course_group.name}</div>
+                                <div className='index'>{index+1}</div>
                             </div>
                         )
                     })}
                     </div>
                 </div>
             </div>
-            <button data-testid="editButton" className="btn btn-lg btn-primary" onClick={props.EditClicked}>עריכה</button>
+            <div class="col text-center">
+                <button class="btn btn-lg btn-primary" onClick={props.EditClicked}>עריכה</button>
+            </div>
         </div>
-
+        
     );
 }
 
