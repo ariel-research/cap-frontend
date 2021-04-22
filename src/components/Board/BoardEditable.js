@@ -26,14 +26,14 @@ function BoardEditable(props)
 
     return (
         <div>
-            <h2 color="red">{props.time_message}</h2>
+            <h3>{props.time_message}</h3>
             <div className='container-rank'>
                 <div className='course_group'>
                     <h1>דירוג עדיפויות</h1>
                     <DragDropContext onDragEnd={handleOnDragEnd}>
                         <Droppable droppableId="courses">
                         {(provided) =>(
-                            <div {...provided.drooppableProps} ref={provided.innerRef}>
+                            <div data-testid="editableCard" {...provided.drooppableProps} ref={provided.innerRef}>
                                 {course_group.map((course_group, index) => {
                                     return (
                                         <Draggable key={index} draggableId={index+''} index={index}>

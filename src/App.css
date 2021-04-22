@@ -5,6 +5,13 @@
   color: rgb(85, 83, 83);
   text-align: right;
 }
+h1{
+  color: black !important;
+  font-size: 60px !important;
+}
+h2{
+  text-align: right !important;
+}
 
 .App-header {
   text-align: center;

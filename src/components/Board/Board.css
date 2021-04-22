@@ -19,17 +19,15 @@ body
 }
 
 h1{
-    color:white;
-    font-family: 'Roboto';
-    text-align: center;
-    margin: 5px;
-    padding: 5px;
+    font-size: 50px !important;
+    font-family: 'Roboto' !important;
+    text-align: center !important;
+    margin: 5px !important;
+    padding: 5px ;
 }
-h2{
-    color:black;
-    text-align: center;
-    margin: 5px;
-    padding: 5px;
+h3{
+    text-align: center !important;
+    font-size: 30px !important;
 }
 .course_group .item{
     width: 600px;

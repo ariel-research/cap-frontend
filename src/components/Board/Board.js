@@ -18,15 +18,15 @@ function Board(props)
 
     return (
         <div>
-            <h2 color="red">{props.time_message}</h2>
+            <h3>{props.time_message}</h3>
             <div className='container-rank'>
                 <div className='course_group'>
                     <h1>דירוג עדיפויות</h1>
-                    <div>{ course_group.map((course_group, index) => {
+                    <div data-testid="card">{ course_group.map((course_group, index) => {
                         return (
                             <div key={index} className='item'>
-                                <div className='name'>{course_group.name}</div>
-                                <div className='index'>{index+1}</div>
+                                <div data-testid="groupName" className='name'>{course_group.name}</div>
+                                <div data-testid="groupIndex" className='index'>{index+1}</div>
                             </div>
                         )
                     })}
@@ -34,7 +34,7 @@ function Board(props)
                 </div>
             </div>
             <div class="col text-center">
-                <button class="btn btn-lg btn-primary" onClick={props.EditClicked}>עריכה</button>
+                <button data-testid="editButton" class="btn btn-lg btn-primary" onClick={props.EditClicked}>עריכה</button>
             </div>
         </div>
         

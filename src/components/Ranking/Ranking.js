@@ -47,7 +47,7 @@ function Ranking(props)
     if(edit === false)
     {
         return(
-            <div className="Rank">
+            <div className="Rank" data-testid="Rank">
                 <Navbar/>
                 <Board EditClicked= {EditClicked} time_message={time_message}/>      
             </div>
@@ -56,7 +56,7 @@ function Ranking(props)
     if(edit === true)
     {
         return(
-            <div className="Rank">
+            <div className="Rank" data-testid="RankEdit">
                 <Navbar/>
                 <BoardEditable SaveClicked= {SaveClicked} time_message= {time_message}/>      
             </div>
