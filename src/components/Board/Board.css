@@ -27,11 +27,15 @@ h1{
 }
 h3{
     text-align: center !important;
+    width: 20% !important;
     font-size: 30px !important;
 }
+h4{
+    padding: 20px;
+  }
 .course_group .item{
-    width: 600px;
-    height: 30px;
+    width: 900px;
+    height: 50px;
     background-color: white;
     padding: 10px;
     border-radius: 20px;
@@ -65,4 +69,22 @@ button{
     font-size: 1.5rem; 
     margin: 20px; 
     margin-left: 850px;
+  }
+
+  .slide {
+    display: flex;
+    width: 300px;
+  }
+  input {
+    display: flex;
+    width: 250px;
+  }
+  .value {
+    width: 50px;
+  }
+
+  .title {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
   }

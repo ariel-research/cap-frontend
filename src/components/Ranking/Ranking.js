@@ -8,6 +8,7 @@ import { useCookies } from "react-cookie";
 function Ranking(props)
 {
     const [edit, setEdit] = useState(false);
+    const [balance, setBalance] = useState();
     const [time_message, setTime_message] = useState("");
     const [ranking_start, setRanking_start] = useState(false);
     const [ token ] = useCookies(['mr-token']);
@@ -26,21 +27,31 @@ function Ranking(props)
           .catch(error => console.log(error))
       }, [])
 
-    const EditClicked = evt =>
+
+    const EditClicked = b => evt =>
     {
         if(ranking_start)
+        {
             setEdit(true);
+            setBalance(b);
+        }
         else
             alert("ההרשמה סגורה");
     }
 
-    const SaveClicked = course_group => evt =>
+    const SaveClicked = (course_group, bal) => evt =>
     {
-        API.rank_courses(course_group, token['mr-token'])
-        .then(resp => console.log(resp))
-        .catch(error => console.log(error))
-        window.location.reload(false);
-        setEdit(false);
+        if(bal>=0)
+        {
+            API.rank_courses(course_group, token['mr-token'])
+            .then(resp => console.log(resp))
+            .catch(error => console.log(error))
+            window.location.reload(false);
+            setEdit(false);
+        }
+        else
+            alert("סכום הכסף שנותר חייב להיות לפחות 0");
+
     }
     
 
@@ -58,7 +69,7 @@ function Ranking(props)
         return(
             <div className="Rank" data-testid="RankEdit">
                 <Navbar/>
-                <BoardEditable SaveClicked= {SaveClicked} time_message= {time_message}/>      
+                <BoardEditable SaveClicked= {SaveClicked} time_message= {time_message} balance={balance}/>      
             </div>
         )
     }
