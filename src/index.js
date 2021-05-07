@@ -1,9 +1,9 @@
-import React, {useState , createContext} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Route, BrowserRouter, Link } from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 import Ranking from './components/Ranking/Ranking';
 import Auth from './auth';
 import { CookiesProvider } from "react-cookie";
