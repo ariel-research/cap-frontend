@@ -1,12 +1,12 @@
-import React, {Component , useState} from 'react'
+import React, {Component } from 'react'
 import {OfficeItems} from "./OfficeItems"
 import './Navbar_Office.css'
 //import {Navbar} from '.../Navbar/Navbar.css'
-import {  BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import {  BrowserRouter as Router, Link } from 'react-router-dom'
 
 
 
-class Navbar_Office extends Component
+class NavbarOffice extends Component
 {
 
     state = { clicked: false }
@@ -42,4 +42,4 @@ class Navbar_Office extends Component
     }
 }
 
-export default Navbar_Office
+export default NavbarOffice

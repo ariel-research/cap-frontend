@@ -2,7 +2,7 @@ import React from 'react'
 import '../../src/App.css';
 
 
-function Course_groupList(props) {
+function CoursegroupList(props) {
   const course_groupClicked = course_group => evt => {
     props.course_groupClicked(course_group)
   }
@@ -20,4 +20,4 @@ function Course_groupList(props) {
   )
 }
 
-export default Course_groupList
+export default CoursegroupList

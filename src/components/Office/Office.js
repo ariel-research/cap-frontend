@@ -1,11 +1,9 @@
 
-import React, { useState, useEffect, Component } from 'react';
-import { API } from '../../api-service';
-import Navbar_Office from './Navbar_Office';
+import React, { Component } from 'react';
+import NavbarOffice from './Navbar_Office';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import { DateRangePicker } from 'react-dates';
 
 
 class Office extends Component {
@@ -64,7 +62,7 @@ class Office extends Component {
   render() {
     return (
       <div className="App" data-testid="office">
-        <Navbar_Office />
+        <NavbarOffice />
         <header className="App-header">
           <div className="headline">ברוכים/ות הבאים/ות </div>
         </header>

@@ -22,10 +22,9 @@ function Ranking(props)
           .then(resp => {
             setTime_message(resp['message'])
             setRanking_start(resp['value'])
-            console.log(time_message)
           })
           .catch(error => console.log(error))
-      }, [])
+      }, [token, time_message])
 
 
     const EditClicked = b => evt =>

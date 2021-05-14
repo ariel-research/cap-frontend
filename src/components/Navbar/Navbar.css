@@ -1,6 +1,5 @@
 .NavbarItems{
     background: linear-gradient(90deg, rgb(110,94,254)0%, rgba(73,63,252,1)100%);
-    height: 80px;
     display: flex;
     justify-content: center;
     align-items: right;
@@ -12,11 +11,16 @@
     justify-self: start;
     margin-left: 20px;
     cursor: pointer;
+    font-size: 3rem
 }
 
 .fa-react{
-    margin-left: 0.5rem;
+     margin-left: 0.5rem;
     font-size: 1.3rem;
+    display: block;
+    margin-left: 40px;
+    margin-right: auto;
+    width: 100px;
 }
 
 .nav-menu {
@@ -36,14 +40,30 @@
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
+li {
+    border-right: 2px solid #bbb;
+    margin-left: 2px;
+  }
 
 .nav-links:hover {
     background-color: #6d76f7;
-    border-radius: 4px;
+    border-radius:3em;
+    display: inline-block;
     transition: all 0.2s ease-out;
+    text-decoration: none;
+
 }
+
 .menu-icon{
     display: none;
+}
+.logo2{
+   width: 220px;
+   margin-top: 10px;
+   color: rgb(231, 226, 226);
+   margin-left: 20px;
+   font-display: center;
+    font-size: 40px;
 }
 
 @media screen and (max-width: 960px){
@@ -62,16 +82,18 @@
         opacity: 1;
         transition: all 0.5 ease;
     }
-
-    .nav-menu.active{
-        background: #6668f4 ;
+    
+    /* .nav-menu active{
+        background-color:red;
+        color: red;
         left: 0;
         opacity: 1;
         transition: all 0.5 ease;
         z-index: 1;
-    }
+    } */
 
     .nav-links{
+
         text-align: center;
         padding: 2rem;
         width: 100%;

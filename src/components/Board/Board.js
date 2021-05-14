@@ -16,24 +16,24 @@ function Board(props)
       API.getLast_ranking(token['mr-token'])
         .then(resp => setCourse_group(resp))
         .catch(error => console.log(error))
-    }, [])
+    }, [token])
 
 
     return (
         <div>
-            <h3>{props.time_message}</h3>
+            <p className="ramainingTime">{props.time_message}</p>
             <div className='container-rank'>
                 <div className='course_group'>
                     <div className="title">
-                        <h4>{balance} :הכסף שנותר לך</h4>
-                        <h1>דירוג עדיפויות</h1>
+                        <p className="ramainingMoney">:הכסף שנותר לך<br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{balance}</p>
+                        <p className="ranking">דירוג עדיפויות</p>
                     </div>
-                    <div data-testid="card">{ course_group.map((course_group, index) => {
+                    <div data-testid="card" className='whiteLines'>{ course_group.map((course_group, index) => {
                         return (
                             <div key={index} className='item'>
-                                <div className="money">סכום הכסף: {course_group.score}</div>
+                                <div className="money">סכום: {course_group.score}</div>
                                 <div data-testid="groupName" className='name'>{course_group.name}</div>
-                                <div data-testid="groupIndex" className='index'>{index+1}</div>
+                                <div data-testid="groupIndex" className='index'>.{index+1}</div>
                             </div>
                         )
                     })}

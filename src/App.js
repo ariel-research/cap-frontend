@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Course_groupList from './components/course_group-list';
-import Course_groupDetails from './components/course_group-details';
+import CoursegroupList from './components/course_group-list';
+import CoursegroupDetails from './components/course_group-details';
 import Navbar from "./components/Navbar/Navbar";
 import { API } from './api-service';
 import Timetable from "./components/timetable";
@@ -28,7 +28,7 @@ function App() {
     API.getCoursesB(token['mr-token'])
       .then(resp => setCourses_B(resp))
       .catch(error => console.log(error))
-  }, [])
+  }, [token])
 
   useEffect(() => {
     if (!token['mr-token']) window.location.href = '/';
@@ -47,11 +47,11 @@ function App() {
     <div className="App">
       <Navbar />
       <header className="App-header">
-        <h1>מידע על קורסי הבחירה</h1>
+      <div className="Headline">מידע על קורסי הבחירה</div>
       </header>
       <div className="layout">
-        <Course_groupDetails course_group={selectedCourse_group} />
-        <Course_groupList course_group={course_group} course_groupClicked={course_groupClicked} />
+        <CoursegroupDetails course_group={selectedCourse_group} />
+        <CoursegroupList course_group={course_group} course_groupClicked={course_groupClicked} />
       </div>
       <div className="layout-button">
         <button data-testid="semesterA" className="semester-button" onClick={buttonClicked(false)}>סמסטר א</button>
