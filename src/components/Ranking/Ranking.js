@@ -15,6 +15,14 @@ function Ranking(props)
 
     useEffect( () => {
         if(!token['mr-token']) window.location.href = '/';
+        API.studentOrOffice(token['mr-token'])
+        .then(resp => {                
+            if(resp === 2) //office
+                window.location.href = '/office';
+            if(resp === 3) //error
+                alert("error")
+        })
+        .catch(error => console.log(error))
     }, [token])
 
     useEffect(()=>{

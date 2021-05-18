@@ -1,19 +1,22 @@
-
 import React, { Component } from 'react';
 import NavbarOffice from './Navbar_Office';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import { API } from '../../api-service';
+import Cookies from 'js-cookie';
 
 
 class Office extends Component {
+
   constructor(props) {
     super(props);
+
     this.state = {
       startDate: null,
       endDate: null,
-      selectedFile: null
-
+      selectedFile: null,
+      token: Cookies.get('mr-token')
     }
   }
 
@@ -57,6 +60,23 @@ class Office extends Component {
 
   alertDate = () => {
     alert("התאריכים נרשמו במערכת");
+  }
+
+  checkPermission = () => 
+  {
+    if(!Cookies.get('mr-token')) window.location.href = '/';
+    API.studentOrOffice(Cookies.get('mr-token'))
+    .then(resp => {                
+        if(resp === 1) //office
+            window.location.href = '/courses_info';
+        if(resp === 3) //error
+            alert("error")
+    })
+    .catch(error => console.log(error))
+  }
+
+  componentDidMount(){
+    this.checkPermission();
   }
 
   render() {

@@ -6,6 +6,7 @@ import './auth.css';
 function Auth() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
     const [token, setToken] = useCookies(['mr-token']);
 
 
@@ -29,7 +30,19 @@ function Auth() {
     }
 
     useEffect(() => {
-        if (token['mr-token']) window.location.href = '/courses_info';
+        if (token['mr-token'])
+        {
+            API.studentOrOffice(token['mr-token'])
+            .then(resp => {
+                if(resp === 1) //student
+                    window.location.href = '/courses_info';
+                if(resp === 2) //office
+                    window.location.href = '/office';
+                if(resp === 3) //error
+                    alert("error")
+            })
+            .catch(error => console.log(error))
+        } 
     }, [token])
 
     return (

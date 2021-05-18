@@ -26,6 +26,19 @@ export class API {
         })
         .then(resp => resp.json())
     }
+    static studentOrOffice(token)
+    {
+        return fetch("http://127.0.0.1:8000/api/student/student_or_office/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
 
     static getCourse_group(token)
     {
