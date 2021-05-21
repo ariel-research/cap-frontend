@@ -65,8 +65,10 @@ function App() {
         <CoursegroupList course_group={course_group} course_groupClicked={course_groupClicked} />
       </div>
       <div className="layout-button">
-        <button data-testid="semesterA" className="semester-button" onClick={buttonClicked(false)}>סמסטר א</button>
+        <div></div>
         <button data-testid="semesterB" className="semester-button" onClick={buttonClicked(true)}>סמסטר ב</button>
+        <div></div>
+        <button data-testid="semesterA" className="semester-button" onClick={buttonClicked(false)}>סמסטר א</button>
       </div>
       <div>
         {A_or_B ? (
