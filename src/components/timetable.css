@@ -1,12 +1,17 @@
 table {
     margin-top: 50px;
     margin-left: 10%;
-    width: 80%;
     align-items: center;
 }
 
-th {
-    height: 40px;
+th  {
+    height: 120px;
+    text-align: center; 
+    vertical-align: middle;
+}
+
+ tr {
+    height: 120px;
     text-align: center; 
     vertical-align: middle;
 }
