@@ -9,9 +9,9 @@ function Timetable(props)
     return(
         <div>
             <div>
-                {courses && courses.map( course => {
+                {courses && courses.map( (course,i) => {
                 return (
-                <div data-testid="userCourseId" key={course.course_id}>
+                <div  key={i} data-testid="userCourseId">
                     {course.course_id}
                 </div>
                 )
@@ -47,7 +47,7 @@ function Timetable(props)
                         )
                     }
                     return (
-                        <tr key={i} style={{height:'25px', verticalAlign:'top'}}>
+                        <tr key={i} style={{height:'25pxpx', verticalAlign:'top'}}>
                              {hour && hour.map( (day,j) => {
                                 if(day.length === 0)
                                 {
@@ -61,11 +61,12 @@ function Timetable(props)
                                 return (
                                     <td key={j} style={{ verticalAlign:'top'}}>  
                                         {day && day.map( (course,k) => {
-                                        return (                                    
-                                            <td key={k} style={{ verticalAlign:'top'}}>
-                                                <h6>
-                                                    {course.course_group}<br/> שם המרצה: {course.lecturer} <br/> שעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
-                                                </h6>                                            </td>
+                                        return (
+                                            <td key={k}>                                    
+                                                <h6  style={{ verticalAlign:'top'}}>
+                                                    {course.course_group}<br/> שם המרצה: {course.course_id} <br/> שעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
+                                                </h6>
+                                            </td>
                                         )
                                         })}   
                                     </td>

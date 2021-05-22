@@ -109,6 +109,19 @@ export class API {
         })
         .then(resp => resp.json())
     }
+    static getResults(token)
+    {
+        return fetch("http://127.0.0.1:8000/api/result/get_results/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
 
     static rank_courses(course_group, token)
     {

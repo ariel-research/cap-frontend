@@ -1,0 +1,21 @@
+.container-forms{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 100px;
+    margin-bottom: 30px;
+}
+.layout-results{
+    display: flex;
+    text-align: center;
+    width: 650px;
+    flex-direction: column;
+    background: linear-gradient(90deg, rgb(110,94,254)0%, rgba(73,63,252,1)100%);
+    border-radius: 20px;
+}
+.fill-in{
+    width: 640px;
+    background: white;
+    align-items: center;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
