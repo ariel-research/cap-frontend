@@ -11,7 +11,11 @@ function CoursegroupList(props) {
       {
         props.course_group && props.course_group.map(course_group => {
           return (
-            <div key={course_group.id} data-testid="courseGroup" className="itemName" onClick={course_groupClicked(course_group)}>{course_group.name}</div>
+            <div key={course_group.id} data-testid="courseGroup" className="itemName" onClick={course_groupClicked(course_group)}>
+              <div></div>
+              <p dir="rtl">{course_group.name}</p>
+              <div></div>
+            </div>
           )
         })
       }

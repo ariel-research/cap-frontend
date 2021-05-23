@@ -34,24 +34,24 @@ h2{
 
 .layout{
   display: grid;
+  margin-right: 10%;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
 
 
 .semester-button{
-  background: #11c3ff linear-gradient(to bottom, transparent, #009bcf);
-  border: 1px solid white;
-  border-radius: 5px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 20px;
   display: inline;
-  color: white;
-  font: bold 12px Arial, Helvetica, sans-serif;
+  font:  28px Arial, Helvetica, sans-serif;
   padding: 10px 15px;
   text-decoration: none;
   text-transform: uppercase;
   margin-top: 50px;
   height: 80px;
-  width: 120px;
+  width: 200px;
   font-size: large;
 }
 
@@ -73,9 +73,16 @@ ul {
   }
 
 .itemName{
-  font-size: 1.5rem;
-  padding-right: 50px;
   padding-top: 10px;
+  background-color: white;
+  height: 45px;
+  border-radius: 20px;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.2) ;
+  font-size: 1.3rem;
+  display: flex;
+  margin:10px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .itemName:hover{
