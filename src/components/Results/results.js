@@ -30,9 +30,18 @@ function Results(props)
     if(courses.length === 0)
     {
         return(
-            <div className="Rank" data-testid="Rank">
+            <div className="Rank">
                 <Navbar/>
-                <h1>no results</h1>      
+                <div className='container-rank' style={{width: '65%', marginLeft: '17.5%',marginTop:'50px'}}>
+                    <div className='course_group'>
+                        <h1 style={{color: 'white', margin: '25px', marginLeft:'27%'}}>: קורסי הבחירה שקיבלת/ה הם</h1>
+                        <div className='whiteLines'>
+                            <div className='item' >
+                                <div style={{marginLeft:'40%'}}>אין עדין תוצאות </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
             </div>
         )
     }
@@ -41,14 +50,14 @@ function Results(props)
         return(
             <div className="Rank">
                 <Navbar/>
-                <div className='container-rank' style={{width: '65%', marginLeft: '17.5%'}}>
+                <div className='container-rank' style={{width: '65%', marginLeft: '17.5%',marginTop:'50px'}}>
                     <div className='course_group'>
                         <h1 style={{color: 'white', margin: '25px', marginLeft:'27%'}}>: קורסי הבחירה שקיבלת/ה הם</h1>
                         <div className='whiteLines'>
                             { courses.map((course, index) => {
                             return (
                                 <div key={index} className='item'>
-                                    <div> ביום {course.day}' בשעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}</div>
+                                    <div> ביום {course.day} בשעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}</div>
                                     <div> סמסטר: {course.Semester}</div>
                                     <div> מרצה: {course.lecturer}</div>
                                     <div> שם הקורס: {course.course_group}</div>
@@ -58,8 +67,7 @@ function Results(props)
                             })}
                         </div>
                     </div>
-                </div>
-        
+                </div>        
             </div>
         )
     }
