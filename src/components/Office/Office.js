@@ -13,9 +13,8 @@ class Office extends Component {
     super(props);
 
     this.state = {
-      startDate: null,
-      endDate: null,
-      selectedFile: null,
+      filesName: '',
+      files: null,
       token: Cookies.get('mr-token')
     }
   }
@@ -24,30 +23,34 @@ class Office extends Component {
   // On file select (from the pop up)
   onFileChange = event => {
     // Update the state
-    this.setState({ selectedFile: event.target.files[0] });
+    const fileReader = new FileReader();
+    fileReader.readAsText(event.target.files[0], "UTF-8");
+    this.setState({filesName: event.target.files[0].name})
+    console.log(event.target.files[0])
+    fileReader.onload = e => {
+      this.setState({ files: e.target.result });
+    };
   };
   // On file upload (click the upload button)
   onFileUpload = () => {
-    // Create an object of formData
-    const formData = new FormData();
-    // Update the formData object
-    formData.append(
-      "myFile",
-      this.state.selectedFile,
-      this.state.selectedFile.name
-    );
-    // Details of the uploaded file
-    console.log(this.state.selectedFile);
-
-    // Request made to the backend api
-    // Send formData object
-    Office.post("api/uploadfile", formData);
+    const {files} = this.state
+    if(files)
+    {
+      API.createStudents(Cookies.get('mr-token'), files)
+      .then(resp => alert(resp))
+      .catch(error => console.log(error))
+    }
+    else
+    {
+      alert("נדרש להעלות קובץ")
+    }
   };
   fileData = () => {
-    if (this.state.selectedFile) {
+    if (this.state.files) {
+      console.log(this.state.files)
       return (
         <div>
-          <p data-testid="lastModifiedOfFile">Last Modified:{" "}{this.state.selectedFile.lastModifiedDate.toDateString()}</p>
+          <p data-testid="lastModifiedOfFile">{this.state.filesName} :שם הקובץ</p>
         </div>
       );
     } else {

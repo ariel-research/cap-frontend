@@ -137,6 +137,20 @@ export class API {
         })
         .then(resp => resp.json())
     }
+    static createStudents(token, jsonData)
+    {
+        return fetch("http://127.0.0.1:8000/api/student/create_objects/",
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            },
+            body: JSON.stringify( {students: jsonData} )
+        })
+        .then(resp => resp.json())
+    }
     static office_set_data(course_group, token)
     {
         return fetch("http://127.0.0.1:8000/api/office/",
