@@ -7,6 +7,7 @@ import { API } from '../../api-service';
 import Cookies from 'js-cookie';
 
 
+
 class Office extends Component {
 
   constructor(props) {
@@ -15,10 +16,17 @@ class Office extends Component {
     this.state = {
       filesName: '',
       files: null,
+      CourseFilesName: '',
+      CourseFile: null,
+      StartTime: null,
+      EndTime: null,
+      StartDate: null,
+      EndDate: null,
       token: Cookies.get('mr-token')
+
     }
   }
-
+  
   //////////// -Files uploading- ////////////
   // On file select (from the pop up)
   onFileChange = event => {
@@ -26,13 +34,30 @@ class Office extends Component {
     const fileReader = new FileReader();
     fileReader.readAsText(event.target.files[0], "UTF-8");
     this.setState({filesName: event.target.files[0].name})
-    console.log(event.target.files[0])
     fileReader.onload = e => {
       this.setState({ files: e.target.result });
     };
   };
+  onFileCourseChange = event => {
+    // Update the state
+    const fileReader = new FileReader();
+    fileReader.readAsText(event.target.files[0], "UTF-8");
+    this.setState({CourseFilesName: event.target.files[0].name})
+    fileReader.onload = e => {
+      this.setState({ CourseFile: e.target.result });
+    };
+  };
+  changeStartTime = event => {
+    // Update the state
+    this.setState({StartDate:(event.target.value).split('T')[0], StartTime:(event.target.value).split('T')[1]})
+  };
+  changeEndTime = event => {
+    // Update the state
+    this.setState({EndDate:(event.target.value).split('T')[0], EndTime:(event.target.value).split('T')[1]})
+  };
+
   // On file upload (click the upload button)
-  onFileUpload = () => {
+  saveStudent = () => {
     const {files} = this.state
     if(files)
     {
@@ -42,12 +67,39 @@ class Office extends Component {
     }
     else
     {
-      alert("נדרש להעלות קובץ")
+      alert("נדרש להעלות קבצי סטודנטים")
     }
   };
+  saveCourses = () => {
+    const {CourseFile} = this.state
+    if(CourseFile)
+    {
+      API.createCourses(Cookies.get('mr-token'), CourseFile)
+      .then(resp => alert(resp))
+      .catch(error => console.log(error))
+    }
+    else
+    {
+      alert("נדרש להעלות קבצי קורסים")
+    }
+  };
+  saveDate = () => {
+    const {StartDate, EndDate, StartTime, EndTime} = this.state
+    if(StartDate && EndDate && StartTime && EndTime)
+    {
+      API.createDate(Cookies.get('mr-token'), StartDate, EndDate, StartTime, EndTime)
+      .then(resp => alert(resp))
+      .catch(error => console.log(error))
+    }
+    else
+    {
+      alert("לא צוין תאריך התחלה או סיום")
+    }
+  };
+
+  ///////////////// - filesData - /////////////////
   fileData = () => {
     if (this.state.files) {
-      console.log(this.state.files)
       return (
         <div>
           <p data-testid="lastModifiedOfFile">{this.state.filesName} :שם הקובץ</p>
@@ -55,14 +107,27 @@ class Office extends Component {
       );
     } else {
       return (
-        <div data-testid="lastModifiedOfFile" className="emptyFile"><br />עדיין לא הועלה אף קובץ</div>
+        <div>בחר/י</div>
+      );
+    }
+  };
+  fileDataCourse= () => {
+    if (this.state.CourseFile) {
+      return (
+        <div>
+          <p data-testid="lastModifiedOfFile">{this.state.CourseFilesName} :שם הקובץ</p>
+        </div>
+      );
+    } else {
+      return (
+        <div>בחר/י</div>
       );
     }
   };
   //////////// - End Files uploading- ////////////
 
   alertDate = () => {
-    alert("התאריכים נרשמו במערכת");
+    alert("הרשומות נרשמו במערכת");
   }
 
   checkPermission = () => 
@@ -90,39 +155,39 @@ class Office extends Component {
           <div className="headline">ברוכים/ות הבאים/ות </div>
         </header>
         <div className="headline2"> : על מנת שנוכל לתחיל בתהליך, נדרש  </div>
-        <div className="one">  (1) </div><br />
-        <div className="headlineOne">  הגדרת תאריך תחילת הדירוג וסופו </div>
-        <br /><br /><div className="dateP" data-testid="datepicker">
-          {/* <DateRangePicker 
-              
-              data-testid="start_date_picker"
-              startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-              startDateId="startDateId" // PropTypes.string.isRequired,
-              endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-              endDateId="endDateId" // PropTypes.string.isRequired,
-              onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
-              focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-              onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-              /> */}
-          <input type="date" data-testid="start_date_field"></input>
-          <input type="date" data-testid="end_date_field"></input>
-          <button className="saveButton" data-testid="save_button"
-            onClick={() => {
-              console.log("Clicked");
-              this.alertDate();
-            }}>שמירה</button></div>
+        <div className="one">  (1) </div><br/>
+        <div className="headlineOne">  הגדרת תאריך תחילת הדירוג וסופו </div><br/><br />
+        <div style={{marginLeft:'45%'}} data-testid="datepicker">
+          <input type="datetime-local" onChange={this.changeStartTime} data-testid="start_date_field"></input>
+          <input type="datetime-local" onChange={this.changeEndTime} data-testid="end_date_field"></input>
+          <button style={{marginRight:'80%', marginTop: '15px'}} onClick={this.saveDate} data-testid="save_button">שמירה</button>
+        </div>
+
         <div className="two">  (2) </div><br />
         <div className="headlineTwo">  הוספת קבצי סטודנטים/ות </div><br />
         <div className="studentFile">
-          <input type="file" onChange={this.onFileChange} id="myuniqueid" data-testid="fileUpload"/>
-          <label htmlFor="myuniqueid">בחר/י</label>
-          <button className="uploadButton" onClick={this.onFileUpload}>העלאת הקובץ</button>
-          {this.fileData()}
+          <div style={{marginLeft:'24%'}}>
+            <input type="file" onChange={this.onFileChange} id="myuniqueid" data-testid="fileUpload"/>
+            <label style={{width:'120px', paddingRight:'50px',paddingTop:'8px'}} htmlFor="myuniqueid">{this.fileData()}</label>
+          </div>
+          <br/><br/><br/>
+          <button style={{marginLeft:'5%'}} onClick={this.saveStudent} data-testid="save_button">שמירה</button> 
+        </div><br />
+        <div className="two">  (3) </div><br />
+        <div className="headlineTwo"> הוספת קבצי קורסים </div><br />
+        <div style={{marginBottom:'50px'}} className="coursesFile">
+          <div style={{marginLeft:'24%'}}>
+            <input type="file" onChange={this.onFileCourseChange} id="myuniqueid2" data-testid="fileUpload"/>
+            <label style={{width:'120px', paddingRight:'20px',paddingTop:'8px'}} htmlFor="myuniqueid2">{this.fileDataCourse()}</label>
+          </div>
+          <br/><br/><br/>
+          <button style={{marginRight:'44%'}} onClick={this.saveCourses} data-testid="save_button">שמירה</button>
         </div>
 
       </div>
     );
   }
 }
+
 export default Office;
 
