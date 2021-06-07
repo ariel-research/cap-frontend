@@ -102,7 +102,7 @@ class Office extends Component {
     if (this.state.files) {
       return (
         <div>
-          <p data-testid="lastModifiedOfFile">{this.state.filesName} :שם הקובץ</p>
+          <p data-testid="lastModifiedOfFile">{this.state.filesName} </p>
         </div>
       );
     } else {
@@ -115,7 +115,7 @@ class Office extends Component {
     if (this.state.CourseFile) {
       return (
         <div>
-          <p data-testid="lastModifiedOfFile">{this.state.CourseFilesName} :שם הקובץ</p>
+          <p data-testid="lastModifiedOfFile">{this.state.CourseFilesName}</p>
         </div>
       );
     } else {
@@ -158,9 +158,9 @@ class Office extends Component {
         <div className="one">  (1) </div><br/>
         <div className="headlineOne">  הגדרת תאריך תחילת הדירוג וסופו </div><br/><br />
         <div style={{marginLeft:'45%'}} data-testid="datepicker">
-          <input type="datetime-local" onChange={this.changeStartTime} data-testid="start_date_field"></input>
-          <input type="datetime-local" onChange={this.changeEndTime} data-testid="end_date_field"></input>
-          <button style={{marginRight:'80%', marginTop: '15px'}} onClick={this.saveDate} data-testid="save_button">שמירה</button>
+          <input className="startdate" type="datetime-local" onChange={this.changeStartTime} data-testid="start_date_field"></input><br/>
+          <input className="startdate" type="datetime-local" onChange={this.changeEndTime} data-testid="end_date_field"></input><br/>
+          <button className="saveB"style={{marginRight:'80%', marginTop: '15px'}} onClick={this.saveDate} data-testid="save_button">שמירה</button>
         </div>
 
         <div className="two">  (2) </div><br />
@@ -168,20 +168,20 @@ class Office extends Component {
         <div className="studentFile">
           <div style={{marginLeft:'24%'}}>
             <input type="file" onChange={this.onFileChange} id="myuniqueid" data-testid="fileUpload"/>
-            <label style={{width:'120px', paddingRight:'50px',paddingTop:'8px'}} htmlFor="myuniqueid">{this.fileData()}</label>
+            <label className="chooseB"style={{width:'120px', paddingRight:'50px',paddingTop:'8px'}} htmlFor="myuniqueid">{this.fileData()}</label>
           </div>
           <br/><br/><br/>
-          <button style={{marginLeft:'5%'}} onClick={this.saveStudent} data-testid="save_button">שמירה</button> 
+          <button className="saveB" style={{marginLeft:'5%'}} onClick={this.saveStudent} data-testid="save_button">שמירה</button> 
         </div><br />
         <div className="two">  (3) </div><br />
         <div className="headlineTwo"> הוספת קבצי קורסים </div><br />
         <div style={{marginBottom:'50px'}} className="coursesFile">
           <div style={{marginLeft:'24%'}}>
             <input type="file" onChange={this.onFileCourseChange} id="myuniqueid2" data-testid="fileUpload"/>
-            <label style={{width:'120px', paddingRight:'20px',paddingTop:'8px'}} htmlFor="myuniqueid2">{this.fileDataCourse()}</label>
+            <label className="chooseB" style={{width:'120px', paddingRight:'20px',paddingTop:'8px'}} htmlFor="myuniqueid2">{this.fileDataCourse()}</label>
           </div>
           <br/><br/><br/>
-          <button style={{marginRight:'44%'}} onClick={this.saveCourses} data-testid="save_button">שמירה</button>
+          <button className="saveB" style={{marginRight:'44%'}} onClick={this.saveCourses} data-testid="save_button">שמירה</button>
         </div>
 
       </div>

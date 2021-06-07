@@ -14,10 +14,5 @@ export const MenuItems = [
         url:'/courses_info',
         cName: 'nav-links'
     },
-    {
-        title: 'הקורסים שלי',
-        url:'#',
-        cName: 'nav-links'
-    },
 
 ]

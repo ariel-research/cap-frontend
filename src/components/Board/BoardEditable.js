@@ -30,12 +30,18 @@ function BoardEditable(props)
 
     return (
         <div>
-           <p className="ramainingTime">{props.time_message}</p>
-            <div className='container-rank'>
+              <p className="ranking">דירוג קורסי בחירה</p>
+              <div className="info">   סטודנט/ית יקר/ה<br/>
+                        עלייך לחלק 1000 נקודות בין קורסי הבחירה לפי הדירוג המועדף עלייך *<br/>
+                        ככל שתשקיע/י בקורס מסויים - כך יגדל הסיכוי לקבלו *<br/>
+                        אם לא תזכ/י בקורס הרצוי, הנקודות יועברו אוטומטית לקורס הבא ברשימה שלך *<br/>
+                        !בהצלחה
+                    </div><br />
+             <div className='container-rank'>
                 <div className='course_group'>
                     <div className="title">
-                        <p className="ramainingMoney">:הכסף שנותר לך<br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{balance}</p>
-                        <p className="ranking">דירוג עדיפויות</p>
+                        <p className="ramainingMoney">:הנקודות שנותרו לך<br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{balance}</p>
+                        <p className="ramainingTime">{props.time_message}</p>
                     </div>
                     <div data-testid="card" className='whiteLines'>{ course_group.map((course_group, index) => {
                         return (
@@ -50,7 +56,7 @@ function BoardEditable(props)
                 </div>
             </div>
             <div className="col text-center">
-                <button className="btn btn-lg btn-primary" onClick={props.SaveClicked(course_group, balance)}>שמירה</button>
+                <button style={{marginBottom:'50px'}} className="btn btn-lg btn-primary" onClick={props.SaveClicked(course_group, balance)}>שמירה</button>
             </div>
 
         </div>

@@ -18,8 +18,8 @@ function Timetable(props)
             })}
             </div>
 
-            <table width= '80%' border="2" cellPadding="0" cellSpacing="0" style={{backgroundColor: 'orange'}}>
-                <thead>
+            <table  width= '80%' border="2" cellPadding="0" cellSpacing="0" >
+                <thead className="timetableTop">
                     <tr style={{height: '40px'}}>
                         <td width="15%">שישי</td>
                         <td width="15%">חמישי</td>
@@ -42,7 +42,7 @@ function Timetable(props)
                                     </td>
                                 )
                                 })}
-                                <td style={{backgroundColor:'orange'}}>{i+8}:00</td>
+                                <td className="tableRight">{i+8}:00</td>
                             </tr>
                         )
                     }
@@ -64,7 +64,7 @@ function Timetable(props)
                                         return (
                                             <td key={k}>                                    
                                                 <h6  style={{ verticalAlign:'top'}}>
-                                                    {course.course_group}<br/> שם המרצה: {course.course_id} <br/> שעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
+                                                    {course.course_group}<br/> שם המרצה: {course.lecturer} <br/> שעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
                                                 </h6>
                                             </td>
                                         )
@@ -73,7 +73,7 @@ function Timetable(props)
                                 )
                                 
                                 })}
-                            <td style={{backgroundColor:'orange'}}>{i+8}:00</td>
+                            <td className="tableRight">{i+8}:00</td>
                             
                         </tr>
 

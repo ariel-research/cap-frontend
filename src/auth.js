@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { API } from './api-service';
 import { useCookies } from "react-cookie";
 import './auth.css';
+import logo1 from './logo.png';
 
 function Auth() {
     const [username, setUsername] = useState('');
@@ -47,8 +48,13 @@ function Auth() {
 
     return (
         <div className="auth">
-            <h3>כניסה למערכת</h3>
+            <div className="headline"> Fair Division - ברוכים/ות הבאים/ות ל </div>
+            <div className="headline"></div>
+            <div className="headline">כניסה למערכת</div>
             <div className="container">
+                <div style={{marginLeft:'40%',marginBottom: '10px'}}>
+                    <img className="fab fa-react" src={logo1} alt="" />
+                </div>
                 <div className="row-container">
                     <input data-testid="password" id="password" type="password" placeholder="" value={password}
                         onChange={evt => setPassword(evt.target.value)} /><br /><br />
@@ -62,7 +68,9 @@ function Auth() {
             </div>
             <div>
                 <button data-testid="loginButton" className="Login-button" onClick={loginClicked}>התחברות</button>
+                
             </div>
+        
         </div>)
 }
 

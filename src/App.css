@@ -42,10 +42,13 @@ h2{
 
 .semester-button{
   background: white;
-  border: 1px solid black;
+  border: 1px solid  rgba(182, 182, 182, 0.836);
+  border-width: 0.20rem;
+  color: rgba(85, 83, 83);
+  font-weight: bold;
   border-radius: 20px;
   display: inline;
-  font:  28px Arial, Helvetica, sans-serif;
+  font:  28px  ;
   padding: 10px 15px;
   text-decoration: none;
   text-transform: uppercase;

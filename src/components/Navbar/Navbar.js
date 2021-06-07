@@ -19,7 +19,7 @@ class Navbar extends Component
     {
         return(
             <nav className="NavbarItems" data-testid="nb">
-                <div><img className="fab fa-react" src={logo1} alt="" /></div>
+                <div><img className="fab fa-react1" src={logo1} alt="" /></div>
                 <div className="logo2">Fair Division</div>
                 <div className="menu-icon" onClick= {this.handleClicked}>
                     <i className={this.state.clicked ? 'fas fa-times': 'fas fa-bars'}></i>

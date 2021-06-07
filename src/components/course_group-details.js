@@ -9,7 +9,7 @@ function CoursegroupDetails(props) {
                     <div>{props.course_group.courses.map((course, i) => {
                         return (
                             <ul className="courses" data-testid="courseDetails" key={course.course_id}>
-                                <h3 data-testid={`courseOption${i}`}>אופצייה: {i + 1}</h3>
+                                <h3 style={{marginRight:'35%'}}data-testid={`courseOption${i}`}>אופצייה: {i + 1}</h3>
                                 <li data-testid={`courseSemester${i}`}>סמסטר: {course.Semester}</li>
                                 <li data-testid={`teacherName${i}`}>שם המרצה: {course.lecturer}</li>
                                 <li data-testid={`numOfStudents${i}`}>מכסת סטודנטים: {course.capacity}</li>

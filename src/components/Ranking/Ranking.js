@@ -66,7 +66,7 @@ function Ranking(props)
     {
         return(
             <div className="Rank" data-testid="Rank">
-                <Navbar/>
+                <Navbar sticky="top"/>
                 <Board EditClicked= {EditClicked} time_message={time_message}/>      
             </div>
         )
