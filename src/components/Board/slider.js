@@ -18,7 +18,7 @@ class Slider extends React.Component
     {
         return (
             <div className="slide">
-                <div className="value">{this.state.value}</div>
+                <div className="value" style={{fontSize:"1.3em"}}>{this.state.value}</div>
                 <input type="range" min={0} max={1000} value={this.state.value} className="slider" onChange={this.handleOnChane}/>
             </div>
 

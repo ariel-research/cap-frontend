@@ -65,19 +65,29 @@ h3{
 }
 .course_group .item{
     /* width: 90%; */
-    height: 47px;
+    height: 80px;
     background-color: white;
-    padding: 10px;
+    padding: 5px;
     border-radius: 20px;
     box-shadow: 4px 4px rgba(0, 0, 0, 0.2) ;
-    font-size: 1.3rem;
-    display: flex;
-    margin:10px;
-    justify-content: space-between;
-    align-items: center;
-    
+    margin:10px;    
 }
-
+.course_group .item-title{
+  /* width: 90%; */
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.course_group .item-details{
+  /* width: 90%; */
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
 .course_group .item .name{
     /* width: 600px; */
     display: flex;

@@ -38,9 +38,17 @@ function Board(props)
                     <div data-testid="card" className='whiteLines'>{ course_group.map((course_group, index) => {
                         return (
                             <div key={index} className='item'>
-                                <div className="money">סכום: {course_group.score}</div>
-                                <div data-testid="groupName" className='name'>{course_group.name}</div>
-                                <div data-testid="groupIndex" className='index'>.{index+1}</div>
+                                <div className='item-title'>
+                                    <div className="money">סכום: {course_group.score}</div>
+                                    <div data-testid="groupName" className='name'>{course_group.name}</div>
+                                    <div data-testid="groupIndex" className='index'>.{index+1}</div>
+                                </div>
+                                <div className='item-details'>
+                                    <div data-testid="groupName" className='hours'>בשעות: {(course_group.time_start).substring(0, 5)}-{(course_group.time_end).substring(0, 5)}</div>
+                                    <div data-testid="groupName" className='lecturer'>מרצה: {course_group.lecturer}</div>
+                                    <div data-testid="groupName" className='day'>יום: {course_group.day}</div>
+                                    <div data-testid="groupName" className='semester'>סמסטר: {course_group.semester}</div>
+                                </div>
                             </div>
                         )
                     })}
