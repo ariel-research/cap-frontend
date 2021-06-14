@@ -40,22 +40,6 @@ h2{
 }
 
 
-.semester-button{
-  background: white;
-  border: 1px solid  rgba(182, 182, 182, 0.836);
-  border-width: 0.20rem;
-  color: rgba(85, 83, 83);
-  font-weight: bold;
-  border-radius: 20px;
-  font:  28px  ;
-  padding: 10px 15px;
-  text-decoration: none;
-  text-transform: uppercase;
-  margin-top: 50px;
-  height: 80px;
-  width: 200px;
-}
-
 .courses{
   text-align: center;
   margin-left: 200px;
@@ -93,10 +77,22 @@ ul {
   cursor: pointer;
 }
 
-.layout-button1{
-  display: flex;
-  grid-template-columns: 1fr 1fr 1fr;
-  margin-left: 30%;
-  width: 40%;
-  grid-gap: 50px;
+.Row{
+  display: grid;
+  margin-left: 20%;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+.semester-button1{
+  background: white;
+  border: 1px solid  rgba(182, 182, 182, 0.836);
+  border-width: 0.20rem;
+  color: rgba(85, 83, 83);
+  font-weight: bold;
+  border-radius: 20px;
+  font:  28px  ;
+  padding: 10px 15px;
+  margin-top: 50px;
+  height: 80px;
+  width: 30%;
 }

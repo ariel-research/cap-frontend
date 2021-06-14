@@ -64,12 +64,9 @@ function App() {
         <CoursegroupDetails course_group={selectedCourse_group} />
         <CoursegroupList course_group={course_group} course_groupClicked={course_groupClicked} />
       </div>
-      <div className="layout-button1">
-        <div></div>
-        <button data-testid="semesterB" className="semester-button" onClick={buttonClicked(true)}>סמסטר ב</button>
-        <div></div>
-        <button data-testid="semesterA" className="semester-button" onClick={buttonClicked(false)}>סמסטר א</button>
-        <div></div>
+      <div className="Row">
+        <button data-testid="semesterB" className="semester-button1" onClick={buttonClicked(true)}>סמסטר ב</button>
+        <button data-testid="semesterA" className="semester-button1" onClick={buttonClicked(false)}>סמסטר א</button>
       </div>
       <h5 style={{marginRight:'37%',marginTop:'15px'}}>שים לב, הקורסים באדום הם קורסי החובה שלך *</h5>
 
