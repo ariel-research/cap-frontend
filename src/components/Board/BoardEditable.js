@@ -34,6 +34,7 @@ function BoardEditable(props)
               <div className="info">   סטודנט/ית יקר/ה<br/>
                         עלייך לחלק 1000 נקודות בין קורסי הבחירה לפי הדירוג המועדף עלייך *<br/>
                         ככל שתשקיע/י בקורס מסויים - כך יגדל הסיכוי לקבלו *<br/>
+                        שים לב שלא תוכל לקבל קורס שקיבל 0 נקודות *<br/>
                         אם לא תזכ/י בקורס הרצוי, הנקודות יועברו אוטומטית לקורס הבא ברשימה שלך *<br/>
                         !בהצלחה
                     </div><br />
@@ -41,7 +42,10 @@ function BoardEditable(props)
                 <div className='course_group'>
                     <div className="title">
                         <p className="ramainingMoney">:הנקודות שנותרו לך<br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{balance}</p>
-                        <p className="ramainingTime">{props.time_message}</p>
+                        <div>
+                            <p className="ramainingTime">{props.time_message}</p>
+                            <button style={{marginLeft:'30%',width:'40%', backgroundColor:'red'}} className="btn btn-lg btn-primary" onClick={props.SaveClicked(course_group, balance)}>שמירה</button>
+                        </div>
                     </div>
                     <div data-testid="card" className='whiteLines'>{ course_group.map((course_group, index) => {
                         return (
@@ -63,10 +67,6 @@ function BoardEditable(props)
                     </div>
                 </div>
             </div>
-            <div className="col text-center">
-                <button style={{marginBottom:'50px'}} className="btn btn-lg btn-primary" onClick={props.SaveClicked(course_group, balance)}>שמירה</button>
-            </div>
-
         </div>
         
     );

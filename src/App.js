@@ -69,7 +69,10 @@ function App() {
         <button data-testid="semesterB" className="semester-button" onClick={buttonClicked(true)}>סמסטר ב</button>
         <div></div>
         <button data-testid="semesterA" className="semester-button" onClick={buttonClicked(false)}>סמסטר א</button>
+
       </div>
+      <h5 style={{marginRight:'37%',marginTop:'15px'}}>שים לב, הקורסים באדום הם קורסי החובה שלך *</h5>
+
       <div>
         {A_or_B ? (
           <Timetable course_group={courses_B} />

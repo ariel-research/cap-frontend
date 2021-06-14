@@ -33,3 +33,17 @@
     margin-top: 20px;
     font-weight: bold;
 }
+.course_group .item1{
+  /* width: 90%; */
+  height: 50px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 20px;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.2) ;
+  margin:10px;  
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}

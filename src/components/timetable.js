@@ -62,10 +62,13 @@ function Timetable(props)
                                     <td key={j} style={{ verticalAlign:'top'}}>  
                                         {day && day.map( (course,k) => {
                                         return (
-                                            <td key={k}>                                    
-                                                <h6  style={{ verticalAlign:'top'}}>
+                                            <td key={k}> 
+                                                {course.mandatory && <h6  style={{ verticalAlign:'top', backgroundColor: 'red'}}>
                                                     {course.course_group}<br/> שם המרצה: {course.lecturer} <br/> שעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
-                                                </h6>
+                                                </h6> }                                   
+                                                {!course.mandatory && <h6  style={{ verticalAlign:'top'}}> {course.mandatory}
+                                                    {course.course_group}<br/> שם המרצה: {course.lecturer} <br/> שעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
+                                                </h6> }  
                                             </td>
                                         )
                                         })}   

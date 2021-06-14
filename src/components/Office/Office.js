@@ -164,7 +164,8 @@ class Office extends Component {
         </div>
 
         <div className="two">  (2) </div><br />
-        <div className="headlineTwo">  הוספת קבצי סטודנטים/ות </div><br />
+        <div className="headlineTwo"> (json:פורמט) הוספת קבצי סטודנטים/ות</div><br />
+        <p style={{marginRight:'20%'}}>[&#123;  "id":"01", "name": "Tom", "password": "19283746", "email": "tom@gmail.com","amount_elective":5,"courses":["1","9","14"]&#125;] :דוגמא לפורמט תקין</p>
         <div className="studentFile">
           <div style={{marginLeft:'24%'}}>
             <input type="file" onChange={this.onFileChange} id="myuniqueid" data-testid="fileUpload"/>
@@ -174,7 +175,8 @@ class Office extends Component {
           <button className="saveB" style={{marginLeft:'5%'}} onClick={this.saveStudent} data-testid="save_button">שמירה</button> 
         </div><br />
         <div className="two">  (3) </div><br />
-        <div className="headlineTwo"> הוספת קבצי קורסים </div><br />
+        <div className="headlineTwo">  (json:פורמט) הוספת קבצי קורסים </div><br />
+        <p style={{marginRight:'20%'}}>[&#123; "id":"601", "name": "course1", "lecturer": "avi ron","capacity": 100, "is_elective": false, "day":"ג", "semester":"א", "start_time":"10:00", "end_time":"13:00"&#125;] :דוגמא לפורמט תקין</p>
         <div style={{marginBottom:'50px'}} className="coursesFile">
           <div style={{marginLeft:'24%'}}>
             <input type="file" onChange={this.onFileCourseChange} id="myuniqueid2" data-testid="fileUpload"/>
