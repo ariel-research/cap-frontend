@@ -45,14 +45,17 @@ function Ranking(props)
         else
             alert("ההרשמה סגורה");
     }
-
-    const SaveClicked = (course_group, bal) => evt =>
+    function timeout(delay) {
+        return new Promise( res => setTimeout(res, delay) );
+    }
+    const SaveClicked = (course_group, bal) => async(evt) =>
     {
-        if(bal>=0)
+         if(bal>=0)
         {
             API.rank_courses(course_group, token['mr-token'])
             .then(resp => console.log(resp))
             .catch(error => console.log(error))
+            await timeout(1000);
             window.location.reload(false);
             setEdit(false);
         }
