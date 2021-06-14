@@ -95,7 +95,7 @@ ul {
   cursor: pointer;
 }
 
-.layout-button{
+.layout-button1{
   display: grid;
-  grid-template-columns: 8fr 1fr 1fr 1fr 8fr;
+  grid-template-columns: 3fr 1fr 1fr 1fr 3fr;
 }
