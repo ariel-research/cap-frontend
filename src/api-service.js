@@ -1,8 +1,9 @@
+const BASE_URL= "https://api-fair-division.herokuapp.com/";
 
 export class API {
     static loginUser(body)
     {
-        return fetch("http://127.0.0.1:8000/auth/",
+        return fetch(BASE_URL+"auth/",
         {
             method: 'POST',
             headers: 
@@ -15,7 +16,7 @@ export class API {
     }
     static registerUser(body)
     {
-        return fetch("http://127.0.0.1:8000/api/users/",
+        return fetch(BASE_URL+"api/users/",
         {
             method: 'POST',
             headers: 
@@ -28,7 +29,7 @@ export class API {
     }
     static studentOrOffice(token)
     {
-        return fetch("http://127.0.0.1:8000/api/student/student_or_office/",
+        return fetch(BASE_URL+"api/student/student_or_office/",
         {
             method: 'GET',
             headers: 
@@ -42,7 +43,7 @@ export class API {
 
     static getCourse_group(token)
     {
-        return fetch("http://127.0.0.1:8000/api/course_group/get_course_group/",
+        return fetch(BASE_URL+"api/course_group/get_course_group/",
         {
             method: 'GET',
             headers: 
@@ -56,7 +57,7 @@ export class API {
 
     static getCoursesA(token)
     {
-        return fetch("http://127.0.0.1:8000/api/courses/get_semester_a/",
+        return fetch(BASE_URL+"api/courses/get_semester_a/",
         {
             method: 'GET',
             headers: 
@@ -70,7 +71,7 @@ export class API {
 
     static getCoursesB(token)
     {
-        return fetch("http://127.0.0.1:8000/api/courses/get_semester_b/",
+        return fetch(BASE_URL+"api/courses/get_semester_b/",
         {
             method: 'GET',
             headers: 
@@ -84,7 +85,7 @@ export class API {
 
     static getLast_ranking(token)
     {
-        return fetch("http://127.0.0.1:8000/api/course_group/get_last_rating/",
+        return fetch(BASE_URL+"api/course_group/get_last_rating/",
         {
             method: 'GET',
             headers: 
@@ -98,7 +99,7 @@ export class API {
 
     static getTime(token)
     {
-        return fetch("http://127.0.0.1:8000/api/office/get_time/",
+        return fetch(BASE_URL+"api/office/get_time/",
         {
             method: 'GET',
             headers: 
@@ -111,7 +112,7 @@ export class API {
     }
     static getResults(token)
     {
-        return fetch("http://127.0.0.1:8000/api/result/get_results/",
+        return fetch(BASE_URL+"api/result/get_results/",
         {
             method: 'GET',
             headers: 
@@ -125,7 +126,7 @@ export class API {
 
     static rank_courses(course_group, token)
     {
-        return fetch("http://127.0.0.1:8000/api/ranking/rank_courses/",
+        return fetch(BASE_URL+"api/ranking/rank_courses/",
         {
             method: 'POST',
             headers: 
@@ -139,7 +140,7 @@ export class API {
     }
     static createStudents(token, jsonData)
     {
-        return fetch("http://127.0.0.1:8000/api/student/create_objects/",
+        return fetch(BASE_URL+"api/student/create_objects/",
         {
             method: 'POST',
             headers: 
@@ -153,7 +154,7 @@ export class API {
     }
     static createCourses(token, jsonData)
     {
-        return fetch("http://127.0.0.1:8000/api/courses/create_objects/",
+        return fetch(BASE_URL+"api/courses/create_objects/",
         {
             method: 'POST',
             headers: 
@@ -168,7 +169,7 @@ export class API {
     
     static createDate(token, StartDate, EndDate, StartTime, EndTime)
     {
-        return fetch("http://127.0.0.1:8000/api/office/set_date/",
+        return fetch(BASE_URL+"api/office/set_date/",
         {
             method: 'POST',
             headers: 
