@@ -51,7 +51,7 @@ function Auth() {
             <div className="headline"> Fair Division - ברוכים/ות הבאים/ות ל </div>
             <div className="headline"></div>
             <div className="headline">כניסה למערכת</div>
-            <div className="container">
+            <div className="container-auth">
                 <div style={{marginLeft:'40%',marginBottom: '10px'}}>
                     <img className="fab fa-react" src={logo1} alt="" />
                 </div>

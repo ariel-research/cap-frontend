@@ -15,10 +15,11 @@
     margin-top: 20px;
     font-weight: bold;
   }
-  .container {
+  .container-auth {
+    margin-left: 30%;
     display:flex ;
     flex-direction: column-reverse;
-    width: 400px;
+    width: 40%;
     height: 350px;
     border-radius: 2em;
     background: linear-gradient(90deg, rgb(110,94,254)0%, rgba(73,63,252,1)100%);
@@ -29,7 +30,7 @@
     margin-bottom: 40px;
     display:flex ;
     flex-direction: row;
-    margin-right: 15%;
+    margin-right: 5%;
   }
   .text-password{
    margin-right: 100px;
