@@ -90,7 +90,17 @@ ul {
   font-weight: bold;
   border-radius: 20px;
   font:  28px  ;
-  margin: 50px;
   height: 80px;
   width: 220px;
+  margin: auto;
+}
+.con-btn
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 35px;
+  width: 40%;
+  margin-left: 30%;
 }

@@ -52,7 +52,7 @@ function Auth() {
             <div className="headline"></div>
             <div className="headline">כניסה למערכת</div>
             <div className="container-auth">
-                <div style={{marginLeft:'40%',marginBottom: '10px'}}>
+                <div className="img-con">
                     <img className="fab fa-react" src={logo1} alt="" />
                 </div>
                 <div className="row-container">

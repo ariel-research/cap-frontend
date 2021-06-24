@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar active='מידע על קורסי הבחירה' />
       <header className="App-header">
       <div className="Headline">מידע על קורסי הבחירה</div>
       </header>
@@ -64,8 +64,10 @@ function App() {
         <CoursegroupDetails course_group={selectedCourse_group} />
         <CoursegroupList course_group={course_group} course_groupClicked={course_groupClicked} />
       </div>
+      <div className="con-btn">
         <button data-testid="semesterB" className="try" onClick={buttonClicked(true)}>סמסטר ב</button>
         <button data-testid="semesterA" className="try" onClick={buttonClicked(false)}>סמסטר א</button>
+      </div>
       <h5 style={{marginRight:'37%',marginTop:'15px'}}>שים לב, הקורסים באדום הם קורסי החובה שלך *</h5>
 
       <div>

@@ -31,7 +31,7 @@ function Results(props)
     {
         return(
             <div className="Rank">
-                <Navbar/>
+                <Navbar active='תוצאות'/>
                 <div className='container-rank' style={{width: '65%', marginLeft: '17.5%',marginTop:'50px'}}>
                     <div className='course_group'>
                         <h1 style={{color: 'white', margin: '25px', marginLeft:'27%'}}>: קורסי הבחירה שקיבלת הם</h1>
@@ -49,7 +49,7 @@ function Results(props)
     {
         return(
             <div className="Rank">
-                <Navbar/>
+                <Navbar active='תוצאות'/>
                 <p className="results"> תוצאות </p>
                 <div className='container-rank' style={{width: '80%', marginLeft: '10%',marginTop:'25px'}}>
                     <div className='course_group'>

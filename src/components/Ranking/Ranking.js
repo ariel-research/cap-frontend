@@ -12,7 +12,7 @@ function Ranking(props)
     const [time_message, setTime_message] = useState("");
     const [ranking_start, setRanking_start] = useState(false);
     const [ token ] = useCookies(['mr-token']);
-
+    const name = "ron";
     useEffect( () => {
         if(!token['mr-token']) window.location.href = '/';
         API.studentOrOffice(token['mr-token'])
@@ -60,7 +60,7 @@ function Ranking(props)
             setEdit(false);
         }
         else
-            alert("סכום הכסף שנותר חייב להיות לפחות 0");
+            alert("סכום הנקודות שנותר חייב להיות לפחות 0");
 
     }
     
@@ -69,7 +69,7 @@ function Ranking(props)
     {
         return(
             <div className="Rank" data-testid="Rank">
-                <Navbar sticky="top"/>
+                <Navbar sticky="top" active='דירוג קורסי בחירה'/>
                 <Board EditClicked= {EditClicked} time_message={time_message}/>      
             </div>
         )
@@ -78,7 +78,7 @@ function Ranking(props)
     {
         return(
             <div className="Rank" data-testid="RankEdit">
-                <Navbar/>
+                <Navbar active='דירוג קורסי בחירה'/>
                 <BoardEditable SaveClicked= {SaveClicked} time_message= {time_message} balance={balance}/>      
             </div>
         )

@@ -11,7 +11,6 @@ class Navbar extends Component
 //    state = { clicked: false }
 //     handleClicked = () => this.setState({clicked: !this.state.clicked})
 
-
     state = { clicked: false }
     handleClicked = () => this.setState({clicked: !this.state.clicked})
 
@@ -28,9 +27,14 @@ class Navbar extends Component
                         {MenuItems.map((item, index)=>{
                             return (
                                 <li key={index}>
+                                    {this.props.active === item.title && 
+                                    <Link className="active" to={item.url}>
+                                        {item.title}
+                                    </Link>}
+                                    {this.props.active !== item.title && 
                                     <Link className={item.cName} to={item.url}>
                                         {item.title}
-                                    </Link>
+                                    </Link>}
                                 </li>
                             )
                         })}
