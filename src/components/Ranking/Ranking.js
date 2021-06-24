@@ -12,7 +12,7 @@ function Ranking(props)
     const [time_message, setTime_message] = useState("");
     const [ranking_start, setRanking_start] = useState(false);
     const [ token ] = useCookies(['mr-token']);
-    const name = "ron";
+    
     useEffect( () => {
         if(!token['mr-token']) window.location.href = '/';
         API.studentOrOffice(token['mr-token'])
