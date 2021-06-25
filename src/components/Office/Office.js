@@ -96,6 +96,11 @@ class Office extends Component {
       alert("לא צוין תאריך התחלה או סיום")
     }
   };
+  algo = () => {
+    API.doAlgo(Cookies.get('mr-token'))
+    .then(resp => alert(resp))
+    .catch(error => console.log(error))
+  };
 
   ///////////////// - filesData - /////////////////
   fileData = () => {
@@ -154,6 +159,8 @@ class Office extends Component {
         <header className="App-header">
           <div className="headline">ברוכים/ות הבאים/ות </div>
         </header>
+        <button className="saveB" style={{marginRight:'80%', marginTop: '15px'}} onClick={this.algo} >אלגוריתם</button>
+
         <div className="headline2"> : על מנת שנוכל לתחיל בתהליך, נדרש  </div>
         <div className="one">  (1) </div><br/>
         <div className="headlineOne">  הגדרת תאריך תחילת הדירוג וסופו </div><br/><br />

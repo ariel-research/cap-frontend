@@ -183,5 +183,17 @@ export class API {
         })
         .then(resp => resp.json())
     }
-    
+    static doAlgo(token)
+    {
+        return fetch(BASE_URL+"api/office/algo/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
 }
