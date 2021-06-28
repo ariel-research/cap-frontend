@@ -1,8 +1,7 @@
 import React, {Component } from 'react'
 import {OfficeItems} from "./OfficeItems"
 import './Navbar_Office.css'
-//import {Navbar} from '.../Navbar/Navbar.css'
-import {  BrowserRouter as Router, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logo1 from '.../../../public/logo.png';
 
 
@@ -16,8 +15,6 @@ class NavbarOffice extends Component
     render()
     {
         return(
-            <Router>
-                <div data-testid="nb_office">
                 <nav className="NavbarItems">
                     <div><img className="fab fa-react1" src={logo1} alt="" /></div>
                     <div className="logo2">Fair Division</div>
@@ -29,18 +26,21 @@ class NavbarOffice extends Component
                             {OfficeItems.map((item, index)=>{
                                 return (
                                     <li key={index}>
-                                        <Link className={item.cName} to={item.url}>
-                                            {item.title}
-                                        </Link>
-                                    </li>
+                                    {this.props.active === item.title && 
+                                    <Link className="active" to={item.url}>
+                                        {item.title}
+                                    </Link>}
+                                    {this.props.active !== item.title && 
+                                    <Link className={item.cName} to={item.url}>
+                                        {item.title}
+                                    </Link>}
+                                </li>
                                 )
                             })}
                         </ul>
 
                     
                 </nav>
-            </div>
-            </Router>
         )
     }
 }

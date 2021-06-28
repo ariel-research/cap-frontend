@@ -1,12 +1,12 @@
 export const OfficeItems = [
     {
         title: 'הגדרות',
-        url:'#',
+        url:'/office',
         cName: 'nav-links'
     },
     {
         title: 'אישורים',
-        url:'#',
+        url:'/algorithm',
         cName: 'nav-links'
     },
     

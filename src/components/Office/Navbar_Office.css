@@ -15,19 +15,7 @@
     background-color: #b1b1b1;
     font-size: 14px;
   }
-.headline {
-    font-size: 62px;
-    text-align: center;
-    margin: 5px;
-    padding: 5px;
-}
-.headline2 {
-    margin: auto;
-    text-align: center;
-    text-indent: 50px;
-    font-weight: bold;
-    font-size: 33px;
-}
+
 .dateP {
     display: block;
   margin-left: auto;
@@ -58,41 +46,8 @@
     left:-7em;
   
 }
-.headlineOne {
-    margin: auto;
-    text-align: center;
-    text-indent: 50px;
-    font-weight: bold;
-    font-size: 25px;
 
-}
-.two {
-    margin: auto;
-    text-align:right;
-    text-indent: 50px;
-    margin: auto;
-    width: 75%;
-    font-size: 30px;
-    font-weight: bold;
-    top: 55px;
-    position:relative;
-    left:-7em;
-  
-}
-.headlineTwo {
-    margin: auto;
-    text-align: center;
-    text-indent: 50px;
-    font-weight: bold;
-    font-size: 25px;
 
-}
-.studentFile {
-    margin: auto;
-    text-align: center;
-    text-indent: 50px;
-    
-}
 .uploadButton {
     float: left;
     width: 110px;
@@ -124,23 +79,7 @@ input[type="file"] {
     width: 1px;
     height: 1px;
   }
-  input[type="file"] + label {
-    width: 100px;
-    height: 50px;
-    margin: 0 auto;
-    padding: 0;
-    display: table-cell;
-    vertical-align: middle;
-    float: left;
-    cursor:pointer;
-    border: 3px solid #676b63;
-    border-radius: 50px;
-    background-color: white;
-    top: 10px;
-    position:relative;
-    left:23em;
-    color: #676b63
-  }
+
   .emptyFile {
     margin: auto;
     text-align: center;
@@ -198,11 +137,4 @@ input[type="file"] {
   width: 110px;
   font-size: large;
  }
- .startdate{
-
-    border-radius: 25px;
-    border: 2px solid rgba(85, 83, 83);
-    padding: 20px;
-    width: 350px;
-    height: 50px;
- }
+ 

@@ -112,6 +112,19 @@ export class API {
         })
         .then(resp => resp.json())
     }
+    static isClose(token)
+    {
+        return fetch(BASE_URL+"api/office/close_ranking/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
     static getResults(token)
     {
         return fetch(BASE_URL+"api/result/get_results/",

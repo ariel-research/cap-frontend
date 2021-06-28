@@ -5,6 +5,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { API } from '../../api-service';
 import Cookies from 'js-cookie';
+import './office.css'
 
 
 
@@ -96,11 +97,7 @@ class Office extends Component {
       alert("לא צוין תאריך התחלה או סיום")
     }
   };
-  algo = () => {
-    API.doAlgo(Cookies.get('mr-token'))
-    .then(resp => alert(resp))
-    .catch(error => console.log(error))
-  };
+
 
   ///////////////// - filesData - /////////////////
   fileData = () => {
@@ -140,7 +137,7 @@ class Office extends Component {
     if(!Cookies.get('mr-token')) window.location.href = '/';
     API.studentOrOffice(Cookies.get('mr-token'))
     .then(resp => {                
-        if(resp === 1) //office
+        if(resp === 1) //student
             window.location.href = '/courses_info';
         if(resp === 3) //error
             alert("error")
@@ -154,44 +151,42 @@ class Office extends Component {
 
   render() {
     return (
-      <div className="App" data-testid="office">
-        <NavbarOffice />
+      <div className="office" data-testid="office">
+        <NavbarOffice active='הגדרות' />
         <header className="App-header">
           <div className="headline">ברוכים/ות הבאים/ות </div>
         </header>
-        <button className="saveB" style={{marginRight:'80%', marginTop: '15px'}} onClick={this.algo} >אלגוריתם</button>
+        <div className='container-office'>
+          <div className='layout-office'>
+            <h2 style={{marginRight: '8px',color:'white'}}> : על מנת שנוכל להתחיל בתהליך, נדרש </h2>
+            <div className='fill-in-office'>
+              <h4>:הגדרת תאריך תחילת הדירוג וסופו </h4>
+              <div className="dates" data-testid="datepicker">
+                <input className="fill-date" type="datetime-local" onChange={this.changeStartTime} data-testid="start_date_field"></input><br/>
+                <input className="fill-date" type="datetime-local" onChange={this.changeEndTime} data-testid="end_date_field"></input><br/>
+                <button className="saveB" onClick={this.saveDate} data-testid="save_button">שמירה</button>
+              </div>
+              <h4> (json:פורמט) הוספת קבצי סטודנטים/ות</h4>
+              <p style={{marginRight:'5%'}}>:דוגמא לפורמט תקין</p>
+              <p style={{marginRight:'5%'}}>[&#123;  "id":"01", "name": "Tom", "password": "19283746", "email": "tom@gmail.com","amount_elective":5,"courses":["1","9","14"]&#125;]</p>
+              <div className="studentFile">
+                <button className="save-student" onClick={this.saveStudent} data-testid="save_button">שמירה</button> 
+                <input type="file" onChange={this.onFileChange} id="myuniqueid" data-testid="fileUpload"/>
+                <label className="save-student" htmlFor="myuniqueid">{this.fileData()}</label>
+              </div>
+              <h4 >  (json:פורמט) הוספת קבצי קורסים </h4>
+              <p style={{marginRight:'5%'}}>:דוגמא לפורמט תקין</p>
+              <p style={{marginRight:'5%'}}>[&#123; "id":"601", "name": "course1", "lecturer": "avi ron","capacity": 100, "is_elective": false, "day":"ג", "semester":"א", "start_time":"10:00", "end_time":"13:00"&#125;]</p>
+              <div className="studentFile">
+                <button className="save-student" onClick={this.saveCourses} data-testid="save_button">שמירה</button>
+                <input type="file" onChange={this.onFileCourseChange} id="myuniqueid2" data-testid="fileUpload"/>
+                <label className="save-student" htmlFor="myuniqueid2">{this.fileDataCourse()}</label>
+              </div>
+            </div>
 
-        <div className="headline2"> : על מנת שנוכל לתחיל בתהליך, נדרש  </div>
-        <div className="one">  (1) </div><br/>
-        <div className="headlineOne">  הגדרת תאריך תחילת הדירוג וסופו </div><br/><br />
-        <div style={{marginLeft:'45%'}} data-testid="datepicker">
-          <input className="startdate" type="datetime-local" onChange={this.changeStartTime} data-testid="start_date_field"></input><br/>
-          <input className="startdate" type="datetime-local" onChange={this.changeEndTime} data-testid="end_date_field"></input><br/>
-          <button className="saveB"style={{marginRight:'80%', marginTop: '15px'}} onClick={this.saveDate} data-testid="save_button">שמירה</button>
+          </div>
         </div>
 
-        <div className="two">  (2) </div><br />
-        <div className="headlineTwo"> (json:פורמט) הוספת קבצי סטודנטים/ות</div><br />
-        <p style={{marginRight:'20%'}}>[&#123;  "id":"01", "name": "Tom", "password": "19283746", "email": "tom@gmail.com","amount_elective":5,"courses":["1","9","14"]&#125;] :דוגמא לפורמט תקין</p>
-        <div className="studentFile">
-          <div style={{marginLeft:'24%'}}>
-            <input type="file" onChange={this.onFileChange} id="myuniqueid" data-testid="fileUpload"/>
-            <label className="chooseB"style={{width:'120px', paddingRight:'50px',paddingTop:'8px'}} htmlFor="myuniqueid">{this.fileData()}</label>
-          </div>
-          <br/><br/><br/>
-          <button className="saveB" style={{marginLeft:'5%'}} onClick={this.saveStudent} data-testid="save_button">שמירה</button> 
-        </div><br />
-        <div className="two">  (3) </div><br />
-        <div className="headlineTwo">  (json:פורמט) הוספת קבצי קורסים </div><br />
-        <p style={{marginRight:'20%'}}>[&#123; "id":"601", "name": "course1", "lecturer": "avi ron","capacity": 100, "is_elective": false, "day":"ג", "semester":"א", "start_time":"10:00", "end_time":"13:00"&#125;] :דוגמא לפורמט תקין</p>
-        <div style={{marginBottom:'50px'}} className="coursesFile">
-          <div style={{marginLeft:'24%'}}>
-            <input type="file" onChange={this.onFileCourseChange} id="myuniqueid2" data-testid="fileUpload"/>
-            <label className="chooseB" style={{width:'120px', paddingRight:'20px',paddingTop:'8px'}} htmlFor="myuniqueid2">{this.fileDataCourse()}</label>
-          </div>
-          <br/><br/><br/>
-          <button className="saveB" style={{marginRight:'44%'}} onClick={this.saveCourses} data-testid="save_button">שמירה</button>
-        </div>
 
       </div>
     );

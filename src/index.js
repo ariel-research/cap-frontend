@@ -6,9 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { Route, BrowserRouter } from 'react-router-dom';
 import Ranking from './components/Ranking/Ranking';
 import Results from './components/Results/results';
+import Algo from './components/Office/algo';
+import Office from './components/Office/Office'
 import Auth from './auth';
 import { CookiesProvider } from "react-cookie";
-import Office from './components/Office/Office'
 
 export default function Router() {
 
@@ -20,6 +21,7 @@ export default function Router() {
           <Route exact path="/courses_info" component={App} />
           <Route exact path="/ranking" component={Ranking} />
           <Route exact path="/results" component={Results} />
+          <Route exact path="/algorithm" component={Algo} />
           <Route exact path="/office" component={Office} />
         </BrowserRouter>
       </CookiesProvider>
