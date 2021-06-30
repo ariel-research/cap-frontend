@@ -1,9 +1,7 @@
 .auth {
-    padding: 20px;
     min-height: 100vh;
     text-align: right;
     background: rgba(212, 207, 207, 0.836);
-
   }
   .headline {
     text-shadow: -1px 0 white;
@@ -11,8 +9,8 @@
     text-align: center !important;
     font-size:3.8em;
     border-color:#6d76f7;
-    margin-bottom: 70px;
-    margin-top: 20px;
+    margin-bottom: 1%;
+    margin-top: 1%;
     font-weight: bold;
   }
   .container-auth {
@@ -77,11 +75,9 @@
     color: rgba(85, 83, 83);
     font-weight: bold;
     border-radius: 20px;
-    
     display: block;
     margin: 0 auto;
-    margin-top: 50px;
-
+    margin-top: 1%;
     height: 80px;
     width: 200px;
     font-size: large;
