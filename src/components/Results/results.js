@@ -51,18 +51,23 @@ function Results(props)
             <div className="Rank">
                 <Navbar active='תוצאות'/>
                 <p className="results"> תוצאות </p>
-                <div className='container-rank' style={{width: '80%', marginLeft: '10%',marginTop:'25px'}}>
+                <div className='container-rank' >
                     <div className='course_group'>
                         <h1 style={{color: 'white', margin: '25px', marginLeft:'27%'}}>: קורסי הבחירה שקיבלת הם</h1>
-                        <div className='whiteLines2'>
+                        <div className='whiteLines'>
                             { courses.map((course, index) => {
                             return (
-                                <div key={index} className='item1'>
-                                    <div> ביום: {course.day} בשעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}</div>
-                                    <div> סמסטר: {course.Semester}</div>
-                                    <div> מרצה: {course.lecturer}</div>
-                                    <div> שם הקורס: {course.course_group}</div>
-                                    <div>.{index+1}</div>
+                                <div key={index} className='item'>
+                                    <div className='item-title'>
+                                        <div className="money"> הדירוג שלך: {course.rank}</div>
+                                        <div className='name'>{course.course_group}</div>
+                                        <div className='index'>.{index+1}</div>
+                                    </div>
+                                    <div className='item-details'>
+                                        <div> ביום: {course.day} בשעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}</div>
+                                        <div> סמסטר: {course.Semester}</div>
+                                        <div> מרצה: {course.lecturer}</div>
+                                    </div>
                                 </div>
                                 )
                             })}

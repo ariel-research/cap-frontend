@@ -101,6 +101,9 @@ h3{
     display: flex;
     font-size: 1.5rem;
 }
+.course_group .item .money{
+  margin-right: 10px;
+}
 
   .slide {
     display: flex;
