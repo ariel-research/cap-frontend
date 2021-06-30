@@ -53,7 +53,7 @@ function Results(props)
                 <p className="results"> תוצאות </p>
                 <div className='container-rank' >
                     <div className='course_group'>
-                        <h1 style={{color: 'white', margin: '25px', marginLeft:'27%'}}>: קורסי הבחירה שקיבלת הם</h1>
+                        <h1 style={{color: 'white', marginLeft:'10%'}}>: קורסי הבחירה שקיבלת הם</h1>
                         <div className='whiteLines'>
                             { courses.map((course, index) => {
                             return (
