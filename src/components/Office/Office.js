@@ -19,12 +19,9 @@ class Office extends Component {
       files: null,
       CourseFilesName: '',
       CourseFile: null,
-      StartTime: null,
-      EndTime: null,
       StartDate: null,
       EndDate: null,
-      token: Cookies.get('mr-token')
-
+      token: Cookies.get('mr-token'),
     }
   }
   
@@ -50,11 +47,11 @@ class Office extends Component {
   };
   changeStartTime = event => {
     // Update the state
-    this.setState({StartDate:(event.target.value).split('T')[0], StartTime:(event.target.value).split('T')[1]})
+    this.setState({StartDate:event.target.value})
   };
   changeEndTime = event => {
     // Update the state
-    this.setState({EndDate:(event.target.value).split('T')[0], EndTime:(event.target.value).split('T')[1]})
+    this.setState({EndDate:event.target.value})
   };
 
   // On file upload (click the upload button)
@@ -85,10 +82,10 @@ class Office extends Component {
     }
   };
   saveDate = () => {
-    const {StartDate, EndDate, StartTime, EndTime} = this.state
-    if(StartDate && EndDate && StartTime && EndTime)
+    const {StartDate, EndDate } = this.state
+    if(StartDate && EndDate)
     {
-      API.createDate(Cookies.get('mr-token'), StartDate, EndDate, StartTime, EndTime)
+      API.createDate(Cookies.get('mr-token'), StartDate, EndDate)
       .then(resp => alert(resp))
       .catch(error => console.log(error))
     }
@@ -144,12 +141,26 @@ class Office extends Component {
     })
     .catch(error => console.log(error))
   }
+  getLastDates = () => 
+  {
+    API.getDates(Cookies.get('mr-token'))
+    .then(resp => {  
+      var temp_start = "20"+resp.year_start+"-"+resp.month_start+"-"+resp.day_start+"T"+resp.hour_start+":"+resp.min_start
+      var temp_end = "20"+resp.year_end+"-"+resp.month_end+"-"+resp.day_end+"T"+resp.hour_end+":"+resp.min_end
+      console.log()
+      this.setState({StartDate: temp_start, EndDate: temp_end})
+    })
+    .catch(error => console.log(error)) 
+  }
 
   componentDidMount(){
     this.checkPermission();
+    this.getLastDates();
   }
 
   render() {
+    const {StartDate, EndDate} = this.state;
+
     return (
       <div className="office" data-testid="office">
         <NavbarOffice active='הגדרות' />
@@ -161,9 +172,12 @@ class Office extends Component {
             <h2 style={{marginRight: '8px',color:'white'}}> : על מנת שנוכל להתחיל בתהליך, נדרש </h2>
             <div className='fill-in-office'>
               <h4>:הגדרת תאריך תחילת הדירוג וסופו </h4>
+              <h6>HH:MM dd/mm/yyyy :פורמט לדוגמא </h6>
               <div className="dates" data-testid="datepicker">
-                <input className="fill-date" type="datetime-local" onChange={this.changeStartTime} data-testid="start_date_field"></input><br/>
-                <input className="fill-date" type="datetime-local" onChange={this.changeEndTime} data-testid="end_date_field"></input><br/>
+                 <input className="fill-date" type="datetime-local" value={StartDate}
+                 onChange={this.changeStartTime} data-testid="start_date_field"></input><br/>
+                 <input className="fill-date" type="datetime-local" value={EndDate}
+                  onChange={this.changeEndTime} data-testid="end_date_field"></input><br/>
                 <button className="saveB" onClick={this.saveDate} data-testid="save_button">שמירה</button>
               </div>
               <h4> (json:פורמט) הוספת קבצי סטודנטים/ות</h4>

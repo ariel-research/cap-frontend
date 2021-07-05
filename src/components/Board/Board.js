@@ -30,6 +30,7 @@ function Board(props)
                         !בהצלחה
                         שימ/י לב שלא ניתן לשמור דירוג עם סכום נקודות שלילי *<br/>
                         ניתן להשתמש בחיצי המקלדת לדירוג מדויק יותר *<br/>
+                        שימ/י לב קורסי בחירה שבצבע אדום מתנגשים לך עם קורסי חובה *<br/>
                     </div><br />
             <div className='container-rank'>
                 <div className='course_group'>
@@ -46,7 +47,8 @@ function Board(props)
                             <div key={index} className='item'>
                                 <div className='item-title'>
                                     <div className="money">סכום: {course_group.score}</div>
-                                    <div data-testid="groupName" className='name'>{course_group.name}</div>
+                                    {course_group.overlap && <div style={{color: 'red'}} data-testid="groupName">{course_group.name}</div>}
+                                    {!course_group.overlap && <div data-testid="groupName" className='name'>{course_group.name}</div>}
                                     <div data-testid="groupIndex" className='index'>.{index+1}</div>
                                 </div>
                                 <div className='item-details'>

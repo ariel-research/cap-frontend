@@ -39,7 +39,8 @@ function BoardEditable(props)
                         !בהצלחה
                         שימ/י לב שלא ניתן לשמור דירוג עם סכום נקודות שלילי *<br/>
                         ניתן להשתמש בחיצי המקלדת לדירוג מדויק יותר *<br/>
-                    </div><br />
+                        שימ/י לב קורסי בחירה שבצבע אדום מתנגשים לך עם קורסי חובה *<br/>
+                </div><br />
              <div className='container-rank'>
                 <div className='course_group'>
                     <div className="title">
@@ -53,9 +54,9 @@ function BoardEditable(props)
                         return (
                             <div key={index} className='item'>
                                 <div className='item-title'>
-                                <Slider course_group={course_group} i={index} change={changeSlide}/>
-                                    <div data-testid="groupName" className='name'>{course_group.name}</div>
-                                    <div data-testid="groupIndex" className='index'>.{index+1}</div>
+                                    <Slider course_group={course_group} i={index} change={changeSlide}/>
+                                    {course_group.overlap && <div style={{color: 'red'}} data-testid="groupName">{course_group.name}</div>}
+                                    {!course_group.overlap && <div data-testid="groupName" className='name'>{course_group.name}</div>}                                    <div data-testid="groupIndex" className='index'>.{index+1}</div>
                                 </div>
                                 <div className='item-details'>
                                     <div data-testid="groupName" className='hours'>בשעות: {(course_group.time_start).substring(0, 5)}-{(course_group.time_end).substring(0, 5)}</div>
