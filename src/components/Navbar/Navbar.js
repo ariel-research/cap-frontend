@@ -3,6 +3,7 @@ import {MenuItems} from "./MenuItems"
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import logo1 from '.../../../public/logo.png';
+import Cookies from 'js-cookie';
 
 class Navbar extends Component
 {
@@ -13,6 +14,10 @@ class Navbar extends Component
 
     state = { clicked: false }
     handleClicked = () => this.setState({clicked: !this.state.clicked})
+    logoutUser = () => {
+        Cookies.remove('mr-token');
+        window.location.href = '/';
+    }
 
     render()
     {
@@ -40,6 +45,7 @@ class Navbar extends Component
                         })}
  
                     </ul>
+                    <i style={{ fontSize:'3rem',marginTop:'1%', marginRight:'3%',position:'inherit',cursor:'pointer' }} className="fas fa-sign-out-alt" onClick={this.logoutUser}></i>
             </nav>
         )
     }
