@@ -138,6 +138,33 @@ export class API {
         })
         .then(resp => resp.json())
     }
+    static MyStudents(token)
+    {
+        return fetch(BASE_URL+"api/office/my_students/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
+    static MyCourses(token)
+    {
+        return fetch(BASE_URL+"api/office/my_courses/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
+    
     static getResults(token)
     {
         return fetch(BASE_URL+"api/result/get_results/",

@@ -19,9 +19,11 @@ class Office extends Component {
       files: null,
       CourseFilesName: '',
       CourseFile: null,
-      StartDate: null,
-      EndDate: null,
+      StartDate: '',
+      EndDate: '',
       token: Cookies.get('mr-token'),
+      myStu: '',
+      myCour:''
     }
   }
   
@@ -147,19 +149,31 @@ class Office extends Component {
     .then(resp => {  
       var temp_start = "20"+resp.year_start+"-"+resp.month_start+"-"+resp.day_start+"T"+resp.hour_start+":"+resp.min_start
       var temp_end = "20"+resp.year_end+"-"+resp.month_end+"-"+resp.day_end+"T"+resp.hour_end+":"+resp.min_end
-      console.log()
       this.setState({StartDate: temp_start, EndDate: temp_end})
     })
     .catch(error => console.log(error)) 
   }
-
+  getMyStudents = () => 
+  {
+    API.MyStudents(Cookies.get('mr-token'))
+    .then(resp => this.setState({myStu: resp}))
+    .catch(error => console.log(error)) 
+  }
+  getMyCourses = () => 
+  {
+    API.MyCourses(Cookies.get('mr-token'))
+    .then(resp => this.setState({myCour: resp}))
+    .catch(error => console.log(error)) 
+  }
   componentDidMount(){
     this.checkPermission();
     this.getLastDates();
+    this.getMyStudents();
+    this.getMyCourses();
   }
 
   render() {
-    const {StartDate, EndDate} = this.state;
+    const {StartDate, EndDate, myStu, myCour} = this.state;
 
     return (
       <div className="office" data-testid="office">
@@ -183,6 +197,8 @@ class Office extends Component {
               <h4> (json:פורמט) הוספת קבצי סטודנטים/ות</h4>
               <p style={{marginRight:'5%'}}>:דוגמא לפורמט תקין</p>
               <p style={{marginRight:'5%'}}>[&#123;  "id":"01", "name": "Tom", "password": "19283746", "email": "tom@gmail.com","amount_elective":5,"courses":["1","9","14"]&#125;]</p>
+              <p style={{marginRight:'5%'}}>:הסטודנטים שכבר קיימים הם(לפי ת"ז)</p>
+              <p style={{marginRight:'5%'}}>{myStu}</p>
               <div className="studentFile">
                 <button className="save-student" onClick={this.saveStudent} data-testid="save_button">שמירה</button> 
                 <input type="file" onChange={this.onFileChange} id="myuniqueid" data-testid="fileUpload"/>
@@ -191,6 +207,8 @@ class Office extends Component {
               <h4 >  (json:פורמט) הוספת קבצי קורסים </h4>
               <p style={{marginRight:'5%'}}>:דוגמא לפורמט תקין</p>
               <p style={{marginRight:'5%'}}>[&#123; "id":"601", "name": "course1", "lecturer": "avi ron","capacity": 100, "is_elective": false, "day":"ג", "semester":"א", "start_time":"10:00", "end_time":"13:00"&#125;]</p>
+              <p style={{marginRight:'5%'}}>:הקורסים שכבר קיימים הם(לפי מספר קורס)</p>
+              <p style={{marginRight:'5%'}}>{myCour}</p>
               <div className="studentFile">
                 <button className="save-student" onClick={this.saveCourses} data-testid="save_button">שמירה</button>
                 <input type="file" onChange={this.onFileCourseChange} id="myuniqueid2" data-testid="fileUpload"/>
