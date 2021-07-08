@@ -35,10 +35,12 @@
   .text-password{
     white-space: nowrap;
     font-size: 30px;
+    color: white;
   }
   .text-username{
     white-space: nowrap;
     font-size: 30px;
+    color: white;
 }
 
   #username {

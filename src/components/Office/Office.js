@@ -89,7 +89,7 @@ class Office extends Component {
     {
       API.createDate(Cookies.get('mr-token'), StartDate, EndDate)
       .then(resp => alert(resp))
-      .catch(error => console.log(error))
+      .catch(error => alert("הפורמט אינו תקין, נסה שוב"))
     }
     else
     {
@@ -186,7 +186,7 @@ class Office extends Component {
             <h2 style={{marginRight: '8px',color:'white'}}> : על מנת שנוכל להתחיל בתהליך, נדרש </h2>
             <div className='fill-in-office'>
               <h4>:הגדרת תאריך תחילת הדירוג וסופו </h4>
-              <h6>HH:MM dd/mm/yyyy :פורמט לדוגמא </h6>
+              <h6>(2021-07-05T15:00 :לדוגמא) yyyy-mm-ddTHH:MM  :פורמט לדוגמא </h6>
               <div className="dates" data-testid="datepicker">
                  <input className="fill-date" type="datetime-local" value={StartDate}
                  onChange={this.changeStartTime} data-testid="start_date_field"></input><br/>
