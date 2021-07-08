@@ -137,4 +137,8 @@ input[type="file"] {
   width: 110px;
   font-size: large;
  }
- 
+ .fa, .fas {
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  color: white;
+}
