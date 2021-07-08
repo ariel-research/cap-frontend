@@ -42,7 +42,7 @@ class NavbarOffice extends Component
                                 )
                             })}
                         </ul>
-                        <i style={{ fontSize:'3rem',marginTop:'1%', marginRight:'3%',position:'inherit',cursor:'pointer', color:'white'}} className="fas fa-sign-out-alt" onClick={this.logoutUser}></i>
+                        <i style={{color:'white' ,fontSize:'3rem',marginTop:'1%', marginRight:'3%',position:'inherit',cursor:'pointer'}} className="fas fa-sign-out-alt" onClick={this.logoutUser}></i>
 
                     
                 </nav>
