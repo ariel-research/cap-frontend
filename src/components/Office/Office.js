@@ -62,7 +62,10 @@ class Office extends Component {
     if(files)
     {
       API.createStudents(Cookies.get('mr-token'), files)
-      .then(resp => alert(resp))
+      .then(resp => {
+        alert(resp);
+        window.location.href = '/office';
+      })
       .catch(error => console.log(error))
     }
     else
@@ -75,7 +78,10 @@ class Office extends Component {
     if(CourseFile)
     {
       API.createCourses(Cookies.get('mr-token'), CourseFile)
-      .then(resp => alert(resp))
+      .then(resp => {
+        alert(resp);
+        window.location.href = '/office';
+      })
       .catch(error => console.log(error))
     }
     else
