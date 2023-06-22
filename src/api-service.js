@@ -1,5 +1,5 @@
 // const BASE_URL= "https://api-fair-division.herokuapp.com/";
-const BASE_URL= "http://46.101.218.40:2019/";
+const BASE_URL= "http://46.101.218.40:8000/";
 
 
 export class API {
@@ -23,7 +23,7 @@ export class API {
             method: 'POST',
             headers: 
             {
-                'Content-Type': 'application/json',
+                'Content-Type':  'application/json',
             },
             body: JSON.stringify(body)
         })
