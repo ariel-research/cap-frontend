@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { API } from './api-service';
 import './register.css';
 import { validate } from 'email-validator';
+import { Link} from 'react-router-dom';
+
 
 function Register() {
+
   const [username, setUsername] = useState('');
   const [first_name, setFirstname] = useState('');
   const [last_name, setLastname] = useState('');
@@ -86,6 +89,12 @@ function Register() {
 
   return (
     <div className="register">
+       <Link to="/">
+        <button className="button-login">
+          התחברות
+        </button>
+      </Link>
+      
       <div className="headline">הרשמה</div>
       <div className="container">
         <div className="form-container"> 

@@ -16,6 +16,19 @@ export class API {
         })
         .then(resp => resp.json())
     }
+
+    static getUserStatus(username)
+    {
+        return fetch(BASE_URL+"api/users/get_user_status/?username="+username,
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(resp => resp.json())
+    }
     static registerUser(body)
     {
         return fetch(BASE_URL+"api/register/post/",
@@ -42,7 +55,19 @@ export class API {
         })
         .then(resp => resp.json())
     }
-
+    static getUserDetails(token)
+    {
+        return fetch(BASE_URL+"api/users/get_user_details/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
     static getCourse_group(token)
     {
         return fetch(BASE_URL+"api/course_group/get_course_group/",

@@ -200,16 +200,6 @@ class Office extends Component {
                   onChange={this.changeEndTime} data-testid="end_date_field"></input><br/>
                 <button className="saveB" onClick={this.saveDate} data-testid="save_button">שמירה</button>
               </div>
-              <h4> (json:פורמט) הוספת קבצי סטודנטים/ות</h4>
-              <p style={{marginRight:'5%'}}>:דוגמא לפורמט תקין</p>
-              <p style={{marginRight:'5%'}}>[&#123;  "id":"01", "name": "Tom", "password": "19283746", "email": "tom@gmail.com","amount_elective":5,"courses":["1","9","14"]&#125;]</p>
-              <p style={{marginRight:'5%'}}>:הסטודנטים שכבר קיימים הם(לפי ת"ז)</p>
-              <p style={{marginRight:'5%'}}>{myStu}</p>
-              <div className="studentFile">
-                <button className="save-student" onClick={this.saveStudent} data-testid="save_button">שמירה</button> 
-                <input type="file" onChange={this.onFileChange} id="myuniqueid" data-testid="fileUpload"/>
-                <label className="save-student" htmlFor="myuniqueid">{this.fileData()}</label>
-              </div>
               <h4 >  (json:פורמט) הוספת קבצי קורסים </h4>
               <p style={{marginRight:'5%'}}>:דוגמא לפורמט תקין</p>
               <p style={{marginRight:'5%'}}>[&#123; "id":"601", "name": "course1", "lecturer": "avi ron","capacity": 100, "is_elective": false, "day":"ג", "semester":"א", "start_time":"10:00", "end_time":"13:00"&#125;]</p>
@@ -220,6 +210,17 @@ class Office extends Component {
                 <input type="file" onChange={this.onFileCourseChange} id="myuniqueid2" data-testid="fileUpload"/>
                 <label className="save-student" htmlFor="myuniqueid2">{this.fileDataCourse()}</label>
               </div>
+              <h4> (json:פורמט) הוספת קבצי סטודנטים/ות</h4>
+              <p style={{marginRight:'5%'}}>:דוגמא לפורמט תקין</p>
+              <p style={{marginRight:'5%'}}>[&#123;  "id":"01", "name": "Tom", "password": "19283746", "email": "tom@gmail.com","amount_elective":5,"courses":["1","9","14"]&#125;]</p>
+              <p style={{marginRight:'5%'}}>:הסטודנטים שכבר קיימים הם(לפי ת"ז)</p>
+              <p style={{marginRight:'5%'}}>{myStu}</p>
+              <div className="studentFile">
+                <button className="save-student" onClick={this.saveStudent} data-testid="save_button">שמירה</button> 
+                <input type="file" onChange={this.onFileChange} id="myuniqueid" data-testid="fileUpload"/>
+                <label className="save-student" htmlFor="myuniqueid">{this.fileData()}</label>
+              </div>
+              
             </div>
 
           </div>

@@ -91,3 +91,22 @@
     text-align: center;
     object-fit: fill;
   }
+
+  .message {
+    color: brown;
+    font-size: 20px;
+  }
+
+  .button-register {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color:#6d76f7;
+    padding: 10px;
+    border-radius: 12px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border-color:#6d76f7;
+  }
+  

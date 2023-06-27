@@ -13,8 +13,7 @@ function CoursegroupDetails(props) {
                                 <li data-testid={`courseSemester${i}`}>סמסטר: {course.Semester}</li>
                                 <li data-testid={`teacherName${i}`}>שם המרצה: {course.lecturer}</li>
                                 <li data-testid={`numOfStudents${i}`}>מכסת סטודנטים: {course.capacity}</li>
-                                <li data-testid={`courseDayOfWeek${i}`}>יום בשבוע: {course.day}</li>
-                                <li data-testid={`hoursRange${i}`}>שעות: {course.time_start}-{course.time_end}</li>
+
                             </ul>
                         )
                     })}</div>
