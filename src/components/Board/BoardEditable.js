@@ -1,8 +1,10 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import './Board.css';
 import { API } from "../../api-service";
 import { useCookies } from "react-cookie";
 import Slider from './slider';
+import CLIPPY from './CLIPPY-00.png'; // Tell webpack this JS file uses this image
+
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import {usolve} from "mathjs"
 
@@ -14,42 +16,46 @@ function BoardEditable(props)
     const [ max_options, setMaxOptions] = useState(5);
     const [selectedOption, setSelectedOption] = useState(''); // State for selected option
     const MAX_POINTS = 1000;
-
-    const cards = useRef([]);
-    const InitData = (resp) => {
-      setCourse_group(resp)
-      cards.current = cards.current.slice(0,resp.length)
-      console.log(cards)
-
-    }
     
     const handleOptionChange = (event) => {
       setSelectedOption(event.target.value);
     };  
+    
     const suggestClicked = () => {
-      if(selectedOption=== 'e'){
-        const options =Number(max_options);
-        const weight = parseInt(MAX_POINTS/options);
+      const options =Number(max_options);
+      
+      if(selectedOption=== 'e'){ //equal partition
+    
+        
+        let weight =MAX_POINTS/options;
+        
+        //add the reminder(extra) to the top course
+        //const extra = parseInt((weight - parseInt(weight))*options) 
+        //partition(0,weight+extra);
+
         for (let i = 0; i <options; i++) {
           
             partition(i,weight);
         }
       }
-      else if (selectedOption=== 'o'){
+      else if (selectedOption=== 'o'){ //partition by list order
         orderPartition();
+      }
+      else if (selectedOption === 'z'){ //reset all score
+        for (let i = 0; i <options; i++) {
+          
+          partition(i,0);
+        }
       }
       setBalance(MAX_POINTS - course_group.reduce(function(prev, current) {
         return prev + +current.score
         }, 0))
         };  
+
     const partition = (i,weight) => {
+        weight = parseInt(weight)
+        course_group[i].score = weight
 
-        console.log( cards.current[i].state["value"]);
-        cards.current[i].state["value"]=parseInt(weight);
-        course_group[i].score = parseInt(weight);
-        console.log( cards.current[i].state["value"]);
-
-     
     }
 
     const orderPartition = () => {
@@ -58,13 +64,25 @@ function BoardEditable(props)
       let factor = (options*0.5)*(options+1);
       const a = [[factor]];
       const b = [MAX_POINTS];
-      const x = usolve(a,b);
-      for (let i = 0; i <options; i++) {
+      const x = usolve(a,b)[0][0];
+      let extra = 0;
+      //add the reminder(extra) to the top course
+      
+
+      /*for (let i =0; i <options; i++) {
         
-        const weight = x[0][0]*(options-i)
+        const weight =parseInt( x*(options-i))
         partition(i,weight)
-      }
-    
+      }*/
+      const weights = Array.from({ length: options }, (_, i) =>
+      (x * (options - i))
+      );
+
+      weights.forEach((weight, i) =>{
+        //extra += (weight - parseInt(weight))
+        partition(i, weight);
+      })
+      //partition(0,weights[0]+extra)
     }
     const handleDragEnd = (result) => {
       if (!result.destination) return; // Not a valid drop target
@@ -79,16 +97,10 @@ function BoardEditable(props)
       // Update the state with the new order
       setCourse_group(updatedCourseGroup);
       
-      for (let i = 0; i < course_group.length; i++) {
-        cards.current[i].state["value"]=updatedCourseGroup[i].score;
-        
-      }    
-
     };
 
     const changeSlide = (v,i) => {
         course_group[i].score=Number(v)
-        console.log(course_group[i])
         setBalance(1000 - course_group.reduce(function(prev, current) {
             return prev + +current.score
           }, 0))
@@ -96,7 +108,7 @@ function BoardEditable(props)
 
     useEffect(()=>{
       API.getLast_ranking(token['mr-token'])
-        .then(resp => InitData(resp))
+        .then(resp => setCourse_group(resp))
         .catch(error => console.log(error))
     },[token] )
 
@@ -122,12 +134,14 @@ function BoardEditable(props)
                         <div>
                             <p className="ramainingTime">{props.time_message}</p>
                             <button className="button-nice" style={{marginLeft:'30%',width:'40%', backgroundColor:'black'}} onClick={props.SaveClicked(course_group, balance)}>שמירת שינויים</button>
-        
+                            <div className="rowC">
+                            <img src={CLIPPY} width={200} height={200} alt="assistant" />
                               <div className="dropdown">
                                 <select value={selectedOption} onChange={handleOptionChange}>
                                   <option value="">בחרו חלוקת ניקוד</option>
                                   <option value="o">לפי סדר הרשימה</option>
                                   <option value="e">חלוקה שווה</option>
+                                  <option value="z">אפס ניקוד</option>
                                 </select>
                               </div> 
                               <div>עבור <input
@@ -140,8 +154,7 @@ function BoardEditable(props)
                             /> הקורסים העליונים</div>
                              
                               <button className="button-nice" onClick={suggestClicked}>הצע חלוקת ניקוד</button>
-                           
-                              
+                           </div>
                         </div>
                     </div>
                     <DragDropContext onDragEnd={handleDragEnd}>
@@ -168,7 +181,7 @@ function BoardEditable(props)
                               >
                               <div className="item-title">
                               
-                                  {<Slider ref={el => cards.current[index] = el} course_group={course_group} i={index} change={changeSlide}/>}
+                                  {<Slider course_group={course_group} i={index} change={changeSlide}/>}
                                     {course_group.overlap && <div style={{color: 'red'}} data-testid="groupName">{course_group.name}</div>}
                                     {!course_group.overlap && <div data-testid="groupName" className='name'>{course_group.name}</div>}                                    
                                    {<div data-testid="groupIndex" className='index'>.{index+1}</div>} 

@@ -6,7 +6,6 @@ body
 }
 
 .container-rank{
-    display: flex;
     justify-content: space-around;
     padding-top: 10px;
     margin-bottom: 30px;
@@ -156,7 +155,7 @@ input[type='number']{
 }
 
 .dropdown {
-  width: 200px;
+  width: max-content;
   margin-bottom: 10px;
 }
 
@@ -183,7 +182,8 @@ option {
 
 .button-nice {
   display: inline-block;
-  ;
+  width:fit-content ;
+  height: fit-content;
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
@@ -204,4 +204,15 @@ option {
 .button-nice:focus {
   outline: none;
   box-shadow: 0 0 0 2px #6c63ff;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.rowC{
+  display:flex; flex-direction:row;
+  direction: rtl;
 }

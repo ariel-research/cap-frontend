@@ -1,33 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
+const Slider = ({ course_group, i, change }) => {
+  const [value, setValue] = useState(course_group.score);
 
-class Slider extends React.Component 
-{
-    state = {
-        value: this.props.course_group.score
-    }
-    
-    handleOnChane = (e) =>
-    {
-        this.setState({value: e.target.value})
-        this.props.change(e.target.value,this.props.i);
-    }
-    
-    
-    render()
-    {
-        return (
-            <div className="slide">
-                <div className="value" style={{fontSize:"1.3em"}}>{this.state.value}</div>
-                <input type="range" min={0} max={1000} value={this.state.value} className="slider" onChange={this.handleOnChane}/>
-            </div>
+  const handleOnChange = (e) => {
+    const value = e.target.value;
+    setValue(value);
+    change(value, i);
+  };
 
-        )
-    }
+  useEffect(() => {
+    setValue(course_group.score);
+  }, [course_group.score]);
 
-}
+  return (
+    <div className="slide">
+      <div className="value" style={{ fontSize: "1.3em" }}>{value}</div>
+      <input
+        type="range"
+        min={0}
+        max={1000}
+        value={value}
+        className="slider"
+        onChange={handleOnChange}
+      />
+    </div>
+  );
+};
 
-
-
-
-export default Slider
+export default Slider;
