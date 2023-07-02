@@ -8,7 +8,7 @@ import Ranking from './components/Ranking/Ranking';
 import Results from './components/Results/results';
 import Algo from './components/Office/algo';
 import Office from './components/Office/Office'
-import Auth from './auth';
+import Auth from './login';
 import Reg from './register'
 import Homepage from './home'
 import { CookiesProvider } from "react-cookie";

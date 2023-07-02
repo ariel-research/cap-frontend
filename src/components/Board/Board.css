@@ -216,3 +216,9 @@ option {
   display:flex; flex-direction:row;
   direction: rtl;
 }
+
+.container-bubbletext{
+  background: #FFF url("./bubble-text.png") no-repeat center top;
+  margin: 0 auto;
+
+}

@@ -3,7 +3,8 @@ import './Board.css';
 import { API } from "../../api-service";
 import { useCookies } from "react-cookie";
 import Slider from './slider';
-import CLIPPY from './CLIPPY-00.png'; // Tell webpack this JS file uses this image
+import assi from './assi.png'; // Tell webpack this JS file uses this image
+import bubble from './bubble-text.png'; // Tell webpack this JS file uses this image
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import {usolve} from "mathjs"
@@ -135,7 +136,8 @@ function BoardEditable(props)
                             <p className="ramainingTime">{props.time_message}</p>
                             <button className="button-nice" style={{marginLeft:'30%',width:'40%', backgroundColor:'black'}} onClick={props.SaveClicked(course_group, balance)}>שמירת שינויים</button>
                             <div className="rowC">
-                            <img src={CLIPPY} width={200} height={200} alt="assistant" />
+                            <img src={assi} width={200} height={200} alt="assistant" />
+                            <div className="container-bubbletext" alt="assistant" />
                               <div className="dropdown">
                                 <select value={selectedOption} onChange={handleOptionChange}>
                                   <option value="">בחרו חלוקת ניקוד</option>

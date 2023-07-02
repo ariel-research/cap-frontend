@@ -1,139 +1,77 @@
-.NavbarItems{
-    background: linear-gradient(90deg, rgb(110,94,254)0%, rgba(73,63,252,1)100%);
-    display: flex;
-    justify-content: center;
-    align-items: right;
-    font-size: 1.3rem;
-    height: 85px;  
-}
-.active{
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    padding-top: 0px;
-    background-color: #6d76f7;
-    border-radius:3em;
-    display: inline-block;
-    transition: all 0.2s ease-out;
-    text-decoration: none;
-}
-.navbar-logo{
-    color: #fff;
-    justify-self: start;
-    margin-left: 20px;
-    cursor: pointer;
-    font-size: 3rem
-}
-
-.fa-react1{
-
-    font-size: 1.3rem;
-    display: block;
-    margin-left: 40px;
-    margin-right: auto;
-    width: 87px;
-    object-fit: fill ;
-    height: 80px;
-    border-radius: 20px;
-    margin-top: 2px;
-}
-
-.nav-menu {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(4,auto);
-    grid-gap: 10px;
-    list-style: none;
-    text-align: center;
-    width: 50vw;
-    justify-content: end;
-    margin-right: 2rem;
-}
-
-.nav-links {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-}
-li {
-    border-right: 2px solid #bbb;
-    margin-left: 2px;
+.navbar {
+    height: 85px;
   }
+  
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    color: ghostwhite;
+    font-size: 1.3rem;
+  }
+  .navbar-brand.active{
 
-.nav-links:hover {
-    background-color: #6d76f7;
-    border-radius:3em;
-    display: inline-block;
-    transition: all 0.2s ease-out;
-    text-decoration: none;
+    color: white;
+  }
+  .navbar-brand:hover{
 
-}
-
-.menu-icon{
-    display: none;
-}
-.logo2{
-   width: 220px;
-   margin-top: 10px;
-   color: rgb(231, 226, 226);
-   margin-left: 20px;
-   font-display: center;
-    font-size: 40px;
-}
-
-@media screen and (max-width: 960px){
-    .NavbarItems{
-        position: relative;
-    }
-
-    .nav-menu{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 500px;
-        position: absolute;
-        top: 80px;
-        left: -100%;
-        opacity: 1;
-        transition: all 0.5 ease;
-    }
+    color: white;
     
-    /* .nav-menu active{
-        background-color:red;
-        color: red;
-        left: 0;
-        opacity: 1;
-        transition: all 0.5 ease;
-        z-index: 1;
-    } */
 
-    .nav-links{
-
-        text-align: center;
-        padding: 2rem;
-        width: 100%;
-        display: table;
+  }
+  .navbar-brand img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .navbar-toggler {
+    border: none;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .navbar-nav .nav-item {
+    margin-left: 10px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: gainsboro;
+  }
+  
+  .navbar-nav .nav-link.active {
+    border-radius: 3em;
+    color: white;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    border-radius: 3em;
+    color: white;
+  }
+  
+  .navbar-collapse {
+    justify-content: flex-end;
+  }
+  
+  .navbar-toggler-icon {
+    background-color: white;
+    width: 1.5em;
+    height: 1.5em;
+  }
+  
+  @media screen and (max-width: 960px) {
+    .navbar-nav {
+      flex-direction: column;
     }
-
-    .nav-links:hover{
-        background-color: #7577fa;
-        border-radius: 0;
+  
+    .navbar-collapse {
+      margin-top: 10px;
     }
-
-    .navbar-logo {
-        position: absolute;
-        top:0;
-        left: 0;
-        transform: translate(25%, 50%);
+  
+    .navbar-toggler {
+      margin-right: 10px;
     }
-
-    .menu-icon {
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        transform: translate(-100%, 60%);
-        font-size: 1.8rem;
-        cursor: pointer;
+  
+    .navbar-toggler-icon {
+      background-color: white;
     }
-}
+  }
+  
