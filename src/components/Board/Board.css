@@ -1,21 +1,18 @@
 body
 {
-    background-color: #cfd0d1 !important; 
     color: rgb(85, 83, 83);
-
 }
 
 .container-rank{
     justify-content: space-around;
     padding-top: 10px;
     margin-bottom: 30px;
-    width: 70%;
-    margin-left: 15%;
+    width: 60%;
+    margin-right: 20%;
 }
 .course_group{
     display: flex;
     flex-direction: column;
-    background: linear-gradient(90deg, rgb(110,94,254)0%, rgba(73,63,252,1)100%);
     border-radius: 20px;
 }
 
@@ -29,8 +26,6 @@ body
     text-shadow: -1px 0 white;
   color: rgba(85, 83, 83);
   text-align: center !important;
-  font-size:4.2em;
-  border-color:#6d76f7;
   font-weight: bold;
 }
 h3{
@@ -46,40 +41,42 @@ h3{
     border-radius: 25px;
     border: 2px solid #cfd0d1;
     padding: 20px;
-    /* width: 300px; */
+    color: rgb(85, 83, 83);
     height: 130px;
     margin-top: 15px;
-    margin-left: 15px;
 
   }
 .ramainingTime{
-    color:  rgb(59, 59, 59);
     font-size: 35px;
     text-align: center;
     margin-top: 15px;
     font-weight: bold;
+    color: rgb(85, 83, 83);
  
 }
 .course_group .item{
     /* width: 90%; */
-    height: 80px;
+    height: max-content;
     background-color: white;
     padding: 5px;
     border-radius: 20px;
     box-shadow: 4px 4px rgba(0, 0, 0, 0.2) ;
     margin:10px;    
 }
+.i-name{
+  display: flex;
+  align-items: flex-end;
+
+  
+}
 .course_group .item-title{
   /* width: 90%; */
-  font-size: 1.3rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   
 }
 .course_group .item-details{
   /* width: 90%; */
-  font-size: 1.3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,23 +85,28 @@ h3{
 .course_group .item .name{
     /* width: 600px; */
     display: flex;
-    justify-content: center;
-    font-size: 1.5rem;
-    text-align-last: center;
+    font-size: 18px;
+    font-weight: bold;
+    flex-grow: 1;
+
+    
 }
 
 .course_group .item .index{
-    width: 20px;
     display: flex;
-    font-size: 1.5rem;
+
 }
 .course_group .item .money{
   margin-right: 10px;
+  width: 100px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
   .slide {
     display: flex;
     width: 300px;
+    direction: ltr;
   }
   input {
     display: flex;
@@ -121,7 +123,6 @@ h3{
     position: sticky;
     top: 0;
     z-index: 999;
-    background: linear-gradient(90deg, rgb(110,94,254)0%, rgba(73,63,252,1)100%);
     border-radius: 20px;
   }
   .whiteLines{
@@ -133,11 +134,27 @@ h3{
 .info{
   /* color:  #cfd0d1; */
   color: rgba(85, 83, 83);;
-  font-size: 28px;
   margin-right: 50px;
   text-align: center;
   margin-bottom: 5px;
   text-shadow: -1px 0 white;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  align-self: flex-start;
+}
+
+.center {
+  align-self: center;
+}
+
+.right {
+  align-self: flex-end;
 }
 
 input[type='number']{
@@ -222,3 +239,24 @@ option {
   margin: 0 auto;
 
 }
+.accordion-danger {
+	--bs-accordion-btn-bg: #dc3545 - 80%;
+	--bs-accordion-active-bg: #dc3545 - 80%;
+}
+
+.accordion {
+  width: 50%
+}
+
+
+.title {
+  flex-grow: 1;
+  margin: 0 10px;
+}
+
+.bold-number {
+  font-size: 20px;
+  font-weight: bold;
+  align-self: flex-start;
+}
+

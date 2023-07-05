@@ -1,16 +1,12 @@
 .login{
-  background-color: #f8f9fa;
   min-height: 100vh;
 }
 .form-signin {
     max-width: 330px;
     padding: 1rem;
-
+    
   }
   
-.right {
-  right: 0;
-}
 
 .left{
   direction: ltr;

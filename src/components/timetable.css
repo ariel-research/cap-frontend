@@ -6,7 +6,7 @@ table {
 }
 
 th  {
-    height: 120px;
+    height: 50px;
     text-align: center; 
     vertical-align: middle;
 }
@@ -16,10 +16,7 @@ th  {
     text-align: center; 
     vertical-align: middle;
 }
-.timetableTop {
-    background: linear-gradient(90deg, rgb(110,94,254)0%, rgba(73,63,252,1)100%);
-    color: white;
-}
+
 .tableRight {
 color: #6d76f7;
 font-weight: bold;

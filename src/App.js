@@ -61,14 +61,15 @@ function App() {
       <div className="Headline">מידע על קורסי הבחירה</div>
       </header>
       <div className="layout">
-        <CoursegroupDetails course_group={selectedCourse_group} />
+        
         <CoursegroupList course_group={course_group} course_groupClicked={course_groupClicked} />
+        <CoursegroupDetails course_group={selectedCourse_group} />
       </div>
       <div className="con-btn">
-        <button data-testid="semesterB" className="try" onClick={buttonClicked(true)}>סמסטר ב</button>
-        <button data-testid="semesterA" className="try" onClick={buttonClicked(false)}>סמסטר א</button>
+        <button data-testid="semesterB" className="btn btn-primary" onClick={buttonClicked(true)}>סמסטר ב</button>
+        <button data-testid="semesterA" className="btn btn-primary" onClick={buttonClicked(false)}>סמסטר א</button>
       </div>
-      <h5 style={{marginRight:'37%',marginTop:'15px'}}>שים לב, הקורסים באדום הם קורסי החובה שלך *</h5>
+      <h5 style={{textAlign:'center'}}>מערכת שעות - פריסת קורסים</h5>
 
       <div>
         {A_or_B ? (

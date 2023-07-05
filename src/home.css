@@ -1,8 +1,7 @@
 .homepage {
     min-height: 100vh;
     text-align: right;
-    background: rgba(212, 207, 207, 0.836);
-    
+    background-color: #f8f9fa;
   }
   
 .welcome-message {

@@ -65,11 +65,11 @@ function Homepage() {
       {user ? (
         <div className="container">
           <div className="welcome-message">
-            <h2>Welcome, {user.first_name}!</h2>
+            <h2>שלום, {user.first_name}!</h2>
           </div>
           <div className="user-details-container">
             <div className="form-group row">
-              <label className="col-sm-4 col-form-label">:אימייל</label>
+              <label className="col-sm-4 col-form-label">אימייל:</label>
               <div className="col-sm-8">
                 <input
                   type="text"
@@ -81,7 +81,7 @@ function Homepage() {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-4 col-form-label">:שם פרטי</label>
+              <label className="col-sm-4 col-form-label">שם פרטי:</label>
               <div className="col-sm-8">
                 <input
                   type="text"
@@ -92,7 +92,7 @@ function Homepage() {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-4 col-form-label">:שם משפחה</label>
+              <label className="col-sm-4 col-form-label">שם משפחה:</label>
               <div className="col-sm-8">
                 <input
                   type="text"
@@ -103,18 +103,7 @@ function Homepage() {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-4 col-form-label">:חיבור אחרון</label>
-              <div className="col-sm-8">
-                <input
-                  type="text"
-                  className="form-control"
-                  value={""}
-                  
-                />
-              </div>
-            </div>
-            <div className="form-group row">
-              <label className="col-sm-4 col-form-label">:קורסי בחירה נדרשים</label>
+              <label className="col-sm-4 col-form-label">קורסי בחירה נדרשים:</label>
               <div className="col-sm-8">
                 <input
                   type="number"
@@ -125,9 +114,9 @@ function Homepage() {
               </div>
             </div>
             <div className="form-group row">
-              <div className="col-sm-12">
-                <button className="btn btn-primary" onClick={handleSaveChanges}>
-                  Save
+              <div className="col-sm-12 text-center">
+                <button className="btn btn-primary " onClick={handleSaveChanges}>
+                  שמירת שינויים
                 </button>
               </div>
             </div>

@@ -1,33 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { API } from './api-service';
 import { useCookies } from "react-cookie";
-import './auth.css';
+import './login.css';
 import logo1 from './logo.png';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Auth() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const [token, setToken] = useCookies(['mr-token']);
-    const [message,setMessage] = useState('');
+    const [message, setMessage] = useState('');
 
-    const loginClicked = () => {
+    const loginClicked = (event) => {
+        event.preventDefault(); // Prevent form submission and page refresh
+
         if (!username || !password) {
-            alert("שם משתמש או סיסמא ריקים");
-        }
-        else {
+            setMessage("אימייל או סיסמא ריקים")
+        } else {
             API.loginUser({ username, password })
                 .then(resp => {
                     if (resp.token) {
                         setToken('mr-token', resp.token)
-                    }
-                    else {
+                        console.log(token)
+                    } else {
                         API.getUserStatus(username)
-                        .then(resp => {
-                            setMessage(resp.message)
-                        })
-                        .catch(error=> console.log(error))
+                            .then(resp => {
+                                setMessage(resp.message)
+                                console.log(message)
+                            })
+                            .catch(error => console.log(error))
                     }
                 })
                 .catch(error => console.log(error))
@@ -35,55 +37,48 @@ function Auth() {
     }
 
     useEffect(() => {
-        if (token['mr-token'])
-        {
+        if (token['mr-token']) {
             API.studentOrOffice(token['mr-token'])
-            .then(resp => {
-                if(resp === 1) //student
-                    window.location.href = '/home';
-                if(resp === 2) //office
-                    window.location.href = '/office';
-                if(resp === 3) //error
-                    alert("error")
-            })
-            .catch(error => console.log(error))
-        } 
+                .then(resp => {
+                    if (resp === 1) //student
+                        window.location.href = '/home';
+                    if (resp === 2) //office
+                        window.location.href = '/office';
+                    if (resp === 3) //error
+                        alert("error")
+                })
+                .catch(error => console.log(error))
+        }
     }, [token])
 
     return (
-        <div className="auth">
-            <Link to="/register">
-            <button className="button-register">
-                הרשמה
-            </button>
-            </Link>
-            <div className="headline">דירוג קורסי בחירה</div>
-            <div className="headline"></div>
-            <div className="headline">כניסה למערכת</div>
-            <div className="container-auth">
-                <div className="img-con">
-                    <img className="fab fa-react" src={logo1} alt="" />
-                </div>
-                {message && <span className="message">{message}</span>}
-                <div className="row-container">
-                    <input data-testid="password" id="password" type="password" placeholder="" value={password}
-                        onChange={evt => setPassword(evt.target.value)} /><br /><br />
-                    <label className="text-password" htmlFor="password">: סיסמא</label><br />
-                </div>
-                <div className="row-container">
-                    <input data-testid="username" id="username" type="text" placeholder="" value={username}
-                        onChange={evt => setUsername(evt.target.value)} /><br />
-                    <label className="text-username" htmlFor="username">: שם משתמש/ת</label><br />
-                </div>
-                
-            </div>
-            
-            <div>
-                <button data-testid="loginButton" className="Login-button" onClick={loginClicked}>התחברות</button>
-                
-            </div>
-        
-        </div>)
+        <div className="login">
+
+            <main className="form-signin w-100 m-auto">
+
+                <form>
+                    <img className="mb-4" src={logo1} alt="" width="75" height="65" />
+                    <h1 className="h3 mb-3 fw-normal text-center">התחברו ודרגו!</h1>
+
+                    {message && <span>
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">{message}</div>
+                    </span>}
+                    <label className='form-label d-flex text-right mb-1' htmlFor="">אימייל</label>
+                    <input data-testid="email" type="email" className="form-control left" id="floatingInput" placeholder="name@example.ariel.ac.il"
+                        value={username}
+                        onChange={evt => setUsername(evt.target.value)} />
+                    <label className='form-label d-flex text-right mt-2 mb-1' htmlFor="">סיסמא</label>
+                    <input type="password" data-testid="password" className="form-control left" id="floatingPassword" placeholder="Password"
+                        value={password} onChange={evt => setPassword(evt.target.value)} />
+ 
+                    <button className="btn btn-primary w-100 py-2" data-testid="loginButton" type="submit" onClick={loginClicked}>התחברות</button>
+                    
+                </form>
+                <p class="text-center text-muted mt-5 mb-0">עדיין לא נרשמת? <a href="/register"
+                    class="fw-bold text-body"><u>הרשמה כאן!</u></a></p>
+            </main>
+        </div>
+    );
 }
 
 export default Auth;

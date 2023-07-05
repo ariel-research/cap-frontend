@@ -65,25 +65,70 @@ function Ranking(props)
     }
     
 
-    if(edit === false)
-    {
+
+
         return(
             <div className="Rank" data-testid="Rank">
-                <Navbar sticky="top" active='דירוג קורסי בחירה'/>
-                <Board EditClicked= {EditClicked} time_message={time_message}/>      
-            </div>
-        )
-    }
-    if(edit === true)
-    {
-        return(
-            <div className="Rank" data-testid="RankEdit">
                 <Navbar active='דירוג קורסי בחירה'/>
-                <BoardEditable SaveClicked= {SaveClicked} time_message= {time_message} balance={balance}/>      
+            <div className='text'>
+            <h1 className= 'text-right'>דירוג קורסי בחירה</h1>
+            <div class="accordion mt-2" id="accor-how">
+                <div class="accordion-item alert-primary">
+                    <h2 class="accordion-header " id="headingOne">
+                        <button class="accordion-button collapsed alert-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            איך מדרגים?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accor-how">
+                        <div class="accordion-body">
+                            <ul>
+                                
+                                <li>יש לחלק 1000 נקודות בין קורסי הבחירה לפי העדפה</li>
+                                <li>ניתן להשתמש בחיצי המקלדת לדירוג מדויק יותר</li>
+                                <li>ניתן לגרור את הקורסים על מנת להשתמש בהצעות לחלוקת ניקוד</li>
+                                <li>ככל שיש יותר נקודות עבור קורס מסויים - גדל הסיכוי לקבלו</li>
+                            </ul>
+                            <hr/>
+                            <div className ='text-right fw-bold'>יש ללחוץ על עריכה על מנת להתחיל בדירוג</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        )
-    }
+            <div class="accordion accordion-danger" id="accor-danger">
+                <div class="accordion-item alert-danger">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            שימו לב
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accor-danger">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>לא ניתן לקבל קורס שדורג עם 0 נקודות</li>
+                                <li>לא ניתן לשמור דירוג עם סכום נקודות שלילי</li>
+                                {/*<li>קורסי בחירה שבצבע אדום מתנגשים לך עם קורסי חובה</li>*/}
+                                <li>אם לא תזכ/י בקורס הרצוי, הנקודות יועברו אוטומטית לקורס הבא ברשימה שלך</li>
+
+                            </ul>
     
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className='container-rank right'>
+            
+            {!edit ? 
+                <Board EditClicked= {EditClicked} time_message={time_message} />
+                
+             : 
+                <BoardEditable SaveClicked= {SaveClicked} time_message= {time_message} balance={balance}/>
+              }
+            
+            </div>
+    </div>
+</div>
+    )
 }
+
 
 export default Ranking;

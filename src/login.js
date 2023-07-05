@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { API } from './api-service';
 import { useCookies } from "react-cookie";
-import './login.css';
+import './auth.css';
 import logo1 from './logo.png';
 import { Link} from 'react-router-dom';
 
@@ -21,13 +21,11 @@ function Auth() {
                 .then(resp => {
                     if (resp.token) {
                         setToken('mr-token', resp.token)
-                        console.log(token)
                     }
                     else {
                         API.getUserStatus(username)
                         .then(resp => {
                             setMessage(resp.message)
-                            console.log(message)
                         })
                         .catch(error=> console.log(error))
                     }
@@ -53,35 +51,39 @@ function Auth() {
     }, [token])
 
     return (
-        <div className="login">
+        <div className="auth">
             <Link to="/register">
             <button className="button-register">
                 הרשמה
             </button>
             </Link>
-            <main className="form-signin w-100 m-auto login">
-
-  <form>
-    <img className="mb-4" src={logo1} alt="" width="75" height="65"/>
-    <h1 className="h3 mb-3 fw-normal text-center">התחברו ודרגו!</h1>
-    {message && <span className="message">{message}</span>}
-    <div className="form-floating mb-2">
-    <input data-testid="email" type="email" className="form-control left" id="floatingInput" placeholder="name@example.ariel.ac.il"
-      value={username}
-      onChange={evt => setUsername(evt.target.value)} />
-      <label className='right' htmlFor="floatingInput">אימייל</label>
-      </div>
-    <div className="form-floating mb-2">
-    <input type="password" data-testid="password" className="form-control left" id="floatingPassword" placeholder="Password"
-      value={password}  onChange={evt => setPassword(evt.target.value)}/>
-      <label className='right' htmlFor="floatingPassword">סיסמא</label>
-    </div>
-    <button className="btn btn-primary w-100 py-2" type="submit" onClick={loginClicked} >התחברות</button>
-  </form> 
-  </main>
-  </div>
- 
-  )
+            <div className="headline">דירוג קורסי בחירה</div>
+            <div className="headline"></div>
+            <div className="headline">כניסה למערכת</div>
+            <div className="container-auth">
+                <div className="img-con">
+                    <img className="fab fa-react" src={logo1} alt="" />
+                </div>
+                {message && <span className="message">{message}</span>}
+                <div className="row-container">
+                    <input data-testid="password" id="password" type="password" placeholder="" value={password}
+                        onChange={evt => setPassword(evt.target.value)} /><br /><br />
+                    <label className="text-password" htmlFor="password">: סיסמא</label><br />
+                </div>
+                <div className="row-container">
+                    <input data-testid="username" id="username" type="text" placeholder="" value={username}
+                        onChange={evt => setUsername(evt.target.value)} /><br />
+                    <label className="text-username" htmlFor="username">: שם משתמש/ת</label><br />
+                </div>
+                
+            </div>
+            
+            <div>
+                <button data-testid="loginButton" className="Login-button" onClick={loginClicked}>התחברות</button>
+                
+            </div>
+        
+        </div>)
 }
 
 export default Auth;

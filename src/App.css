@@ -1,6 +1,6 @@
 .App {
   min-height: 100vh;
-background: rgba(212, 207, 207, 0.836);
+  background-color: #f8f9fa;
 /*background: linear-gradient(80deg, rgba(114,117,121,1) 0%, rgba(230,220,220,1) 70%);*/
   text-align: right;
 }
@@ -39,33 +39,35 @@ h2{
   grid-gap: 20px;
 }
 
+.list-group{
+  max-width: 400px; max-height: 100px
+}
 
+.list-scroll{
+  max-width: max-content; max-height: 350px
+}
 .courses{
-  text-align: center;
   margin-left: 200px;
-  color: rgb(85, 83, 83);
-  text-shadow: -1px 0 rgb(85, 83, 83);
-  border: 4px solid rgb(85, 83, 83);
   margin-bottom: 5px;
   padding-bottom: 15px;
   border-radius: 15px;
-  font-size: 20px;
   
+}
+
+ol {
+  width: max-content;
 }
 
 ul {
   text-align: right;
   }
 
+
 .itemName{
   padding-top: 10px;
-  background-color: white;
   height: 45px;
   border-radius: 20px;
-  box-shadow: 4px 4px rgba(0, 0, 0, 0.2) ;
-  font-size: 1.3rem;
   display: flex;
-  margin:10px;
   justify-content: space-between;
   align-items: center;
 }
