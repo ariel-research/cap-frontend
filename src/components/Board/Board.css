@@ -1,3 +1,4 @@
+
 body
 {
     color: rgb(85, 83, 83);
@@ -231,12 +232,18 @@ option {
 
 .rowC{
   display:flex; flex-direction:row;
-  direction: rtl;
+
+  
 }
 
 .container-bubbletext{
-  background: #FFF url("./bubble-text.png") no-repeat center top;
-  margin: 0 auto;
+  background: url("./bubble-text.png") no-repeat top;
+  background-size: 500px 100px;
+  align-items: center;
+  text-align: center;
+  width: 500px;
+  height: 100px;
+  display:flex; flex-direction:row;
 
 }
 .accordion-danger {

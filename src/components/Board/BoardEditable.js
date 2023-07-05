@@ -3,12 +3,10 @@ import './Board.css';
 import { API } from "../../api-service";
 import { useCookies } from "react-cookie";
 import Slider from './slider';
-import assi from './assi.png'; // Tell webpack this JS file uses this image
-import bubble from './bubble-text.png'; // Tell webpack this JS file uses this image
+import assi from './assi.png';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { usolve } from "mathjs"
-import Board from './Board';
 
 function BoardEditable(props) {
   const [course_group, setCourse_group] = useState([]);
@@ -47,7 +45,6 @@ function BoardEditable(props) {
     }
     else if (selectedOption === 'z') { //reset all score
       for (let i = 0; i < options; i++) {
-
         partition(i, 0);
       }
     }
@@ -120,35 +117,37 @@ function BoardEditable(props) {
 
   return (
         <div className='course_group bg-light'>
-          <div className="">
-            <div>
+          <div >
+            <div className="justify-items-center">
               <p className="ramainingTime">{props.time_message}</p>
               <div style={{ width: 'fit-content' }} class="alert alert-secondary" role="alert">יתרת ניקוד: {balance}</div>
             </div>
-            <button className="button-nice" style={{ marginLeft: '30%', width: '40%', backgroundColor: 'black' }} onClick={props.SaveClicked(course_group, balance)}>שמירת שינויים</button>
-            <button className="btn btn-danger" style={{ marginLeft: '30%', width: '40%' }} onClick={() => handleEditClicked(false)}>ביטול</button>
+            <button className="btn btn-primary"  onClick={props.SaveClicked(course_group, balance)}>שמירת שינויים</button>
+            <button className="btn btn-secondary " onClick={() => handleEditClicked(false)}>ביטול</button>
 
-            <div className="rowC">
-              <img src={assi} width={200} height={200} alt="assistant" />
-              <div className="container-bubbletext" alt="assistant" />
-              <div className="dropdown">
+            <div className="rowC justify-content-center ml-5">
+              <img src={assi} width={100} height={100} alt="assistant" />
+              <div className="container-bubbletext" alt="assistant" >
+                <div><div className="dropdown mr-5">
                 <select value={selectedOption} onChange={handleOptionChange}>
                   <option value="">בחרו חלוקת ניקוד</option>
-                  <option value="o">לפי סדר הרשימה</option>
+                  <option value="o">חלוקה לפי הסדר</option>
                   <option value="e">חלוקה שווה</option>
-                  <option value="z">אפס ניקוד</option>
+                  <option value="z">איפוס הכל</option>
                 </select>
               </div>
-              <div>עבור <input
+              <div className = "rowC mr-5">עבור <input
                 type="number"
                 onChange={event => setMaxOptions(event.target.value)}
                 value={max_options}
                 min={0}
                 max={course_group.length}
 
-              /> הקורסים העליונים</div>
+              /> הקורסים העליונים</div></div>
+              
 
-              <button className="button-nice" onClick={suggestClicked}>הצע חלוקת ניקוד</button>
+              <button className="button-nice mr-4" onClick={suggestClicked}>הצע חלוקת ניקוד</button>
+            </div>
             </div>
           </div>
           <DragDropContext onDragEnd={handleDragEnd}>
