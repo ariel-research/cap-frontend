@@ -5,11 +5,13 @@ body
 }
 
 .container-rank{
-    justify-content: space-around;
+    justify-content: center;
     padding-top: 10px;
     margin-bottom: 30px;
-    width: 60%;
+    width:60%;
     margin-right: 20%;
+    margin-left: 20%;
+  
 }
 .course_group{
     display: flex;
@@ -127,10 +129,7 @@ h3{
     border-radius: 20px;
   }
   .whiteLines{
-    margin-left:20px;
-    margin-right: 30px;
     margin-bottom: 20px;
-
   }
 .info{
   /* color:  #cfd0d1; */
@@ -252,8 +251,13 @@ option {
 }
 
 .accordion {
-  width: 50%
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 50%;
 }
+
+
 
 
 .title {
@@ -266,4 +270,7 @@ option {
   font-weight: bold;
   align-self: flex-start;
 }
-
+.list-scroll{
+  max-height: 350px;
+  width: 100%;
+}

@@ -7,6 +7,8 @@ function CoursegroupList(props) {
     props.course_groupClicked(course_group)
   }
   return (
+    
+    
     <div className='overflow-auto list-scroll' >
       {
         props.course_group && props.course_group.map(course_group => {
@@ -23,7 +25,6 @@ function CoursegroupList(props) {
         })
       }
     </div>
-
   )
 }
 

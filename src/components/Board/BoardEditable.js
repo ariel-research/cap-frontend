@@ -20,9 +20,15 @@ function BoardEditable(props) {
     window.location.reload(false);
   }
   const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+  
+      setSelectedOption(event.target.value);
   };
-
+const handleMaxOptionsChange = (event) => {
+  
+  const value = event.target.value
+  if (value > 0 && value <= course_group.length)
+    setMaxOptions(value)
+  };
   const suggestClicked = () => {
     const options = Number(max_options);
 
@@ -116,16 +122,16 @@ function BoardEditable(props) {
 
 
   return (
-        <div className='course_group bg-light'>
-          <div >
-            <div className="justify-items-center">
+       
+          <div className='item-center' >
+            <div className="justify-items-center item-center">
               <p className="ramainingTime">{props.time_message}</p>
-              <div style={{ width: 'fit-content' }} class="alert alert-secondary" role="alert">יתרת ניקוד: {balance}</div>
+              <div style={{ width: 'fit-content' }} class="alert alert-secondary item-center" role="alert">יתרת ניקוד: {balance}</div>
             </div>
-            <button className="btn btn-primary"  onClick={props.SaveClicked(course_group, balance)}>שמירת שינויים</button>
+            <button className="btn btn-primary ml-2"  onClick={props.SaveClicked(course_group, balance)}>שמירת הדירוג</button>
             <button className="btn btn-secondary " onClick={() => handleEditClicked(false)}>ביטול</button>
 
-            <div className="rowC justify-content-center ml-5">
+            <div className="rowC justify-content-center ml-5 mt-3">
               <img src={assi} width={100} height={100} alt="assistant" />
               <div className="container-bubbletext" alt="assistant" >
                 <div><div className="dropdown mr-5">
@@ -138,7 +144,7 @@ function BoardEditable(props) {
               </div>
               <div className = "rowC mr-5">עבור <input
                 type="number"
-                onChange={event => setMaxOptions(event.target.value)}
+                onChange={event => handleMaxOptionsChange(event)}
                 value={max_options}
                 min={0}
                 max={course_group.length}
@@ -148,15 +154,16 @@ function BoardEditable(props) {
 
               <button className="button-nice mr-4" onClick={suggestClicked}>הצע חלוקת ניקוד</button>
             </div>
-            </div>
-          </div>
+            
+          </div> 
+          <div className='course_group bg-light'>
           <DragDropContext onDragEnd={handleDragEnd}>
             <Droppable droppableId="course-group">
               {(provided) => (
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  data-testid="card" className='whiteLines'
+                  data-testid="card" className='whiteLines overflow-auto list-scroll item-center' 
                 >
                   {course_group.map((course_group, index) => (
                     <Draggable
@@ -209,7 +216,7 @@ function BoardEditable(props) {
 
       </div>
 
-
+</div>
   );
 }
 

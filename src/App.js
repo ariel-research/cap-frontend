@@ -60,17 +60,19 @@ function App() {
       <header className="App-header">
       <div className="Headline">מידע על קורסי הבחירה</div>
       </header>
+      <h4 className='enter-right'>לחצו על הקורס הרצוי לפרטים נוספים</h4>
       <div className="layout">
         
         <CoursegroupList course_group={course_group} course_groupClicked={course_groupClicked} />
         <CoursegroupDetails course_group={selectedCourse_group} />
       </div>
-      <div className="con-btn">
-        <button data-testid="semesterB" className="btn btn-primary" onClick={buttonClicked(true)}>סמסטר ב</button>
-        <button data-testid="semesterA" className="btn btn-primary" onClick={buttonClicked(false)}>סמסטר א</button>
-      </div>
-      <h5 style={{textAlign:'center'}}>מערכת שעות - פריסת קורסים</h5>
 
+      <h5 className='text-center mt-5'>מערכת שעות - פריסת קורסים</h5>
+      <div className="con-btn item-center">
+        <button data-testid="semesterA" className="btn btn-primary" onClick={buttonClicked(false)}>סמסטר א</button>        
+        <button data-testid="semesterB" className="btn btn-primary" onClick={buttonClicked(true)}>סמסטר ב</button>
+
+      </div>
       <div>
         {A_or_B ? (
           <Timetable course_group={courses_B} />

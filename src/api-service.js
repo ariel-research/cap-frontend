@@ -68,6 +68,19 @@ export class API {
         })
         .then(resp => resp.json())
     }
+    static update(token)
+    {
+        return fetch(BASE_URL+"api/users/get_user_details/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
     static getCourse_group(token)
     {
         return fetch(BASE_URL+"api/course_group/get_course_group/",

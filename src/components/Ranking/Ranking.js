@@ -70,9 +70,10 @@ function Ranking(props)
         return(
             <div className="Rank" data-testid="Rank">
                 <Navbar active='דירוג קורסי בחירה'/>
-            <div className='text'>
-            <h1 className= 'text-right'>דירוג קורסי בחירה</h1>
-            <div class="accordion mt-2" id="accor-how">
+            <div className='text text-center '>
+            <h1 >דירוג קורסי בחירה</h1>
+            <div className=" justify-content-center">
+            <div class="accordion mt-2 " id="accor-how">
                 <div class="accordion-item alert-primary">
                     <h2 class="accordion-header " id="headingOne">
                         <button class="accordion-button collapsed alert-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -114,8 +115,8 @@ function Ranking(props)
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className='container-rank right'>
+            </div></div>
+            <div className='container-rank item-center'>
             
             {!edit ? 
                 <Board EditClicked= {EditClicked} time_message={time_message} />

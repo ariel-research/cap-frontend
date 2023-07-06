@@ -16,7 +16,8 @@ function Register() {
   const [errors, setErrors] = useState({});
   const [message,setMessage] = useState('');
   const [validated,setValidated] = useState('');
-  const [type,setType] = useState('student');
+  const [user_type,setUserType] = useState('student');
+  const [amount_elective, setAmountElective] = useState(6);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +31,11 @@ function Register() {
     if (name === 'password1') setPassword1(value);
 
     if (name === 'password2') setPassword2(value);
+
+    if(name === 'amount_elective'){
+      if (value > 0 && value <= 6)
+        setAmountElective(value);
+    }
   };
 
   const validateForm = () => {
@@ -83,7 +89,7 @@ function Register() {
       return;
     }
     
-    API.registerUser({ username, first_name,last_name, email, password1, password2 })
+    API.registerUser({ username, first_name,last_name, email, password1, password2,amount_elective, user_type})
       .then((resp) => {
         console.log(resp); // Add this line
           setMessage(resp['message'])
@@ -180,12 +186,22 @@ return (
             <span className="invalid-feedback">{errors.password2}</span>
           )}
         </div>
-        <div class="btn-group">
-  <input type="radio" class="btn-check" name="userType" id="student" autocomplete="off" checked ={type === 'student'}/>
-  <label class="btn btn-secondary" for="student">סטודנטים</label>
+        <div className=" mb-2">
+          <label className="d-flex text-right form-label">מספר קורסי בחירה נדרשים</label>
+          <input
+                type="number"
+                name="amount_elective"
+                onChange={handleInputChange}
+                value={amount_elective}
+                min={0}
+                max={6}/>
+        </div>
+        <div class="btn-group item-center">
+  <input type="radio" class="btn-check" name="userType" id="student" autocomplete="off" onClick={()=>setUserType('student')} checked ={user_type === 'student'}/>
+  <label class="btn btn-outline-primary" for="student">סטודנטים</label>
 
-  <input type="radio" class="btn-check" name="userType" id="guest" autocomplete="off"  checked ={type === 'guest'} />
-  <label class="btn btn-secondary" for="guest">אורחים</label>
+  <input type="radio" class="btn-check" name="userType" id="guest" autocomplete="off" onClick={()=>setUserType('guest')} checked ={user_type === 'guest'} />
+  <label class="btn btn-outline-primary" for="guest">אורחים</label>
 </div>
         <button className="w-100 btn btn-lg btn-primary mt-3" type="submit" onClick={registerClicked}>
           הרשמה
