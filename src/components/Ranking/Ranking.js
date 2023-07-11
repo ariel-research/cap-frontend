@@ -73,15 +73,15 @@ function Ranking(props)
             <div className='text text-center '>
             <h1 >דירוג קורסי בחירה</h1>
             <div className=" justify-content-center">
-            <div class="accordion mt-2 " id="accor-how">
-                <div class="accordion-item alert-primary">
-                    <h2 class="accordion-header " id="headingOne">
-                        <button class="accordion-button collapsed alert-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <div className="accordion mt-2 " id="accor-how">
+                <div className="accordion-item alert-primary">
+                    <h2 className="accordion-header " id="headingOne">
+                        <button className="accordion-button collapsed alert-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             איך מדרגים?
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accor-how">
-                        <div class="accordion-body">
+                    <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accor-how">
+                        <div className="accordion-body">
                             <ul>
                                 
                                 <li>יש לחלק 1000 נקודות בין קורסי הבחירה לפי העדפה</li>
@@ -95,20 +95,19 @@ function Ranking(props)
                     </div>
                 </div>
             </div>
-            <div class="accordion accordion-danger" id="accor-danger">
-                <div class="accordion-item alert-danger">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <div className="accordion accordion-danger" id="accor-danger">
+                <div className="accordion-item alert-danger">
+                    <h2 className="accordion-header" id="headingTwo">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                             שימו לב
                         </button>
                     </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accor-danger">
-                        <div class="accordion-body">
+                    <div id="collapseTwo" className="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accor-danger">
+                        <div className="accordion-body">
                             <ul>
                                 <li>לא ניתן לקבל קורס שדורג עם 0 נקודות</li>
                                 <li>לא ניתן לשמור דירוג עם סכום נקודות שלילי</li>
                                 {/*<li>קורסי בחירה שבצבע אדום מתנגשים לך עם קורסי חובה</li>*/}
-                                <li>אם לא תזכ/י בקורס הרצוי, הנקודות יועברו אוטומטית לקורס הבא ברשימה שלך</li>
 
                             </ul>
     

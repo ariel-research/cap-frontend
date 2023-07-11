@@ -25,9 +25,9 @@ function Board(props) {
         <div className='item-center' >
             <div className="justify-items-center item-center">
                 <p className="ramainingTime">{props.time_message}</p>
-                <div style={{ width: 'fit-content' }} class="alert alert-secondary item-center" role="alert">יתרת ניקוד: {balance}
+                <div style={{ width: 'fit-content' }} className="alert alert-secondary item-center" role="alert">יתרת ניקוד: {balance}
                 </div>
-                <button style={{ width: '100px' }} data-testid="editButton" className="btn btn-lg bg-primary" onClick={props.EditClicked(balance)}>עריכה</button>
+                <button style={{ width: '100px' }} data-testid="editButton" className="btn btn-lg btn-primary" onClick={props.EditClicked(balance)}>עריכה</button>
             </div>
 
             <div className='course_group bg-light'>

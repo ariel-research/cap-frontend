@@ -18,16 +18,16 @@ function Timetable(props)
             })}
             </div>
 
-            <table className="table table-bordered" width= '80%' border="2" cellPadding="0" cellSpacing="0" >
+            <table className="table table-bordered" border="2">
                 <thead className='table-primary table-bordered' >
                     <tr style={{height: '20px'}}>
-                    <   th width="">שעה</th>
-                        <th scope="col" width="15%">ראשון</th>
-                        <th scope="col" width="15%">שני</th>
-                        <th scope="col" width="15%">שלישי</th>
-                        <th scope="col" width="15%">רביעי</th>
-                        <th scope="col" width="15%">חמישי</th>
-                        <th scope="col" width="15%">שישי</th>
+                        <th width="10%">שעה</th>
+                        <th width="15%">ראשון</th>
+                        <th width="15%">שני</th>
+                        <th width="15%">שלישי</th>
+                        <th width="15%">רביעי</th>
+                        <th width="15%">חמישי</th>
+                        <th width="15%">שישי</th>
                     </tr>
                 </thead>
                 <tbody style={{backgroundColor:'white'}}>
@@ -49,7 +49,7 @@ function Timetable(props)
                     }
                     return (
                         <tr key={i} style={{height:'25px', verticalAlign:'top'}}> 
-                        <th scope="row" className="table table-bordered" >{i+8}:00</th>
+                        <th scope="row" className="w-2" >{i+8}:00</th>
                              {hour && hour.map( (day,j) => {
                                 {console.log("day",j)}
                                 return (

@@ -1,5 +1,5 @@
 // const BASE_URL= "https://api-fair-division.herokuapp.com/";
-const BASE_URL= "http://46.101.218.40:8000/";
+const BASE_URL= "http://localhost:8000/";
 
 
 export class API {
@@ -17,6 +17,19 @@ export class API {
         .then(resp => resp.json())
     }
 
+    static sendResetEmail(body)
+    {
+        return fetch(BASE_URL+"api/register/send_reset_email/",
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+        .then(resp => resp.json())
+    }
     static getUserStatus(username)
     {
         return fetch(BASE_URL+"api/users/get_user_status/?username="+username,
@@ -68,9 +81,10 @@ export class API {
         })
         .then(resp => resp.json())
     }
-    static update(token)
+
+    static getStudentDetails(token)
     {
-        return fetch(BASE_URL+"api/users/get_user_details/",
+        return fetch(BASE_URL+"api/student/get_student_details/",
         {
             method: 'GET',
             headers: 
@@ -78,6 +92,21 @@ export class API {
                 'Content-Type': 'application/json',
                 'Authorization': `Token ${token}`
             }
+        })
+        .then(resp => resp.json())
+    }
+
+    static updateStudentDetails(body,token)
+    {
+        return fetch(BASE_URL+"api/student/update_student_details/",
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            },
+            body: JSON.stringify(body)
         })
         .then(resp => resp.json())
     }

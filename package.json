@@ -2,10 +2,6 @@
   "name": "cap-app",
   "version": "0.1.0",
   "private": true,
-  "server": {
-    "host": "46.101.218.40",
-    "port": 3000
-  },
   "dependencies": {
     "@syncfusion/ej2-react-schedule": "^18.4.42",
     "@testing-library/jest-dom": "^5.11.9",
@@ -14,13 +10,11 @@
     "bootstrap": "^4.6.0",
     "email-validator": "^2.0.4",
     "history": "^5.0.0",
-    "install": "^0.13.0",
     "js-cookie": "^2.2.1",
     "mathjs": "^11.8.2",
     "node-fetch": "^2.6.1",
-    "npm": "^9.7.2",
     "react": "^17.0.1",
-    "react-beautiful-dnd": "^13.1.1",
+    "react-beautiful-dnd": "^13.0.0",
     "react-cookie": "^4.0.3",
     "react-date-picker": "^8.0.7",
     "react-dates": "^21.8.0",
@@ -34,6 +28,9 @@
     "styled-components": "^5.2.3",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.0"
+  },
+  "overrides": {
+    "react-error-overlay": "6.0.9"
   },
   "scripts": {
     "start": "react-scripts start",

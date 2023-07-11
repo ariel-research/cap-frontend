@@ -21,18 +21,18 @@ class Navbar extends Component {
   
     render() {
       return (
-        <nav class="navbar navbar-expand-lg bg-primary ">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/home">
+        <nav className="navbar navbar-expand-lg bg-primary ">
+  <div className="container-fluid">
+    <a className="navbar-brand" href="/home">
       <img src={logo1} alt="Logo"/>
       חלוקה הוגנת
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         {MenuItems.map((item, index) => (
                 <li className="nav-item" key={index}>
                   <Link

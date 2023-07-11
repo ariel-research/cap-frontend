@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
+import { useCookies} from 'react-cookie';
 import { API } from './api-service';
 import './home.css';
 import Navbar from "./components/Navbar/Navbar";
 
 function Homepage() {
-  const [cookies] = useCookies(['mr-token']);
-  const [user, setUser] = useState("");
-  const [editedUser, setEditedUser] = useState("");
-  const [numCourses, setNumCourses] = useState(0);
+  const [token] = useCookies(['mr-token']);
+  const [profile, setProfile] = useState(null);
+  const [editedProfile, setEditedProfile] = useState(0);
 
   useEffect(() => {
-    if (!cookies['mr-token']) {
+    if (!token['mr-token']) {
       window.location.href = '/';
     } else {
-      API.studentOrOffice(cookies['mr-token'])
+      API.studentOrOffice(token['mr-token'])
         .then((resp) => {
           if (resp === 2) {
             // office
@@ -26,46 +25,54 @@ function Homepage() {
           }
         })
         .catch((error) => console.log(error));
+    }
+  }, [token]);
 
-      API.getUserDetails(cookies['mr-token'])
+  useEffect(() => {
+
+      API.getStudentDetails(token['mr-token'])
         .then((resp) => {
-          setUser(resp["user"]);
-          setEditedUser(resp["user"]);
+          console.log(resp)
+          setProfile(resp);
         })
         .catch((error) => console.log(error));
-    }
-  }, [cookies]);
+    }, [token]);
 
   const handleFieldChange = (fieldName, value) => {
-    setEditedUser(prevState => ({
+    if (fieldName === "amount_elective") {
+    setProfile(prevState => ({
       ...prevState,
       [fieldName]: value
     }));
+  } else {
+    setProfile(prevState => ({
+      ...prevState,
+      user: {
+        ...prevState.user,
+        [fieldName]: value
+      }
+    }));
+  }
   };
 
   const handleSaveChanges = () => {
-    // Perform the save operation here using the API
-    // Example: API.updateUserDetails(cookies['mr-token'], editedUser)
-    // .then(() => {
-    //   // Handle success
-    //   console.log("User details saved successfully!");
-    // })
-    // .catch((error) => {
-    //   // Handle error
-    //   console.log("Error saving user details:", error);
-    // });
-    // For this example, we'll just update the user state directly
-    setUser(editedUser);
+    console.log("trying to save changes...")
+    API.updateStudentDetails({profile},token['mr-token'])
+    .then((resp) => {
+      alert(resp["message"]);
+    })
+    .catch((error) => console.log(error));
+    
   };
 
   return (
     <div className="homepage">
       <Navbar active="דף הבית" />
 
-      {user ? (
+      {profile ? (
         <div className="container">
           <div className="welcome-message">
-            <h2>שלום, {user.first_name}!</h2>
+            <h2>שלום, {profile.user.first_name}!</h2>
           </div>
           <div className="user-details-container">
             <div className="form-group row">
@@ -74,7 +81,7 @@ function Homepage() {
                 <input
                   type="text"
                   className="form-control"
-                  value={editedUser.email}
+                  value={profile.user.email}
                   disabled
                 
                 />
@@ -86,7 +93,7 @@ function Homepage() {
                 <input
                   type="text"
                   className="form-control"
-                  value={editedUser.first_name}
+                  value={profile.user.first_name}
                   onChange={(e) => handleFieldChange('first_name', e.target.value)}
                 />
               </div>
@@ -97,7 +104,7 @@ function Homepage() {
                 <input
                   type="text"
                   className="form-control"
-                  value={editedUser.last_name}
+                  value={profile.user.last_name}
                   onChange={(e) => handleFieldChange('last_name', e.target.value)}
                 />
               </div>
@@ -108,8 +115,8 @@ function Homepage() {
                 <input
                   type="number"
                   className="form-control"
-                  value={numCourses}
-                  onChange={(e) => setNumCourses(parseInt(e.target.value))}
+                  value={profile.amount_elective}
+                  onChange={(e) => handleFieldChange('amount_elective',parseInt(e.target.value))}
                 />
               </div>
             </div>
@@ -118,6 +125,9 @@ function Homepage() {
                 <button className="btn btn-primary " onClick={handleSaveChanges}>
                   שמירת שינויים
                 </button>
+                <a href="/home"> <button className="btn btn-secondary ">
+                 ביטול
+                </button></a>
               </div>
             </div>
           </div>
