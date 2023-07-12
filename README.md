@@ -2,6 +2,24 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+### Requirements:
+NVM, Nodejs v14.0.0
+1. Install NVM if needed: [Installtion Guide](https://github.com/nvm-sh/nvm#installing-and-updating)
+2. Install nodejs 14.0.0 using nvm: \
+   `nvm install 14.0.0`
+3. After installing successfully, run the command:\
+   `nvm use 14.0.0`
+### Installation:
+1. Clone the repository: \
+    `git clone https://github.com/ariel-research/cap-frontend`
+2. Run: \
+   `cd cap-frontend`
+3. Switch to 'ariel' branch: \
+  `git checkout ariel`
+4. Install dependencies: \
+  `npm i`
+
 ## Available Scripts
 
 In the project directory, you can run:
