@@ -1,38 +1,38 @@
 import React, { useState } from 'react';
 import { API } from './api-service';
-import './register.css';
+import './sign-forms.css';
 import { validate } from 'email-validator';
 import logo1 from './logo.png';
 
 
 function Register() {
 
-  const [username, setUsername] = useState('');
+  const [student_id, setStudentId] = useState('');
   const [first_name, setFirstname] = useState('');
   const [last_name, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
   const [errors, setErrors] = useState({});
-  const [message,setMessage] = useState('');
-  const [validated,setValidated] = useState('');
-  const [user_type,setUserType] = useState('student');
+  const [message, setMessage] = useState('');
+  const [validated, setValidated] = useState('');
+  const [user_type, setUserType] = useState('student');
   const [amount_elective, setAmountElective] = useState(6);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    if (name === 'student_id') setStudentId(value);
     if (name === 'first_name') setFirstname(value);
     if (name === 'last_name') setLastname(value);
     if (name === 'email') {
       setEmail(value);
-      setUsername(value);
-      
+
     }
     if (name === 'password1') setPassword1(value);
 
     if (name === 'password2') setPassword2(value);
 
-    if(name === 'amount_elective'){
+    if (name === 'amount_elective') {
       if (value > 0 && value <= 6)
         setAmountElective(value);
     }
@@ -40,7 +40,11 @@ function Register() {
 
   const validateForm = () => {
     const errors = {};
-
+    if (!student_id) {
+      errors.firstname = ' מספר ת.ז נדרש';
+    }else if (!isValidIsraeliID(student_id)){
+      errors.student_id = 'מספר ת.ז לא תקין';
+    }
     if (!first_name) {
       errors.firstname = 'שם פרטי נדרש';
     }
@@ -50,10 +54,10 @@ function Register() {
 
 
     if (!email) {
-      errors.email = 'כתומת אימייל נדרש';
+      errors.email = 'כתומת אימייל נדרשת';
     } else if (!isEmailValid(email)) {
       errors.email = 'כתובת אימייל לא חוקית';
-    } else if (!isEmailAriel(email)){
+    } else if (!isEmailAriel(email)) {
       errors.email = 'כתובת האימייל חייבת להסתיים בariel.ac.il';
     }
 
@@ -72,11 +76,25 @@ function Register() {
     return Object.keys(errors).length === 0;
   };
 
+
+  const isValidIsraeliID = (id) => {
+    var id = String(id).trim();
+    if (id.length > 9 || id.length < 5 || isNaN(id)) return false;
+
+    // Pad string with zeros up to 9 digits
+    id = id.length < 9 ? ("00000000" + id).slice(-9) : id;
+
+    return Array
+      .from(id, Number)
+      .reduce((counter, digit, i) => {
+        const step = digit * ((i % 2) + 1);
+        return counter + (step > 9 ? step - 9 : step);
+      }) % 10 === 0;
+  }
   const isEmailValid = (email) => {
     return validate(email);
 
   };
-
   const isEmailAriel = (email) => {
     return email.endsWith('ariel.ac.il');
   };
@@ -88,11 +106,11 @@ function Register() {
       setValidated(true)
       return;
     }
-    
-    API.registerUser({ username, first_name,last_name, email, password1, password2,amount_elective, user_type})
+
+    API.registerUser({student_id,first_name, last_name, email, password1, password2, amount_elective, user_type })
       .then((resp) => {
         console.log(resp); // Add this line
-          setMessage(resp['message'])
+        setMessage(resp['message'])
       })
       .catch((error) => {
         console.log(error);
@@ -100,117 +118,133 @@ function Register() {
       })
   };
 
-return (
-  <div className="register" >
-    <main className="form-signup w-100 m-auto">
-      <form  className= "needs-validation" novalidate validate={validated}>
-        <img className="mb-4" src={logo1} alt="" width="75" height="65" />
-        <h1 className="h3 mb-3 fw-normal text-center">הרשמו והתחילו לדרג!</h1>
-        {message && <span>
-                        <div class="alert alert-danger d-flex align-items-center text-center" role="alert">{message}</div>
-                    </span>}
+  return (
+    <div className="register" >
+      <main className="form-signup w-100 m-auto">
+        <form className="needs-validation" novalidate validate={validated}>
+          <img className="mb-4" src={logo1} alt="" width="75" height="65" />
+          <h1 className="h3 mb-3 fw-normal text-center">הרשמו והתחילו לדרג!</h1>
+          {message && <span>
+            <div class="alert alert-danger d-flex align-items-center text-center" role="alert">{message}</div>
+          </span>}
 
-        <div className="mb-2 ">
-          <label className=" d-flex text-right form-label is-invalid">שם פרטי</label>
-          <input
-            className="form-control field-input "
-            type="text"
-            placeholder="שם פרטי"
-            name="first_name"
-            value={first_name}
-            onChange={handleInputChange}
-            required
-          />
-          
-          {errors.firstname && <div className="invalid-feedback">{errors.firstname}</div>}
-        </div>
+          <div className=" mb-2">
+            <label className="d-flex text-right form-label is-invalid">מספר תעודת זהות</label>
+            <input
+              className="form-control field-input "
+              type="text"
+              placeholder="הכנס מס' תעודת זהות"
+              name="student_id"
+              value={student_id}
+              onChange={handleInputChange}
+              pattern="[0-9]+"
+              required
+            />
 
-        <div className=" mb-2">
-          <label className="d-flex text-right form-label is-invalid">שם משפחה</label>
-          <input
-            className="form-control  "
-            type="text"
-            placeholder="שם משפחה"
-            name="last_name"
-            value={last_name}
-            onChange={handleInputChange}
-            required
-          />
-          
-          {errors.lastname && <div className="invalid-feedback">{errors.lastname} </div>}
-        </div>
+            {errors.student_id && <span className="invalid-feedback">{errors.student_id}</span>}
+          </div>
+          <div className="mb-2 ">
+            <label className=" d-flex text-right form-label is-invalid">שם פרטי</label>
+            <input
+              className="form-control field-input "
+              type="text"
+              placeholder="שם פרטי"
+              name="first_name"
+              value={first_name}
+              onChange={handleInputChange}
+              required
+            />
 
-        <div className=" mb-2">
-          <label className="d-flex text-right form-label is-invalid">אימייל</label>
-          <input
-            className="form-control field-input left "
-            type="email"
-            placeholder="כתובת המייל הארגוני"
-            name="email"
-            value={email}
-            onChange={handleInputChange}
-            required
-          />
-          
-          {errors.email && <span className="invalid-feedback">{errors.email}</span>}
-        </div>
+            {errors.firstname && <div className="invalid-feedback">{errors.firstname}</div>}
+          </div>
 
-        <div className=" mb-2">
-          <label className="d-flex text-right form-label is-invalid">סיסמא</label>
-          <input
-            className="form-control field-input left "
-            type="password"
-            placeholder="סיסמה"
-            name="password1"
-            value={password1}
-            onChange={handleInputChange}
-            required
-          />
-          
-          {errors.password1 && <span className="invalid-feedback">{errors.password1}</span>}
-        </div>
+          <div className=" mb-2">
+            <label className="d-flex text-right form-label is-invalid">שם משפחה</label>
+            <input
+              className="form-control  "
+              type="text"
+              placeholder="שם משפחה"
+              name="last_name"
+              value={last_name}
+              onChange={handleInputChange}
+              required
+            />
 
-        <div className=" mb-2">
-          <label className="d-flex text-right form-label is-invalid">אימות סיסמא</label>
-          <input
-            className="form-control field-input left "
-            type="password"
-            placeholder="אימות סיסמא"
-            name="password2"
-            value={password2}
-            onChange={handleInputChange}
-            required
-          />
-          
-          {errors.password2 && (
-            <span className="invalid-feedback">{errors.password2}</span>
-          )}
-        </div>
-        <div className=" mb-2">
-          <label className="d-flex text-right form-label">מספר קורסי בחירה נדרשים</label>
-          <input
-                type="number"
-                name="amount_elective"
-                onChange={handleInputChange}
-                value={amount_elective}
-                min={0}
-                max={6}/>
-        </div>
-        <div class="btn-group item-center">
-  <input type="radio" class="btn-check" name="userType" id="student" autocomplete="off" onClick={()=>setUserType('student')} checked ={user_type === 'student'}/>
-  <label class="btn btn-outline-primary" for="student">סטודנטים</label>
+            {errors.lastname && <div className="invalid-feedback">{errors.lastname} </div>}
+          </div>
 
-  <input type="radio" class="btn-check" name="userType" id="guest" autocomplete="off" onClick={()=>setUserType('guest')} checked ={user_type === 'guest'} />
-  <label class="btn btn-outline-primary" for="guest">אורחים</label>
-</div>
-        <button className="w-100 btn btn-lg btn-primary mt-3" type="submit" onClick={registerClicked}>
-          הרשמה
-        </button>
-        <p className="text-center text-muted mt-5 mb-0">כבר יש לך חשבון? <a href="/"
-                    className="fw-bold text-body pr"><u>התחברו כאן!</u></a></p>
-      </form>
-    </main>
-  </div>
-)}
+          <div className=" mb-2">
+            <label className="d-flex text-right form-label is-invalid">אימייל</label>
+            <input
+              className="form-control field-input left "
+              type="email"
+              placeholder="כתובת המייל הארגוני"
+              name="email"
+              value={email}
+              onChange={handleInputChange}
+              required
+            />
+
+            {errors.email && <span className="invalid-feedback">{errors.email}</span>}
+          </div>
+
+          <div className=" mb-2">
+            <label className="d-flex text-right form-label is-invalid">סיסמא</label>
+            <input
+              className="form-control field-input left "
+              type="password"
+              placeholder="סיסמה"
+              name="password1"
+              value={password1}
+              onChange={handleInputChange}
+              required
+            />
+
+            {errors.password1 && <span className="invalid-feedback">{errors.password1}</span>}
+          </div>
+
+          <div className=" mb-2">
+            <label className="d-flex text-right form-label is-invalid">אימות סיסמא</label>
+            <input
+              className="form-control field-input left "
+              type="password"
+              placeholder="אימות סיסמא"
+              name="password2"
+              value={password2}
+              onChange={handleInputChange}
+              required
+            />
+
+            {errors.password2 && (
+              <span className="invalid-feedback">{errors.password2}</span>
+            )}
+          </div>
+          <div className=" mb-2">
+            <label className="d-flex text-right form-label">מספר קורסי בחירה נדרשים</label>
+            <input
+              type="number"
+              name="amount_elective"
+              onChange={handleInputChange}
+              value={amount_elective}
+              min={0}
+              max={6} />
+          </div>
+          <div class="btn-group item-center w-100">
+            <input type="radio" class="btn-check" name="userType" id="student" autocomplete="off" onClick={() => setUserType('student')} checked={user_type === 'student'} />
+            <label class="btn btn-outline-primary" for="student">סטודנטים</label>
+
+            <input type="radio" class="btn-check" name="userType" id="guest" autocomplete="off" onClick={() => setUserType('guest')} checked={user_type === 'guest'} />
+            <label class="btn btn-outline-primary" for="guest">אורחים</label>
+          </div>
+          <button className="w-100 btn btn-lg btn-primary mt-3" type="submit" onClick={registerClicked}>
+            הרשמה
+          </button>
+          <p className="text-center text-muted mt-5 mb-0">כבר יש לך חשבון? <a href="/"
+            className="fw-bold text-body pr"><u>התחברו כאן!</u></a></p>
+        </form>
+      </main>
+    </div>
+  )
+}
 
 export default Register;

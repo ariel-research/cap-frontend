@@ -34,7 +34,7 @@ function Results(props)
                 <Navbar active='תוצאות'/>
                 <div className='container-rank' style={{width: '65%', marginLeft: '17.5%',marginTop:'50px'}}>
                     <div className='course_group'>
-                        <h1 style={{color: 'white', margin: '25px', marginLeft:'27%'}}>: קורסי הבחירה שקיבלת הם</h1>
+                        <h1 className='text-center'>קורסי הבחירה שקיבלת הם:</h1>
                         <div className='whiteLines'>
                             <div className='item' >
                                 <div style={{marginLeft:'40%'}}>אין עדין תוצאות </div>

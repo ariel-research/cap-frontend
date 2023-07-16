@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { API } from './api-service';
 import { useCookies } from "react-cookie";
-import './login.css';
+import './sign-forms.css';
 import logo1 from './logo.png';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function ResetPass() {
     const [email, setEmail] = useState('');
     const [code, setCode] = useState('');
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const history = useHistory();
 
     const [token, setToken] = useCookies(['mr-token']);
     const [message, setMessage] = useState('');
@@ -21,7 +22,7 @@ function ResetPass() {
             setIsButtonDisabled(true)
         } else {
 
-            API.sendResetEmail({email})
+            API.ResetPasswordEmail({email})
                 .then(resp => {
                     setMessage(resp.message);
                     if( resp.status === 1)
@@ -35,6 +36,13 @@ function ResetPass() {
     }
     const resetCodeClicked = (event) => {
         event.preventDefault(); // Prevent form submission and page refresh
+        API.ResetPasswordCode({"token" : code})
+        .then(resp => {
+            console.log(resp)
+            history.push('/new_password?token=' + code);
+
+        })
+        .catch(error => console.log(error))
 
     }
 

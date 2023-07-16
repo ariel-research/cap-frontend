@@ -11,6 +11,8 @@ import Office from './components/Office/Office'
 import Auth from './auth';
 import Reg from './register'
 import ResetPass from './resetPassword'
+import NewPassword from './newPassword'
+
 
 import Homepage from './home'
 import { CookiesProvider } from "react-cookie";
@@ -30,6 +32,7 @@ export default function Router() {
           <Route exact path="/office" component={Office} />
           <Route exact path="/home" component={Homepage} />
           <Route exact path="/reset_password" component={ResetPass} />
+          <Route exact path="/new_password" component={NewPassword} />
         </BrowserRouter>
       </CookiesProvider>
     </React.StrictMode>

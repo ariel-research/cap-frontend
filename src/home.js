@@ -86,6 +86,17 @@ function Homepage() {
                 
                 />
               </div>
+              </div>
+              <div className="form-group row">
+              <label className="col-sm-4 col-form-label">מספר תעודת זהות:</label>
+              <div className="col-sm-8">
+                <input
+                  type="text"
+                  className="form-control"
+                  value={profile.student_id}
+                  disabled
+                />
+              </div>
             </div>
             <div className="form-group row">
               <label className="col-sm-4 col-form-label">שם פרטי:</label>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { API } from './api-service';
 import { useCookies } from "react-cookie";
-import './login.css';
+import './sign-forms.css';
 import logo1 from './logo.png';
 import { Link } from 'react-router-dom';
 
@@ -57,7 +57,7 @@ function Auth() {
             <main className="form-signin w-100 m-auto">
 
                 <form>
-                    <img className="mb-4" src={logo1} alt="" width="75" height="65" />
+                    <img className="mb-4 center" src={logo1} alt="" width="75" height="65" />
                     <h1 className="h3 mb-3 fw-normal text-center">התחברו ודרגו!</h1>
 
                     {message && <span>

@@ -30,6 +30,49 @@ export class API {
         })
         .then(resp => resp.json())
     }
+
+    static ResetPasswordEmail(body)
+    {
+        return fetch(BASE_URL+"api/auth/passwordreset/",
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+        .then(resp => resp.json())
+    }
+
+    static ResetPasswordCode(body)
+    {
+        return fetch(BASE_URL+"api/auth/passwordreset/validate_token/",
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+        .then(resp => resp.json())
+    }
+
+    static ResetPasswordConfirm(body)
+    {
+        return fetch(BASE_URL+"api/auth/passwordreset/confirm/",
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+        .then(resp => resp.json())
+    }
+
     static getUserStatus(username)
     {
         return fetch(BASE_URL+"api/users/get_user_status/?username="+username,
