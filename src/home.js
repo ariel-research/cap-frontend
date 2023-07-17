@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar/Navbar";
 function Homepage() {
   const [token] = useCookies(['mr-token']);
   const [profile, setProfile] = useState(null);
-  const [editedProfile, setEditedProfile] = useState(0);
 
   useEffect(() => {
     if (!token['mr-token']) {
@@ -32,7 +31,7 @@ function Homepage() {
 
       API.getStudentDetails(token['mr-token'])
         .then((resp) => {
-          console.log(resp)
+          localStorage.setItem('studentDetails', JSON.stringify(resp));
           setProfile(resp);
         })
         .catch((error) => console.log(error));
@@ -59,6 +58,7 @@ function Homepage() {
     console.log("trying to save changes...")
     API.updateStudentDetails({profile},token['mr-token'])
     .then((resp) => {
+      localStorage.setItem('studentDetails', JSON.stringify(profile));
       alert(resp["message"]);
     })
     .catch((error) => console.log(error));

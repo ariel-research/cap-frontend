@@ -32,9 +32,10 @@ function Results(props)
         return(
             <div className="Rank">
                 <Navbar active='תוצאות'/>
+                <h1 className='Headline'>קורסי הבחירה שקיבלת הם:</h1>
                 <div className='container-rank' style={{width: '65%', marginLeft: '17.5%',marginTop:'50px'}}>
                     <div className='course_group'>
-                        <h1 className='text-center'>קורסי הבחירה שקיבלת הם:</h1>
+                       
                         <div className='whiteLines'>
                             <div className='item' >
                                 <div style={{marginLeft:'40%'}}>אין עדין תוצאות </div>

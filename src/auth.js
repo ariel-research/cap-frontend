@@ -3,7 +3,6 @@ import { API } from './api-service';
 import { useCookies } from "react-cookie";
 import './sign-forms.css';
 import logo1 from './logo.png';
-import { Link } from 'react-router-dom';
 
 function Auth() {
     const [username, setUsername] = useState('');

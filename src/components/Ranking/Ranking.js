@@ -71,7 +71,7 @@ function Ranking(props)
             <div className="Rank" data-testid="Rank">
                 <Navbar active='דירוג קורסי בחירה'/>
             <div className='text text-center '>
-            <h1 >דירוג קורסי בחירה</h1>
+            <h1 className='Headline' >דירוג קורסי בחירה</h1>
             <div className=" justify-content-center">
             <div className="accordion mt-2 " id="accor-how">
                 <div className="accordion-item alert-primary">

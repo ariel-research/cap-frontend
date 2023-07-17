@@ -78,7 +78,7 @@ function Register() {
 
 
   const isValidIsraeliID = (id) => {
-    var id = String(id).trim();
+    id = String(id).trim();
     if (id.length > 9 || id.length < 5 || isNaN(id)) return false;
 
     // Pad string with zeros up to 9 digits

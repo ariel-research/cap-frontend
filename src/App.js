@@ -58,7 +58,7 @@ function App() {
     <div className="App">
       <Navbar active='מידע על קורסי הבחירה' />
       <header className="App-header">
-      <div className="Headline">מידע על קורסי הבחירה</div>
+      <h1 className="Headline">מידע על קורסי הבחירה</h1>
       </header>
       <h4 className='enter-right'>לחצו על הקורס הרצוי לפרטים נוספים</h4>
       <div className="layout">

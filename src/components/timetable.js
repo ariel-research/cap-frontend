@@ -51,7 +51,6 @@ function Timetable(props)
                         <tr key={i} style={{height:'25px', verticalAlign:'top'}}> 
                         <th scope="row" className="w-2" >{i+8}:00</th>
                              {hour && hour.map( (day,j) => {
-                                {console.log("day",j)}
                                 return (
                                 <td key={j} style={{ verticalAlign:'top'}}> 
                                 {day.length ===0 ? (

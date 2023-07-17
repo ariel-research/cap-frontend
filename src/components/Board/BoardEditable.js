@@ -6,22 +6,30 @@ import Slider from './slider';
 import assi from './assi.png';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { usolve } from "mathjs"
+import { max, usolve } from "mathjs"
 
 function BoardEditable(props) {
   const [course_group, setCourse_group] = useState([]);
   const [token] = useCookies(['mr-token']);
   const [balance, setBalance] = useState(props.balance);
-  const [max_options, setMaxOptions] = useState(5);
+  let student_details = JSON.parse(localStorage.getItem('student_details'));
+  const [max_options, setMaxOptions] = useState(student_details? student_details.amount_elective : 5);
   const [selectedOption, setSelectedOption] = useState(''); // State for selected option
   const MAX_POINTS = 1000;
+  const [num_courses_disabled, setNumCoursesDisabled] = useState(false);
 
   const  handleEditClicked  = ()=> {
     window.location.reload(false);
   }
   const handleOptionChange = (event) => {
-  
-      setSelectedOption(event.target.value);
+      const value=event.target.value
+      setSelectedOption(value);
+      if(value == 'z')
+        setNumCoursesDisabled(true)
+      else
+        setNumCoursesDisabled(false)
+
+
   };
 const handleMaxOptionsChange = (event) => {
   
@@ -31,6 +39,7 @@ const handleMaxOptionsChange = (event) => {
   };
   const suggestClicked = () => {
     const options = Number(max_options);
+    
 
     if (selectedOption === 'e') { //equal partition
 
@@ -50,7 +59,7 @@ const handleMaxOptionsChange = (event) => {
       orderPartition();
     }
     else if (selectedOption === 'z') { //reset all score
-      for (let i = 0; i < options; i++) {
+      for (let i = 0; i < max_options; i++) {
         partition(i, 0);
       }
     }
@@ -126,7 +135,7 @@ const handleMaxOptionsChange = (event) => {
           <div className='item-center' >
             <div className="justify-items-center item-center">
               <p className="ramainingTime">{props.time_message}</p>
-              <div style={{ width: 'fit-content' }} class="alert alert-secondary item-center" role="alert">יתרת ניקוד: {balance}</div>
+              <div style={{ width: 'fit-content' }} className="alert alert-secondary item-center" role="alert">יתרת ניקוד: {balance}</div>
             </div>
             <button className="btn btn-primary ml-2"  onClick={props.SaveClicked(course_group, balance)}>שמירת הדירוג</button>
             <button className="btn btn-secondary " onClick={() => handleEditClicked(false)}>ביטול</button>
@@ -146,6 +155,7 @@ const handleMaxOptionsChange = (event) => {
                 type="number"
                 onChange={event => handleMaxOptionsChange(event)}
                 value={max_options}
+                disabled={num_courses_disabled}
                 min={0}
                 max={course_group.length}
 

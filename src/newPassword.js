@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { API } from './api-service';
 import './sign-forms.css';
-import { validate } from 'email-validator';
 import logo1 from './logo.png';
 import { useLocation } from 'react-router-dom';
 
 
 function NewPassword() {
 
-  const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
   const [errors, setErrors] = useState({});

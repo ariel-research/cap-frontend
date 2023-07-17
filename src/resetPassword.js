@@ -27,8 +27,6 @@ function ResetPass() {
                     setMessage(resp.message);
                     if( resp.status === 1)
                         setIsButtonDisabled(false)
-                    console.log(resp)
-
                 })
                 .catch(error => console.log(error))
         }
@@ -38,7 +36,6 @@ function ResetPass() {
         event.preventDefault(); // Prevent form submission and page refresh
         API.ResetPasswordCode({"token" : code})
         .then(resp => {
-            console.log(resp)
             history.push('/new_password?token=' + code);
 
         })
