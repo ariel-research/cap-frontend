@@ -1,17 +1,22 @@
 export const MenuItems = [
     {
-        title: 'תוצאות',
-        url:'/results',
+        title: 'פרטים אישיים',
+        url:'/home',
         cName: 'nav-links'
     },
     {
-        title: 'דירוג קורסי בחירה',
+        title: 'פרטי הקורסים',
+        url:'/courses_info',
+        cName: 'nav-links'
+    },
+    {
+        title: 'דירוג הקורסים',
         url:'/ranking',
         cName: 'nav-links'
     },
     {
-        title: 'מידע על קורסי הבחירה',
-        url:'/courses_info',
+        title: 'תוצאות',
+        url:'/results',
         cName: 'nav-links'
     },
 

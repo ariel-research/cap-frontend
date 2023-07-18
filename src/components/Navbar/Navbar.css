@@ -2,6 +2,10 @@
     height: 85px;
   }
   
+  .navbar-nav {
+    margin:auto;
+  }
+
   .navbar-brand {
     display: flex;
     align-items: center;
@@ -30,7 +34,8 @@
   }
   
   .navbar-nav .nav-item {
-    margin-left: 10px;
+    margin-left: 2em;
+    font-size:larger;
   }
   
   .navbar-nav .nav-link {
