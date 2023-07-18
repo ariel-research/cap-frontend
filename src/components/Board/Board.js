@@ -31,7 +31,7 @@ function Board(props) {
             </div>
 
             <div className='course_group bg-light'>
-                <div data-testid="card" className='whiteLines overflow-auto list-scroll item-center'>{course_group.map((course_group, index) => {
+                <div data-testid="card" className='whiteLines overflow-auto  item-center'>{course_group.map((course_group, index) => {
                     return (
                         <div key={index} className='item'>
                             <div className='item-title'>

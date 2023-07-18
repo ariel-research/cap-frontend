@@ -50,7 +50,7 @@ function Ranking(props)
     }
     const SaveClicked = (course_group, bal) => async(evt) =>
     {
-         if(bal>=0)
+         if(bal==0)
         {
             API.rank_courses(course_group, token['mr-token'])
             .then(resp => console.log(resp))

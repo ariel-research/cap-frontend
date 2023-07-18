@@ -173,7 +173,7 @@ const handleMaxOptionsChange = (event) => {
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  data-testid="card" className='whiteLines overflow-auto list-scroll item-center' 
+                  data-testid="card" className='whiteLines overflow-auto  item-center' 
                 >
                   {course_group.map((course_group, index) => (
                     <Draggable

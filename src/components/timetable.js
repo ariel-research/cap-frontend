@@ -62,7 +62,7 @@ function Timetable(props)
                                             return (
                                                 <td  key={k}> 
                                                     {course.mandatory && <h6  style={{ verticalAlign:'top', backgroundColor: 'red'}}>
-                                                        {course.course_group}<br/> שם המרצה: {course.lecturer} <br/> שעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
+                                                        {course.course_group}<br/>  המרצה: {course.lecturer} <br/> שעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
                                                     </h6> }                                   
                                                     {!course.mandatory && <h6  style={{ verticalAlign:'top'}}> {course.mandatory}
                                                     <p className='fw-bold'> {course.course_group}</p> {course.lecturer} <br/>{(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
