@@ -9,7 +9,8 @@ function CoursegroupDetails(props) {
                         <ol className="list-group list-group" data-testid="courseDetails" key={course.course_id}>
                             <li className="list-group-item d-flex justify-content-between align-items-start" >
                                 <div className="ms-2 me-auto align-text-right courses">
-                                    <div className="fw-bold" data-testid={`courseOption${i}`}>אופציה {i + 1}</div>
+                                    <div className="fw-bold">קורס: {course.name}</div>
+                                    <div className="fw-bold" data-testid={`courseOption${i}`}>קבוצה {i + 1}</div>
                                     <div data-testid={`courseSemester${i}`}>סמסטר: {course.Semester}</div>
                                     <div data-testid={`teacherName${i}`}>שם המרצה: {course.lecturer}</div>
 

@@ -60,7 +60,7 @@ function Ranking(props)
             setEdit(false);
         }
         else
-            alert("סכום הנקודות שנותר חייב להיות לפחות 0");
+            alert("סכום הנקודות שנותר חייב להיות בדיוק 0");
 
     }
     

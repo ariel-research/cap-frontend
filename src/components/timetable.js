@@ -21,13 +21,13 @@ function Timetable(props)
             <table className="table table-bordered" border="2">
                 <thead className='table-primary table-bordered' >
                     <tr style={{height: '20px'}}>
-                        <th width="10%">שעה</th>
-                        <th width="15%">ראשון</th>
-                        <th width="15%">שני</th>
-                        <th width="15%">שלישי</th>
-                        <th width="15%">רביעי</th>
-                        <th width="15%">חמישי</th>
-                        <th width="15%">שישי</th>
+                        <th width="auto">שעה</th>
+                        <th width="auto">ראשון</th>
+                        <th width="auto">שני</th>
+                        <th width="auto">שלישי</th>
+                        <th width="auto">רביעי</th>
+                        <th width="auto">חמישי</th>
+                        <th width="auto">שישי</th>
                     </tr>
                 </thead>
                 <tbody style={{backgroundColor:'white'}}>
@@ -36,7 +36,7 @@ function Timetable(props)
                     {
                         return (
                             <tr key={i} style={{height:'25px', verticalAlign:'top'}}>
-                                <th scope="row" className="table table-bordered">{i+8}:00</th>
+                                <th scope="row" className="w-2">{i+8}:00</th>
                                 {hour && hour.map( (day,j) => {
                                 return (
                                     <td key={j} style={{ verticalAlign:'top'}}>       
@@ -46,39 +46,37 @@ function Timetable(props)
                                 
                             </tr>
                         )
+                    } else {
+                        return (
+                            <tr key={i} style={{height:'25px', verticalAlign:'top'}}> 
+                            <th scope="row" className="w-2">{i+8}:00</th>
+                                {hour && hour.map( (day,j) => {
+                                    return (
+                                    <td key={j} style={{ verticalAlign:'top'}}> 
+                                    {day.length ===0 ? (
+                                        null
+                                    ) : (
+
+                                        <div>
+                                            {day && day.map( (course,k) => {
+                                            return (
+                                                <td  key={k}> 
+                                                    {course.mandatory && <h6  style={{ verticalAlign:'top', backgroundColor: 'red'}}>
+                                                        {course.course_group}<br/> שם המרצה: {course.lecturer} <br/> שעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
+                                                    </h6> }                                   
+                                                    {!course.mandatory && <h6  style={{ verticalAlign:'top'}}> {course.mandatory}
+                                                    <p className='fw-bold'> {course.course_group}</p> {course.lecturer} <br/>{(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
+                                                    </h6> }  
+                                                </td>
+                                            )
+                                            })}   
+                                        </div>
+                                        )}
+                                    </td>
+                            )})}
+                            </tr>
+                        )
                     }
-                    return (
-                        <tr key={i} style={{height:'25px', verticalAlign:'top'}}> 
-                        <th scope="row" className="w-2" >{i+8}:00</th>
-                             {hour && hour.map( (day,j) => {
-                                return (
-                                <td key={j} style={{ verticalAlign:'top'}}> 
-                                {day.length ===0 ? (
-                                    null
-                                ) : (
-
-                                    <div>
-                                        {day && day.map( (course,k) => {
-                                        return (
-                                            <td  key={k}> 
-                                                {course.mandatory && <h6  style={{ verticalAlign:'top', backgroundColor: 'red'}}>
-                                                    {course.course_group}<br/> שם המרצה: {course.lecturer} <br/> שעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
-                                                </h6> }                                   
-                                                {!course.mandatory && <h6  style={{ verticalAlign:'top'}}> {course.mandatory}
-                                                <p className='fw-bold'> {course.course_group}</p> {course.lecturer} <br/>{(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
-                                                </h6> }  
-                                            </td>
-                                        )
-                                        })}   
-                                    </div>
-                                    )}
-                                </td>
-                )})}
-                            
-                            
-                        </tr>
-
-                    )
                 })}
                 </tbody>
 

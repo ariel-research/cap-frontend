@@ -56,9 +56,9 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar active='מידע על קורסי הבחירה' />
+      <Navbar active='פרטי הקורסים' />
       <header className="App-header">
-      <h1 className="Headline">מידע על קורסי הבחירה</h1>
+      <h1 className="Headline">פרטי הקורסים</h1>
       </header>
       <h4 className='enter-right'>לחצו על הקורס הרצוי לפרטים נוספים</h4>
       <div className="layout">
@@ -67,11 +67,13 @@ function App() {
         <CoursegroupDetails course_group={selectedCourse_group} />
       </div>
 
-      <h5 className='text-center mt-5'>מערכת שעות - פריסת קורסים</h5>
+      <h2 className='text-center mt-5'><b>מערכת שעות</b>
+      <br/>
+      שימו לב: המערכת עדיין לא מעודכנת לשנת ה'תשפ"ד
+      </h2>
       <div className="con-btn item-center">
         <button data-testid="semesterA" className="btn btn-primary" onClick={buttonClicked(false)}>סמסטר א</button>        
         <button data-testid="semesterB" className="btn btn-primary" onClick={buttonClicked(true)}>סמסטר ב</button>
-
       </div>
       <div>
         {A_or_B ? (
