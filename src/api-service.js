@@ -1,7 +1,13 @@
-// const BASE_URL= "https://api-fair-division.herokuapp.com/";
-const BASE_URL= "http://localhost:8000/";
+import dotenv from 'dotenv';
+dotenv.config();
 
+const HOSTNAME_BACKEND = process.env.REACT_APP_DJANGO_SERVER_HOSTNAME;
+const PORT_BACKEND = process.env.REACT_APP_DJANGO_SERVER_PORT;
+console.log(HOSTNAME_BACKEND)
 
+const BASE_URL= `http://${HOSTNAME_BACKEND}:${PORT_BACKEND}/`;
+
+console.log(BASE_URL)
 export class API {
     static loginUser(body)
     {
