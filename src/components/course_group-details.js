@@ -6,7 +6,7 @@ function CoursegroupDetails(props) {
             {props.course_group ? (
                 <div>{props.course_group.courses.map((course, i) => {
                     return (
-                        <ol className="list-group list-group" data-testid="courseDetails" key={course.course_id}>
+                        <ol className="list-group w-400" data-testid="courseDetails" key={course.course_id}>
                             <li className="list-group-item d-flex justify-content-between align-items-start" >
                                 <div className="ms-2 me-auto align-text-right courses">
                                     <div className="fw-bold">{props.course_group.name}</div>
@@ -17,8 +17,8 @@ function CoursegroupDetails(props) {
                                 </div>
                                 <span className="badge bg-primary rounded-pill">{course.capacity}</span>
                             </li>
-
                         </ol>
+
                     )
                 })}</div>
             ) : null}
