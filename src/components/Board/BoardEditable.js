@@ -6,7 +6,7 @@ import Slider from './slider';
 import assi from './assi.png';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { max, usolve } from "mathjs"
+import { usolve } from "mathjs"
 
 function BoardEditable(props) {
   const [course_group, setCourse_group] = useState([]);
@@ -25,7 +25,7 @@ function BoardEditable(props) {
   const handleOptionChange = (event) => {
       const value=event.target.value
       setSelectedOption(value);
-      if(value == 'z')
+      if(value === 'z')
         setNumCoursesDisabled(true)
       else
         setNumCoursesDisabled(false)
@@ -69,15 +69,7 @@ function BoardEditable(props) {
     const a = [[factor]];
     const b = [MAX_POINTS];
     const x = usolve(a, b)[0][0];
-    //let extra = 0;
-    //add the reminder(extra) to the top course
 
-
-    /*for (let i =0; i <options; i++) {
-      
-      const weight =parseInt( x*(options-i))
-      partition(i,weight)
-    }*/
     const weights = Array.from({ length: options }, (_, i) =>
       (x * (options - i))
     );

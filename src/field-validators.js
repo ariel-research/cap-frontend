@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const isValidIsraeliID = (id) => {
     id = String(id).trim();
     if (id.length > 9 || id.length < 5 || isNaN(id)) return false;

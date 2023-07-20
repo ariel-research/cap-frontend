@@ -6,7 +6,6 @@ const PORT_BACKEND = process.env.REACT_APP_DJANGO_SERVER_PORT;
 
 const BASE_URL= `http://${HOSTNAME_BACKEND}:${PORT_BACKEND}/`;
 
-console.log(BASE_URL)
 export class API {
     static loginUser(body)
     {
