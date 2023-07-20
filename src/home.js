@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useCookies} from 'react-cookie';
+import { useCookies } from 'react-cookie';
 import { API } from './api-service';
+import { isValidIsraeliID } from './field-validators'
 import './home.css';
 import Navbar from "./components/Navbar/Navbar";
 
@@ -29,40 +30,49 @@ function Homepage() {
 
   useEffect(() => {
 
-      API.getStudentDetails(token['mr-token'])
-        .then((resp) => {
-          localStorage.setItem('studentDetails', JSON.stringify(resp));
-          setProfile(resp);
-        })
-        .catch((error) => console.log(error));
-    }, [token]);
+    API.getStudentDetails(token['mr-token'])
+      .then((resp) => {
+        //localStorage.setItem('studentDetails', JSON.stringify(resp));
+        setProfile(resp);
+      })
+      .catch((error) => console.log(error));
+  }, [token]);
 
   const handleFieldChange = (fieldName, value) => {
-    if (fieldName === "amount_elective") {
-    setProfile(prevState => ({
-      ...prevState,
-      [fieldName]: value
-    }));
-  } else {
-    setProfile(prevState => ({
-      ...prevState,
-      user: {
-        ...prevState.user,
+    const student_field_names = ["amount_elective", "student_id"];
+    if (student_field_names.includes(fieldName)) {
+      setProfile(prevState => ({
+        ...prevState,
         [fieldName]: value
-      }
-    }));
-  }
+      }));
+    } else {
+      setProfile(prevState => ({
+        ...prevState,
+        user: {
+          ...prevState.user,
+          [fieldName]: value
+        }
+      }));
+    }
   };
 
   const handleSaveChanges = () => {
-    console.log("trying to save changes...")
-    API.updateStudentDetails({profile},token['mr-token'])
-    .then((resp) => {
-      localStorage.setItem('studentDetails', JSON.stringify(profile));
-      alert(resp["message"]);
-    })
-    .catch((error) => console.log(error));
-    
+    if (!profile.user.first_name || !profile.user.last_name) {
+      alert("שם נדרש");
+    }
+    else if (!isValidIsraeliID(profile.student_id)) {
+      alert("מספר תעודת זהות לא תקין ");
+    }
+
+    else {
+      console.log("trying to save changes...")
+      API.updateStudentDetails({ profile }, token['mr-token'])
+        .then((resp) => {
+          localStorage.setItem('studentDetails', JSON.stringify(profile));
+          alert(resp["message"]);
+        })
+        .catch((error) => console.log(error));
+    }
   };
 
   return (
@@ -83,18 +93,18 @@ function Homepage() {
                   className="form-control"
                   value={profile.user.email}
                   disabled
-                
+
                 />
               </div>
-              </div>
-              <div className="form-group row">
+            </div>
+            <div className="form-group row">
               <label className="col-sm-4 col-form-label">מספר תעודת זהות:</label>
               <div className="col-sm-8">
                 <input
                   type="text"
                   className="form-control"
                   value={profile.student_id}
-                  disabled
+                  onChange={(e) => handleFieldChange('student_id', e.target.value)}
                 />
               </div>
             </div>
@@ -106,6 +116,7 @@ function Homepage() {
                   className="form-control"
                   value={profile.user.first_name}
                   onChange={(e) => handleFieldChange('first_name', e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -127,7 +138,7 @@ function Homepage() {
                   type="number"
                   className="form-control"
                   value={profile.amount_elective}
-                  onChange={(e) => handleFieldChange('amount_elective',parseInt(e.target.value))}
+                  onChange={(e) => handleFieldChange('amount_elective', parseInt(e.target.value))}
                 />
               </div>
             </div>
@@ -137,7 +148,7 @@ function Homepage() {
                   שמירת שינויים
                 </button>
                 <a href="/home"> <button className="btn btn-secondary ">
-                 ביטול
+                  ביטול
                 </button></a>
               </div>
             </div>

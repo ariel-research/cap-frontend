@@ -50,7 +50,7 @@ function Ranking(props)
     }
     const SaveClicked = (course_group, bal) => async(evt) =>
     {
-         if(bal==0)
+         if(bal===0)
         {
             API.rank_courses(course_group, token['mr-token'])
             .then(resp => console.log(resp))
@@ -64,8 +64,6 @@ function Ranking(props)
 
     }
     
-
-
 
         return(
             <div className="Rank" data-testid="Rank">
@@ -106,7 +104,7 @@ function Ranking(props)
                         <div className="accordion-body">
                             <ul>
                                 <li>לא ניתן לקבל קורס שדורג עם 0 נקודות</li>
-                                <li>לא ניתן לשמור דירוג עם סכום נקודות שלילי</li>
+                                <li>בעת שמירת הדירוג, יתרת הדירוג חייבת לעמוד על 0 נקודות בדיוק</li>
                                 {/*<li>קורסי בחירה שבצבע אדום מתנגשים לך עם קורסי חובה</li>*/}
 
                             </ul>

@@ -12,8 +12,8 @@ function BoardEditable(props) {
   const [course_group, setCourse_group] = useState([]);
   const [token] = useCookies(['mr-token']);
   const [balance, setBalance] = useState(props.balance);
-  let student_details = JSON.parse(localStorage.getItem('student_details'));
-  const [max_options, setMaxOptions] = useState(student_details? student_details.amount_elective : 5);
+  //let student_details = JSON.parse(localStorage.getItem('student_details'));
+  const [num_options, setNumOptions] = useState(10);
   const [selectedOption, setSelectedOption] = useState(''); // State for selected option
   const MAX_POINTS = 1000;
   const [num_courses_disabled, setNumCoursesDisabled] = useState(false);
@@ -21,6 +21,7 @@ function BoardEditable(props) {
   const  handleEditClicked  = ()=> {
     window.location.reload(false);
   }
+
   const handleOptionChange = (event) => {
       const value=event.target.value
       setSelectedOption(value);
@@ -31,57 +32,44 @@ function BoardEditable(props) {
 
 
   };
-const handleMaxOptionsChange = (event) => {
-  
-  const value = event.target.value
-  if (value > 0 && value <= course_group.length)
-    setMaxOptions(value)
-  };
-  const suggestClicked = () => {
-    const options = Number(max_options);
-    
 
+  const handleNumOptionsChange = (event) => {
+  
+    const value = event.target.value
+    if (value > 0 && value <= course_group.length)
+      setNumOptions(value)
+  };
+
+
+  const suggestClicked = () => {
+    const options = Number(num_options);
+    const updatedCourseGroup = Array.from(course_group);
+    const partition = (i, weight) => {
+      weight = parseInt(weight)
+      console.log( updatedCourseGroup[i], weight)
+      updatedCourseGroup[i].score = weight
+    }
+
+    for (let i = options; i < course_group.length; i++) { //reset all the rest courses
+      partition(i, 0);
+    }
+    
     if (selectedOption === 'e') { //equal partition
 
 
-      let weight = MAX_POINTS / options;
-
-      //add the reminder(extra) to the top course
-      //const extra = parseInt((weight - parseInt(weight))*options) 
-      //partition(0,weight+extra);
-
+      let weight = MAX_POINTS / options;      
       for (let i = 0; i < options; i++) {
 
         partition(i, weight);
       }
     }
     else if (selectedOption === 'o') { //partition by list order
-      orderPartition();
-    }
-    else if (selectedOption === 'z') { //reset all score
-      for (let i = 0; i < max_options; i++) {
-        partition(i, 0);
-      }
-    }
-    setBalance(MAX_POINTS - course_group.reduce(function (prev, current) {
-      return prev + +current.score
-    }, 0))
-  };
 
-  const partition = (i, weight) => {
-    weight = parseInt(weight)
-    course_group[i].score = weight
-
-  }
-
-  const orderPartition = () => {
-
-    const options = Number(max_options);
     let factor = (options * 0.5) * (options + 1);
     const a = [[factor]];
     const b = [MAX_POINTS];
     const x = usolve(a, b)[0][0];
-    let extra = 0;
+    //let extra = 0;
     //add the reminder(extra) to the top course
 
 
@@ -95,11 +83,31 @@ const handleMaxOptionsChange = (event) => {
     );
 
     weights.forEach((weight, i) => {
-      //extra += (weight - parseInt(weight))
       partition(i, weight);
     })
-    //partition(0,weights[0]+extra)
-  }
+    }
+    else if (selectedOption === 'z') { //reset all score
+      for (let i = 0; i < options; i++) {
+        partition(i, 0);
+      }
+    }
+    
+    const temp_balance = (MAX_POINTS - updatedCourseGroup.reduce(function (prev, current) {
+      return prev + +current.score
+    }, 0))
+
+    if (temp_balance<MAX_POINTS)
+        //add the reminder(balance) to the top course
+        updatedCourseGroup[0].score+=temp_balance
+
+    setCourse_group(updatedCourseGroup);
+    setBalance(0)
+
+  };
+
+
+
+  
   const handleDragEnd = (result) => {
     if (!result.destination) return; // Not a valid drop target
 
@@ -153,8 +161,8 @@ const handleMaxOptionsChange = (event) => {
               </div>
               <div className = "rowC mr-5">עבור <input
                 type="number"
-                onChange={event => handleMaxOptionsChange(event)}
-                value={max_options}
+                onChange={event => handleNumOptionsChange(event)}
+                value={num_options}
                 disabled={num_courses_disabled}
                 min={0}
                 max={course_group.length}

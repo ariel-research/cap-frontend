@@ -3,7 +3,6 @@ dotenv.config();
 
 const HOSTNAME_BACKEND = process.env.REACT_APP_DJANGO_SERVER_HOSTNAME;
 const PORT_BACKEND = process.env.REACT_APP_DJANGO_SERVER_PORT;
-console.log(HOSTNAME_BACKEND)
 
 const BASE_URL= `http://${HOSTNAME_BACKEND}:${PORT_BACKEND}/`;
 

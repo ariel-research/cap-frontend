@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { API } from './api-service';
 import './sign-forms.css';
 import { validate } from 'email-validator';
+import {isValidIsraeliID, isEmailAriel} from './field-validators'
 import logo1 from './logo.png';
 
 
@@ -76,27 +77,9 @@ function Register() {
     return Object.keys(errors).length === 0;
   };
 
-
-  const isValidIsraeliID = (id) => {
-    id = String(id).trim();
-    if (id.length > 9 || id.length < 5 || isNaN(id)) return false;
-
-    // Pad string with zeros up to 9 digits
-    id = id.length < 9 ? ("00000000" + id).slice(-9) : id;
-
-    return Array
-      .from(id, Number)
-      .reduce((counter, digit, i) => {
-        const step = digit * ((i % 2) + 1);
-        return counter + (step > 9 ? step - 9 : step);
-      }) % 10 === 0;
-  }
   const isEmailValid = (email) => {
     return validate(email);
 
-  };
-  const isEmailAriel = (email) => {
-    return email.endsWith('ariel.ac.il');
   };
 
   const registerClicked = (event) => {
