@@ -41,6 +41,9 @@ function Homepage() {
   const handleFieldChange = (fieldName, value) => {
     const student_field_names = ["amount_elective", "student_id"];
     if (student_field_names.includes(fieldName)) {
+      if (fieldName==='amount_elective' && (value < 1 || value > 6)){
+        return;
+      }
       setProfile(prevState => ({
         ...prevState,
         [fieldName]: value
@@ -138,6 +141,8 @@ function Homepage() {
                   type="number"
                   className="form-control"
                   value={profile.amount_elective}
+                  min={1}
+                  max={6}
                   onChange={(e) => handleFieldChange('amount_elective', parseInt(e.target.value))}
                 />
               </div>
