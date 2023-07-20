@@ -19,17 +19,8 @@ NVM, Nodejs v14.0.0
   `git checkout ariel`
 4. Install dependencies: \
   `npm i`
-5. To run the project on a different address, follow these steps: 
-   1. In 'package.json' file, add the following code above the dependencies: 
-   
-          "server": {
-            "host": "<your-hostname>",
-            "port": <port-number>
-           },
-   
-   2. In 'src/api-service.js' file, update the BASE_URL variable: \
-            `const BASE_URL= "http://<your-hostname>:<port-number>/";`
-
+6. Create an .env file and customize the project's environment variables. You can see [here](.env-example) an example.
+	> Please ensure that that your `.gitignore` file includes the `.env` file.
    
 ## Available Scripts
 
