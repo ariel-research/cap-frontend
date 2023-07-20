@@ -75,7 +75,7 @@ function App() {
         <button data-testid="semesterA" className="btn btn-primary" onClick={buttonClicked(false)}>סמסטר א</button>        
         <button data-testid="semesterB" className="btn btn-primary" onClick={buttonClicked(true)}>סמסטר ב</button>
       </div>
-      <div>
+      <div style={{width:'90%'}}>
         {A_or_B ? (
           <Timetable course_group={courses_B} />
         ) : <Timetable course_group={courses_A} />

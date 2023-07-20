@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { API } from './api-service';
-import { useCookies } from "react-cookie";
 import './sign-forms.css';
 import logo1 from './logo.png';
 import { useHistory } from 'react-router-dom';
@@ -10,8 +9,6 @@ function ResetPass() {
     const [code, setCode] = useState('');
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const history = useHistory();
-
-    const [token, setToken] = useCookies(['mr-token']);
     const [message, setMessage] = useState('');
 
     const resetClicked = (event) => {

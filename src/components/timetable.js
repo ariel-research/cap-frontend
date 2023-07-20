@@ -53,25 +53,22 @@ function Timetable(props)
                                 {hour && hour.map( (day,j) => {
                                     return (
                                     <td key={j} style={{ verticalAlign:'top'}}> 
-                                    {day.length ===0 ? (
-                                        null
-                                    ) : (
-
-                                        <div>
-                                            {day && day.map( (course,k) => {
+                                    <div className='d-flex cell' >
+                                            { day && day.length > 0 &&day.map( (course,k) => {
                                             return (
-                                                <td  key={k}> 
+                                                <div key={k} className='border inner-cell'> 
                                                     {course.mandatory && <h6  style={{ verticalAlign:'top', backgroundColor: 'red'}}>
                                                         {course.course_group}<br/>  המרצה: {course.lecturer} <br/> שעות: {(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
                                                     </h6> }                                   
                                                     {!course.mandatory && <h6  style={{ verticalAlign:'top'}}> {course.mandatory}
                                                     <p className='fw-bold'> {course.course_group}</p> {course.lecturer} <br/>{(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}
                                                     </h6> }  
-                                                </td>
+                                                </div>
                                             )
-                                            })}   
-                                        </div>
-                                        )}
+                                            })}
+                                            </div>   
+                                        
+                                        
                                     </td>
                             )})}
                             </tr>

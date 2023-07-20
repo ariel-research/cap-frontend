@@ -22,3 +22,7 @@ th  {
 color: #6d76f7;
 font-weight: bold;
 }
+
+.inner-cell{
+    width: 100%;
+}
