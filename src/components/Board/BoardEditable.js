@@ -135,7 +135,7 @@ function BoardEditable(props) {
     <div className='item-center' >
       <div className="justify-items-center item-center">
         <p className="ramainingTime">{props.time_message}</p>
-        <div style={{ width: 'fit-content' }} className="alert alert-secondary item-center" role="alert">יתרת ניקוד: {balance}</div>
+        <div style={{ width: 'fit-content' }} className="alert alert-secondary item-center mb-2" role="alert">יתרת ניקוד: {balance}</div>
       </div>
       <button className="btn btn-primary ml-2" onClick={props.SaveClicked(course_group, balance)}>שמירת הדירוג</button>
       <button className="btn btn-secondary " onClick={() => handleEditClicked(false)}>ביטול</button>
@@ -161,7 +161,7 @@ function BoardEditable(props) {
               max={course_group.length}
             /> הקורסים העליונים</div>
             </div>
-          <button className="button-nice mr-4" onClick={suggestClicked}>הצע חלוקת ניקוד</button>
+          <button className="btn btn-primary mr-4" onClick={suggestClicked}>הצע חלוקת ניקוד</button>
         </div>
       </div>
       

@@ -16,7 +16,7 @@ body
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    max-width: 576px;
+    max-width: 650px;
     right: 0;
     left: 0;
     margin: auto;
@@ -111,7 +111,7 @@ h3{
 
   .slide {
     display: flex;
-    width: 300px;
+    width: 250px;
     direction: ltr;
   }
   input {
@@ -204,13 +204,12 @@ option {
   display: inline-block;
   width:fit-content ;
   height: fit-content;
-  padding: 10px 20px;
+  padding: 5px 5px;
   font-size: 16px;
   font-weight: bold;
   text-align: center;
   text-decoration: none;
   border-radius: 5px;
-  border-color: #413e77;
   background-color: #fff;
   color: #6c63ff;
   cursor: pointer;
@@ -240,7 +239,7 @@ option {
 
 .container-bubbletext{
   background: url("./bubble-text.png") no-repeat top;
-  background-size: 500px 100px;
+  background-size: 100% 100px;
   align-items: center;
   text-align: center;
   width: 500px;

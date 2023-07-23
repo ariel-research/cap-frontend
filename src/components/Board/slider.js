@@ -15,7 +15,7 @@ const Slider = ({ course_group, i, change }) => {
 
   return (
    
-    <div className="slide w-25"> 
+    <div className="slide"> 
       <div className="value" style={{ fontSize: "1.3em"}}>{value}</div>
       <input
         type="range"
