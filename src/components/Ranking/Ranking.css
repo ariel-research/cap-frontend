@@ -6,3 +6,13 @@
     margin-top: 50px;
     font-weight: bold;
   }
+  .container-cards{
+  width: 500px;
+  }
+  @media (max-width: 500px){
+    .container-cards{
+        padding-top: 10px;
+        margin-bottom: 30px;
+        width: 100%;
+      }
+    }
