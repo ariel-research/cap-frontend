@@ -17,7 +17,7 @@ function Timetable(props)
                 )
             })}
             </div>
-
+            <div className='overflow-x-scroll' >
             <table className="table table-bordered" border="2">
                 <thead className='table-primary table-bordered' >
                     <tr style={{height: '20px'}}>
@@ -79,6 +79,7 @@ function Timetable(props)
 
            
             </table>
+            </div>
         </div>
         
         
