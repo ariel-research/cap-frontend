@@ -140,9 +140,9 @@ function BoardEditable(props) {
       <button className="btn btn-primary ml-2" onClick={props.SaveClicked(course_group, balance)}>שמירת הדירוג</button>
       <button className="btn btn-secondary " onClick={() => handleEditClicked(false)}>ביטול</button>
 
-      <div className="rowC justify-content-center  mt-3">
-        <img src={assi} width={100} height={100} alt="assistant" />
-        <div className="container-bubbletext" alt="assistant" >
+      <div className="rowC justify-content-center container-fluid mt-3">
+        <img src={assi} width={30} height={30} alt="assistant" />
+        <div className="container-bubbletext " alt="assistant" >
           <div>
             <div className="dropdown mr-5">
             <select value={selectedOption} onChange={handleOptionChange}>

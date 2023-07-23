@@ -16,7 +16,7 @@ const Slider = ({ course_group, i, change }) => {
   return (
    
     <div className="slide"> 
-      <div className="value" style={{ fontSize: "1.3em"}}>{value}</div>
+     <div className="value" style={{ fontSize: "1.3em"}}>{value}</div>
       <input
         type="range"
         min={0}
@@ -24,7 +24,7 @@ const Slider = ({ course_group, i, change }) => {
         value={value}
         className="slider"
         onChange={handleOnChange}
-      />
+      /> 
     </div>
   );
 };
