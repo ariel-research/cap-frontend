@@ -10,7 +10,7 @@ export const MenuItems = [
         cName: 'nav-links'
     },
     {
-        title: 'דירוג הקורסים',
+        title: 'דירוג קורסי בחירה',
         url:'/ranking',
         cName: 'nav-links'
     },
