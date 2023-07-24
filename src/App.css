@@ -43,10 +43,10 @@ h2{
 }
 
 .list-scroll{
-  max-width: max-content; max-height: 350px
+  max-height: 350px;
+  max-width: max-content;
 }
 .courses{
-  margin-left: 200px;
   margin-bottom: 5px;
   padding-bottom: 15px;
   border-radius: 15px;
@@ -54,7 +54,7 @@ h2{
 }
 
 ol {
-  width: max-content;
+  width: 100%;
 }
 
 ul {
@@ -84,16 +84,12 @@ ul {
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
-.try{
-  background: white;
-  border: 1px solid  rgba(182, 182, 182, 0.836);
-  color: rgba(85, 83, 83);
-  font-weight: bold;
-  border-radius: 20px;
-  font:  28px  ;
-  height: 80px;
-  width: 220px;
-  margin: auto;
+
+.course-list{
+  max-width: 300px;
+}
+.course-option{
+  max-width: 250px;
 }
 .con-btn
 {
@@ -101,5 +97,5 @@ ul {
   flex-direction: row;
   justify-content: space-between;
   margin-top: 35px;
-  width: 20%;
+  max-width: 200px;
 }

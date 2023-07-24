@@ -6,8 +6,8 @@ function CoursegroupDetails(props) {
             {props.course_group ? (
                 <div>{props.course_group.courses.map((course, i) => {
                     return (
-                        <ol className="list-group w-400" data-testid="courseDetails" key={course.course_id}>
-                            <li className="list-group-item d-flex justify-content-between align-items-start" >
+                        <ol className="list-group" data-testid="courseDetails" key={course.course_id}>
+                            <li className="list-group-item d-flex justify-content-between align-items-start course-option" >
                                 <div className="ms-2 me-auto align-text-right courses">
                                     <div className="fw-bold">{props.course_group.name}</div>
                                     <div className="fw-bold" data-testid={`courseOption${i}`}>קבוצה {i + 1}</div>
