@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavbarOffice from './Navbar_Office';
-import { API } from '../../api-service';
+import { API } from '../../api/api-service';
 import { useCookies } from "react-cookie";
 import './office.css'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";

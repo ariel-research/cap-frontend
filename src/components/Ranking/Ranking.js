@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BoardEditable from "../Board/BoardEditable";
 import Board from "../Board/Board";
 import Navbar from "../Navbar/Navbar";
-import { API } from "../../api-service";
+import { API } from "../../api/api-service";
 import { useCookies } from "react-cookie";
 
 function Ranking(props) {

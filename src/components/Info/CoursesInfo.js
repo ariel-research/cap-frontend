@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import CoursegroupList from './components/course_group-list';
-import CoursegroupDetails from './components/course_group-details';
-import Navbar from "./components/Navbar/Navbar";
-import { API } from './api-service';
-import Timetable from "./components/timetable";
+import './CoursesInfo.css';
+import CourseGroupList from './CourseGroupList';
+import CourseGroupDetails from './CourseGroupDetails';
+import Navbar from "../Navbar/Navbar";
+import { API } from '../../api/api-service';
+import Timetable from "./Timetable";
 import { useCookies } from "react-cookie";
 
 
@@ -63,8 +63,8 @@ function App() {
       <h4 className='enter-right'>לחצו על הקורס הרצוי לפרטים נוספים</h4>
       <div className="layout">
         
-        <CoursegroupList course_group={course_group} course_groupClicked={course_groupClicked} />
-        <CoursegroupDetails course_group={selectedCourse_group} />
+        <CourseGroupList course_group={course_group} course_groupClicked={course_groupClicked} />
+        <CourseGroupDetails course_group={selectedCourse_group} />
       </div>
 
       <h2 className='text-center mt-5'><b>מערכת שעות</b>

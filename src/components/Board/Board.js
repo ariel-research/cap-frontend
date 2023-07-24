@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Board.css';
-import { API } from "../../api-service";
+import { API } from "../../api/api-service";
 import { useCookies } from "react-cookie";
 
 function Board(props) {

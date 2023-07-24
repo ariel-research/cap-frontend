@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { API } from './api-service';
-import { isValidIsraeliID } from './field-validators'
-import './home.css';
-import Navbar from "./components/Navbar/Navbar";
+import { API } from '../../api/api-service';
+import { isValidIsraeliID } from '../Registration/FieldValidators'
+import './Profile.css';
+import Navbar from "../Navbar/Navbar";
 
 function Homepage() {
   const [token] = useCookies(['mr-token']);
@@ -41,7 +41,7 @@ function Homepage() {
   const handleFieldChange = (fieldName, value) => {
     const student_field_names = ["amount_elective", "student_id"];
     if (student_field_names.includes(fieldName)) {
-      if (fieldName==='amount_elective' && (value < 1 || value > 6)){
+      if (fieldName==='amount_elective' && ( isNaN(value) || (value < 1 || value > 6))){
         return;
       }
       setProfile(prevState => ({
@@ -80,7 +80,7 @@ function Homepage() {
 
   return (
     <div className="homepage">
-      <Navbar active="דף הבית" />
+      <Navbar active="פרטים אישיים" />
 
       {profile ? (
         <div className="container">

@@ -1,20 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/Info/CoursesInfo';
 import reportWebVitals from './reportWebVitals';
 import { Route, BrowserRouter } from 'react-router-dom';
 import Ranking from './components/Ranking/Ranking';
-import Results from './components/Results/results';
+import Results from './components/Results/Results';
 import Algo from './components/Office/algo';
 import Office from './components/Office/Office'
-import Auth from './auth';
-import Reg from './register'
-import ResetPass from './resetPassword'
-import NewPassword from './newPassword'
-
-
-import Homepage from './home'
+import Auth from './components/Registration/SignIn';
+import Reg from './components/Registration/SignUp'
+import ResetPass from './components/Registration/ResetPassword'
+import NewPassword from './components/Registration/NewPassword'
+import Homepage from './components/Profile/Profile'
+import About from './components/About/About';
 import { CookiesProvider } from "react-cookie";
 
 export default function Router() {
@@ -31,6 +30,7 @@ export default function Router() {
           <Route exact path="/algorithm" component={Algo} />
           <Route exact path="/office" component={Office} />
           <Route exact path="/home" component={Homepage} />
+          <Route exact path="/about" component={About}/>
           <Route exact path="/reset_password" component={ResetPass} />
           <Route exact path="/new_password" component={NewPassword} />
         </BrowserRouter>

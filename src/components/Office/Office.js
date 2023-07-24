@@ -3,7 +3,7 @@ import NavbarOffice from './Navbar_Office';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import { API } from '../../api-service';
+import { API } from '../../api/api-service';
 import Cookies from 'js-cookie';
 import './office.css'
 

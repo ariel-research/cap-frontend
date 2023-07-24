@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { API } from './api-service';
+import { API } from '../../api/api-service';
 import { useCookies } from "react-cookie";
-import './sign-forms.css';
-import logo1 from './logo.png';
+import './SignForms.css';
+import logo1 from '../../logo.png';
 
 function Auth() {
     const [username, setUsername] = useState('');

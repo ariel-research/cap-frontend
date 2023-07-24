@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { API } from './api-service';
-import './sign-forms.css';
+import { API } from '../../api/api-service';
+import './SignForms.css';
 import { validate } from 'email-validator';
-import {isValidIsraeliID, isEmailAriel} from './field-validators'
-import logo1 from './logo.png';
+import {isValidIsraeliID, isEmailAriel} from './FieldValidators'
+import logo1 from '../../logo.png';
+import { isNumber } from 'mathjs';
 
 
 function Register() {
@@ -34,7 +35,7 @@ function Register() {
     if (name === 'password2') setPassword2(value);
 
     if (name === 'amount_elective') {
-      if (value > 0 && value <= 6)
+      if (isNumber(value) &&(value > 0 && value <= 6))
         setAmountElective(value);
     }
   };
@@ -71,7 +72,9 @@ function Register() {
     } else if (password1 !== password2) {
       errors.password2 = 'סיסמאות לא תואמות';
     }
-
+    if (!amount_elective){
+      errors.amount_elective = 'מספר קורסי בחירה נדרש'
+    }
     setErrors(errors);
 
     return Object.keys(errors).length === 0;
@@ -210,7 +213,13 @@ function Register() {
               onChange={handleInputChange}
               value={amount_elective}
               min={0}
-              max={6} />
+              max={6} 
+              required
+              />
+              
+               {errors.amount_elective && (
+              <span className="invalid-feedback">{errors.amount_elective}</span>
+            )}
           </div>
           <div class="btn-group item-center w-100">
             <input type="radio" class="btn-check" name="userType" id="student" autocomplete="off" onClick={() => setUserType('student')} checked={user_type === 'student'} />

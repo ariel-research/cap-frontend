@@ -69,7 +69,7 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/src/App.js"
+      "\\.(css|less)$": "<rootDir>/src/Info/CoursesInfo.js"
     },
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.js"

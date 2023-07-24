@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
-import { API } from './api-service';
-import './sign-forms.css';
-import logo1 from './logo.png';
+import { API } from '../../api/api-service';
+import './SignForms.css';
+import logo1 from '../../logo.png';
 import { useHistory } from 'react-router-dom';
 
 function ResetPass() {

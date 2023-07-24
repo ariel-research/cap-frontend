@@ -1,5 +1,5 @@
 import React from 'react';
-import './timetable.css';
+import './Timetable.css';
 
 
 function Timetable(props)

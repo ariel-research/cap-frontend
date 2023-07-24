@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CoursegroupDetails(props) {
+function CourseGroupDetails(props) {
     return (
         <div>
             {props.course_group ? (
@@ -26,4 +26,4 @@ function CoursegroupDetails(props) {
     )
 }
 
-export default CoursegroupDetails
+export default CourseGroupDetails
