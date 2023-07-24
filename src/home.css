@@ -35,7 +35,7 @@
   }
   
   .user-details-container {
-    width: 40%;
+    max-width: 650px;
     border-radius: 2em;
     background-color: #f8f9fa; /* Nice light gray color */
     font-size: 14px;
