@@ -37,7 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "serve": "nohup react-scripts start > nohup.out & cat nohup.out",
-    "stop": ". ./.env && fuser -k $PORT/tcp",
+    "stop": ". ./.env && fuser -k $REACT_APP_PORT/tcp",
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject"
