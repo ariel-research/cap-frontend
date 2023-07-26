@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './CoursesInfo.css';
 import CourseGroupList from './CourseGroupList';
-import CourseGroupDetails from './CourseGroupDetails';
 import Navbar from "../Navbar/Navbar";
 import { API } from '../../api/api-service';
 import Timetable from "./Timetable";
@@ -60,11 +59,10 @@ function App() {
       <header className="App-header">
       <h1 className="Headline">פרטי הקורסים</h1>
       </header>
-      <h4 className='enter-right'>לחצו על הקורס הרצוי לפרטים נוספים</h4>
+      <h4>לחצו על הקורס הרצוי לפרטים נוספים</h4>
       <div className="layout">
         
         <CourseGroupList course_group={course_group} course_groupClicked={course_groupClicked} />
-        <CourseGroupDetails course_group={selectedCourse_group} />
       </div>
 
       <h2 className='text-center mt-5'><b>מערכת שעות</b>

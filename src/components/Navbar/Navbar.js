@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { MenuItems } from "./MenuItems"
 import './Navbar.css'
 import { Link } from 'react-router-dom'
-import logo1 from '.../../../public/logo.png';
+import logo1 from '../../logo.png';
 import Cookies from 'js-cookie';
 
 class Navbar extends Component {

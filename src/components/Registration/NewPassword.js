@@ -54,11 +54,11 @@ function NewPassword() {
 
     API.ResetPasswordConfirm({token, password: password1})
       .then((resp) => {
-        console.log(resp); // Add this line
+        alert("סיסמתך החדשה נשמרה בהצלחה") // Add this line
         window.location.href='/'
       })
       .catch((error) => {
-        console.log(error);
+        alert("לא הצלחנו לשמור את הסיסמא הזו. נסו שנית") 
         setMessage(error.message);
       })
   };
@@ -109,8 +109,8 @@ function NewPassword() {
           <button className="w-100 btn btn-lg btn-primary mt-3" type="submit" onClick={setNewPassword}>
             שמירה
           </button>
-          <p className="text-center text-muted mt-5 mb-0">כבר יש לך חשבון? <a href="/"
-            className="fw-bold text-body pr"><u>התחברו כאן!</u></a></p>
+          <p className="text-center text-muted mt-5 mb-0"><a href="/"
+            className="fw-bold text-body pr"><u>חזרה להתחברות</u></a></p>
         </form>
       </main>
     </div>

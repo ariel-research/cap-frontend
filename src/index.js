@@ -14,6 +14,7 @@ import ResetPass from './components/Registration/ResetPassword'
 import NewPassword from './components/Registration/NewPassword'
 import Homepage from './components/Profile/Profile'
 import About from './components/About/About';
+import Footer from './components/Footer/Footer'
 import { CookiesProvider } from "react-cookie";
 
 export default function Router() {
@@ -34,6 +35,7 @@ export default function Router() {
           <Route exact path="/reset_password" component={ResetPass} />
           <Route exact path="/new_password" component={NewPassword} />
         </BrowserRouter>
+        <Footer/>
       </CookiesProvider>
     </React.StrictMode>
   )

@@ -2,7 +2,7 @@
   min-height: 100vh;
   background-color: #f8f9fa;
 /*background: linear-gradient(80deg, rgba(114,117,121,1) 0%, rgba(230,220,220,1) 70%);*/
-  text-align: right;
+  text-align: center;
 }
 /* h1{
   text-shadow: -1px 0 #6d76f7;
@@ -31,16 +31,10 @@ h2{
 }
 
 .layout{
-  display: grid;
-  margin-right: 10%;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+  display: center;
+  
 }
 
-.enter-right{
-  margin-right: 10%;
-
-}
 
 .list-scroll{
   max-height: 350px;
@@ -78,17 +72,14 @@ ul {
   cursor: pointer;
 }
 
-.Row{
-  display: grid;
-  margin-left: 20%;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-}
+
 
 .course-list{
   max-width: 300px;
 }
 .course-option{
+  text-align: right;
+
   max-width: 250px;
 }
 .con-btn
@@ -98,4 +89,10 @@ ul {
   justify-content: space-between;
   margin-top: 35px;
   max-width: 200px;
+}
+
+.modal-fc{
+  max-width: fit-content;
+  max-height: fit-content;
+  
 }

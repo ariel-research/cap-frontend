@@ -21,11 +21,14 @@ function ResetPass() {
 
             API.ResetPasswordEmail({email})
                 .then(resp => {
-                    setMessage(resp.message);
+                    setMessage("קוד לאיפוס סיסמא נשלח לכתובת האימייל שהזנת");
                     if( resp.status === 1)
                         setIsButtonDisabled(false)
                 })
-                .catch(error => console.log(error))
+                .catch(error => {
+                     console.log(error)
+                     setMessage("אירעה שגיאה במהלך שליחת 'הקוד לאיפוס הסיסמא. אנא פנו לתמיכה");
+                })
         }
 
     }
