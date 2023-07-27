@@ -2,7 +2,6 @@ import {Releases} from "./Releases"
 import './About.css'
 import {Github, EnvelopeAtFill,} from 'react-bootstrap-icons'
 import { useCookies } from 'react-cookie';
-import logo1 from '../../logo.png';
 import Navbar from "../Navbar/Navbar";
 
 function About() {
