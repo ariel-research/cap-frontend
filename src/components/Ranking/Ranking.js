@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BoardEditable from "../Board/BoardEditable";
+import "./Ranking.css"
 import Board from "../Board/Board";
 import Navbar from "../Navbar/Navbar";
 import { API } from "../../api/api-service";
@@ -67,7 +68,7 @@ function Ranking(props) {
                 <h1 className='Headline' >דירוג קורסי בחירה</h1>
                 <div className=" justify-content-center">
                     <div className="accordion mt-2 " id="accor-how">
-                        <div className="accordion-item alert-primary">
+                        <div className="accordion-item">
                             <h2 className="accordion-header " id="headingOne">
                                 <button className="accordion-button collapsed alert-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     איך מדרגים?
@@ -88,10 +89,10 @@ function Ranking(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="accordion accordion-danger" id="accor-danger">
+                    <div className="accordion" id="accor-danger">
                         <div className="accordion-item alert-danger">
                             <h2 className="accordion-header" id="headingTwo">
-                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                <button className="accordion-button collapsed alert-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" data-bs-parent="#accor-danger" aria-expanded="true" aria-controls="collapseTwo">
                                     שימו לב
                                 </button>
                             </h2>
@@ -100,14 +101,12 @@ function Ranking(props) {
                                     <ul>
                                         <li>לא ניתן לקבל קורס שדורג עם 0 נקודות</li>
                                         <li>בעת שמירת הדירוג, יתרת הדירוג חייבת לעמוד על 0 נקודות בדיוק</li>
-                                        {/*<li>קורסי בחירה שבצבע אדום מתנגשים לך עם קורסי חובה</li>*/}
-
                                     </ul>
-
                                 </div>
                             </div>
                         </div>
-                    </div></div>
+                    </div>
+                </div>
                 <div className='container-rank item-center'>
 
                     {!edit ?

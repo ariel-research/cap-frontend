@@ -225,18 +225,6 @@ option {
   display:flex; flex-direction:row;
 
 }
-.accordion-danger {
-	--bs-accordion-btn-bg: #dc3545 - 80%;
-	--bs-accordion-active-bg: #dc3545 - 80%;
-}
-
-.accordion {
-  right: 0;
-  left: 0;
-  margin: auto;
-  width: 50%;
-}
-
 
 
 
