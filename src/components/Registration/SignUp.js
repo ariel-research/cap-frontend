@@ -20,6 +20,7 @@ function Register() {
   const [validated, setValidated] = useState('');
   const [user_type, setUserType] = useState('student');
   const [amount_elective, setAmountElective] = useState(6);
+  const [program, setProgram] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +38,9 @@ function Register() {
     if (name === 'amount_elective') {
       if (isNumber(value) &&(value > 0 && value <= 6))
         setAmountElective(value);
+    }
+    if (name === 'program') {
+      setProgram(value)
     }
   };
 
@@ -74,6 +78,10 @@ function Register() {
     }
     if (!amount_elective){
       errors.amount_elective = 'מספר קורסי בחירה נדרש'
+    }
+
+    if (!program){
+      errors.program = 'מסלול לימודים נדרש'
     }
     setErrors(errors);
 
@@ -119,7 +127,7 @@ function Register() {
             <input
               className="form-control field-input "
               type="text"
-              placeholder="הכנס מס' תעודת זהות"
+              placeholder="מס' תעודת זהות"
               name="student_id"
               value={student_id}
               onChange={handleInputChange}
@@ -203,6 +211,20 @@ function Register() {
 
             {errors.password2 && (
               <span className="invalid-feedback">{errors.password2}</span>
+            )}
+          </div>
+          <div className=" mb-2">
+
+          <label className="d-flex text-right form-label is-invalid">מסלול לימודים</label>
+          <div class="dropdown">
+            <select name="program" value={program} onChange={handleInputChange}  required>
+              <option value="">בחרו מסלול</option>
+              <option value="1">בסיסי</option>
+              <option value="2">מצטיינים</option>
+            </select>
+          </div>
+          {errors.program && (
+              <span className="invalid-feedback">{errors.program}</span>
             )}
           </div>
           <div className=" mb-2">

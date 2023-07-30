@@ -37,17 +37,8 @@ function Homepage() {
       .catch((error) => console.log(error));
   }, [token]);
 
-  const handleFieldChange = (fieldName, value) => {
-    const student_field_names = ["amount_elective", "student_id"];
-    if (student_field_names.includes(fieldName)) {
-      if (fieldName==='amount_elective' && ( isNaN(value) || (value < 1 || value > 6))){
-        return;
-      }
-      setProfile(prevState => ({
-        ...prevState,
-        [fieldName]: value
-      }));
-    } else {
+
+  const handleUserFieldChange = (fieldName, value) => {
       setProfile(prevState => ({
         ...prevState,
         user: {
@@ -55,7 +46,15 @@ function Homepage() {
           [fieldName]: value
         }
       }));
-    }
+  };
+  const handleStudentFieldChange = (fieldName, value) => {
+      if (fieldName==='amount_elective' && ( isNaN(value) || (value < 1 || value > 6))){
+        return;
+      }
+      setProfile(prevState => ({
+        ...prevState,
+        [fieldName]: value
+      }));
   };
 
   const handleSaveChanges = () => {
@@ -106,7 +105,7 @@ function Homepage() {
                   type="text"
                   className="form-control"
                   value={profile.student_id}
-                  onChange={(e) => handleFieldChange('student_id', e.target.value)}
+                  onChange={(e) => handleStudentFieldChange('student_id', e.target.value)}
                 />
               </div>
             </div>
@@ -117,7 +116,7 @@ function Homepage() {
                   type="text"
                   className="form-control"
                   value={profile.user.first_name}
-                  onChange={(e) => handleFieldChange('first_name', e.target.value)}
+                  onChange={(e) => handleUserFieldChange('first_name', e.target.value)}
                   required
                 />
               </div>
@@ -129,10 +128,19 @@ function Homepage() {
                   type="text"
                   className="form-control"
                   value={profile.user.last_name}
-                  onChange={(e) => handleFieldChange('last_name', e.target.value)}
+                  onChange={(e) => handleUserFieldChange('last_name', e.target.value)}
                 />
               </div>
             </div>
+            <div className="form-group row">
+              <label className="col-sm-4 col-form-label">מסלול לימודים:</label>
+                <div class="dropdown">
+                <select name="program" value={profile.program} onChange={(e) => handleStudentFieldChange('program', parseInt(e.target.value))}>
+                  <option value="1">בסיסי</option>
+                  <option value="2">מצטיינים</option>
+                </select>
+            </div>
+          </div>
             <div className="form-group row">
               <label className="col-sm-4 col-form-label">קורסי בחירה נדרשים:</label>
               <div className="col-sm-8">
@@ -142,10 +150,11 @@ function Homepage() {
                   value={profile.amount_elective}
                   min={1}
                   max={6}
-                  onChange={(e) => handleFieldChange('amount_elective', parseInt(e.target.value))}
+                  onChange={(e) => handleStudentFieldChange('amount_elective', parseInt(e.target.value))}
                 />
               </div>
             </div>
+            
             <div className="form-group row">
               <div className="col-sm-12 text-center">
                 <button className="btn btn-primary " onClick={handleSaveChanges}>
