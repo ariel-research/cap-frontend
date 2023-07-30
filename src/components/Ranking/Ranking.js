@@ -70,7 +70,7 @@ function Ranking(props) {
                     <div className="accordion mt-2 " id="accor-how">
                         <div className="accordion-item">
                             <h2 className="accordion-header " id="headingOne">
-                                <button className="accordion-button collapsed alert-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     איך מדרגים?
                                 </button>
                             </h2>
@@ -90,9 +90,9 @@ function Ranking(props) {
                         </div>
                     </div>
                     <div className="accordion" id="accor-danger">
-                        <div className="accordion-item alert-danger">
+                        <div className="accordion-item accordion-danger">
                             <h2 className="accordion-header" id="headingTwo">
-                                <button className="accordion-button collapsed alert-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" data-bs-parent="#accor-danger" aria-expanded="true" aria-controls="collapseTwo">
+                                <button className="accordion-button collapsed accordion-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" data-bs-parent="#accor-danger" aria-expanded="true" aria-controls="collapseTwo">
                                     שימו לב
                                 </button>
                             </h2>
