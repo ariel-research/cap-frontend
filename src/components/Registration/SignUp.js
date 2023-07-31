@@ -47,7 +47,7 @@ function Register() {
   const validateForm = () => {
     const errors = {};
     if (!student_id) {
-      errors.firstname = ' מספר ת.ז נדרש';
+      errors.student_id = ' מספר ת.ז נדרש';
     }else if (!isValidIsraeliID(student_id)){
       errors.student_id = 'מספר ת.ז לא תקין';
     }
@@ -101,7 +101,7 @@ function Register() {
       return;
     }
 
-    API.registerUser({student_id,first_name, last_name, email, password1, password2, amount_elective, user_type })
+    API.registerUser({student_id,first_name, last_name, email, password1, password2, amount_elective, user_type,program })
       .then((resp) => {
         console.log(resp); // Add this line
         setMessage(resp['message'])
