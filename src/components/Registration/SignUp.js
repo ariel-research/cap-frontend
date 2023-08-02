@@ -18,7 +18,7 @@ function Register() {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState('');
   const [validated, setValidated] = useState('');
-  const [user_type, setUserType] = useState('student');
+  //const [user_type, setUserType] = useState('student');
   const [amount_elective, setAmountElective] = useState(6);
   const [program, setProgram] = useState('');
 
@@ -60,7 +60,7 @@ function Register() {
 
 
     if (!email) {
-      errors.email = 'כתומת אימייל נדרשת';
+      errors.email = 'כתובת אימייל נדרשת';
     } else if (!isEmailValid(email)) {
       errors.email = 'כתובת אימייל לא חוקית';
     } else if (!isEmailAriel(email)) {
@@ -100,8 +100,9 @@ function Register() {
       setValidated(true)
       return;
     }
-
-    API.registerUser({student_id,first_name, last_name, email, password1, password2, amount_elective, user_type,program })
+  
+    //add user_type if needed
+    API.registerUser({student_id,first_name, last_name, email, password1, password2, amount_elective,program })
       .then((resp) => {
         console.log(resp); // Add this line
         setMessage(resp['message'])
@@ -243,13 +244,13 @@ function Register() {
               <span className="invalid-feedback">{errors.amount_elective}</span>
             )}
           </div>
-          <div class="btn-group item-center w-100">
+          {/*<div class="btn-group item-center w-100">
             <input type="radio" class="btn-check" name="userType" id="student" autocomplete="off" onClick={() => setUserType('student')} checked={user_type === 'student'} />
             <label class="btn btn-outline-primary" for="student">סטודנטים</label>
 
             <input type="radio" class="btn-check" name="userType" id="guest" autocomplete="off" onClick={() => setUserType('guest')} checked={user_type === 'guest'} />
             <label class="btn btn-outline-primary" for="guest">אורחים</label>
-          </div>
+               </div>*/}
           <button className="w-100 btn btn-lg btn-primary mt-3" type="submit" onClick={registerClicked}>
             הרשמה
           </button>
