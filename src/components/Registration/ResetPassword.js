@@ -53,7 +53,7 @@ function ResetPass() {
                     <h1 className="h3 mb-3 fw-normal text-center">איפוס סיסמא</h1>
                     <h5 className="h5 mb-3 fw-normal text-center">הכניסו את כתובת האימייל ונשלח אליכם קוד לאיפוס הסיסמא</h5>
                     {message && <span>
-                        <div class="alert alert-danger d-flex align-items-center" role="alert">{message}</div>
+                        <div className="alert alert-danger d-flex align-items-center" role="alert">{message}</div>
                     </span>}
                     <label className='form-label d-flex text-right mb-1' htmlFor="">אימייל</label>
                     <input data-testid="email" type="email" className="form-control left" id="floatingInput" placeholder="name@example.ariel.ac.il"
@@ -71,8 +71,8 @@ function ResetPass() {
                 </form>
                 <p className="text-center text-muted mt-5 mb-0">נזכרת בסיסמא?<a href="/"
                     className="fw-bold text-body pr"><u>התחברו כאן!</u></a></p>
-                <p class="text-center text-muted mt-2 mb-0">עדיין לא נרשמת? <a href="/register"
-                    class="fw-bold text-body"><u>הרשמה כאן!</u></a></p>
+                <p className="text-center text-muted mt-2 mb-0">עדיין לא נרשמת? <a href="/register"
+                    className="fw-bold text-body"><u>הרשמה כאן!</u></a></p>
 
             </main>
         </div>

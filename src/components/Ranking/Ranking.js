@@ -69,7 +69,7 @@ function Ranking(props) {
                 <div className=" justify-content-center">
                     <div className="accordion mt-2 " id="accor-how">
                         <div className="accordion-item">
-                            <h2 className="accordion-header " id="headingOne">
+                            <h2 className="accordion-header" id="headingOne">
                                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     איך מדרגים?
                                 </button>

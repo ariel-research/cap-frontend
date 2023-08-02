@@ -12,7 +12,6 @@ function App() {
   const [course_group, setCourse_group] = useState([]);
   const [courses_A, setCourses_A] = useState([]);
   const [courses_B, setCourses_B] = useState([]);
-  const [selectedCourse_group, setSelectedCourse_group] = useState(null);
   const [A_or_B, setA_or_B] = useState(false); //false is A
 
   const [token] = useCookies(['mr-token']);
@@ -44,10 +43,6 @@ function App() {
     } 
   }, [token])
 
-  const course_groupClicked = course_group => {
-    setSelectedCourse_group(course_group);
-  }
-
   const buttonClicked = bool => evt => {
     setA_or_B(bool);
   }
@@ -62,7 +57,7 @@ function App() {
       <h4>לחצו על הקורס הרצוי לפרטים נוספים</h4>
       <div className="layout">
         
-        <CourseGroupList course_group={course_group} course_groupClicked={course_groupClicked} />
+        <CourseGroupList course_group={course_group} />
       </div>
 
       <h2 className='text-center mt-5'><b>מערכת שעות</b>

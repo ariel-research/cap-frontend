@@ -109,18 +109,18 @@ function Register() {
       })
       .catch((error) => {
         console.log(error);
-        setMessage(error.message);
+        setMessage(error);
       })
   };
 
   return (
     <div className="register" >
       <main className="form-signup w-100 m-auto">
-        <form className="needs-validation" novalidate validate={validated}>
+        <form className="needs-validation" noValidate validate={validated}>
           <img className="mb-4" src={logo1} alt="" width="75" height="65" />
           <h1 className="h3 mb-3 fw-normal text-center">הרשמו והתחילו לדרג!</h1>
           {message && <span>
-            <div class="alert alert-danger d-flex align-items-center text-center" role="alert">{message}</div>
+            <div className="alert alert-danger d-flex align-items-center text-center" role="alert">{message}</div>
           </span>}
 
           <div className=" mb-2">
@@ -217,7 +217,7 @@ function Register() {
           <div className=" mb-2">
 
           <label className="d-flex text-right form-label is-invalid">מסלול לימודים</label>
-          <div class="dropdown">
+          <div className="dropdown">
             <select name="program" value={program} onChange={handleInputChange}  required>
               <option value="">בחרו מסלול</option>
               <option value="1">בסיסי</option>
@@ -244,12 +244,12 @@ function Register() {
               <span className="invalid-feedback">{errors.amount_elective}</span>
             )}
           </div>
-          {/*<div class="btn-group item-center w-100">
-            <input type="radio" class="btn-check" name="userType" id="student" autocomplete="off" onClick={() => setUserType('student')} checked={user_type === 'student'} />
-            <label class="btn btn-outline-primary" for="student">סטודנטים</label>
+          {/*<div className="btn-group item-center w-100">
+            <input type="radio" className="btn-check" name="userType" id="student" autocomplete="off" onClick={() => setUserType('student')} checked={user_type === 'student'} />
+            <label className="btn btn-outline-primary" for="student">סטודנטים</label>
 
-            <input type="radio" class="btn-check" name="userType" id="guest" autocomplete="off" onClick={() => setUserType('guest')} checked={user_type === 'guest'} />
-            <label class="btn btn-outline-primary" for="guest">אורחים</label>
+            <input type="radio" className="btn-check" name="userType" id="guest" autocomplete="off" onClick={() => setUserType('guest')} checked={user_type === 'guest'} />
+            <label className="btn btn-outline-primary" for="guest">אורחים</label>
                </div>*/}
           <button className="w-100 btn btn-lg btn-primary mt-3" type="submit" onClick={registerClicked}>
             הרשמה

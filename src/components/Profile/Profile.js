@@ -134,7 +134,7 @@ function Homepage() {
             </div>
             <div className="form-group row">
               <label className="col-sm-4 col-form-label">מסלול לימודים:</label>
-                <div class="dropdown">
+                <div className="dropdown">
                 <select name="program" value={profile.program} onChange={(e) => handleStudentFieldChange('program', parseInt(e.target.value))}>
                   <option value="1">בסיסי</option>
                   <option value="2">מצטיינים</option>

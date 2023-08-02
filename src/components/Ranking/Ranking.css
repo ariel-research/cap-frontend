@@ -22,8 +22,9 @@
   --bs-accordion-active-bg: #dc3545 - 80%;
 }*/
 
-
-
+.accordion-header{
+  height: fit-content;
+}
 .accordion {
   right: 0;
   left: 0;

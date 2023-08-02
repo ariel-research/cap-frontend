@@ -70,7 +70,7 @@ function NewPassword() {
           <img className="mb-4" src={logo1} alt="" width="75" height="65" />
           <h1 className="h3 mb-3 fw-normal text-center">יצירת סיסמא חדשה</h1>
           {message && <span>
-            <div class="alert alert-danger d-flex align-items-center text-center" role="alert">{message}</div>
+            <div className="alert alert-danger d-flex align-items-center text-center" role="alert">{message}</div>
           </span>}
 
          

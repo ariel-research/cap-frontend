@@ -60,7 +60,7 @@ function Auth() {
                     <h1 className="h3 mb-3 fw-normal text-center">התחברו ודרגו!</h1>
 
                     {message && <span>
-                        <div class="alert alert-danger d-flex align-items-center" role="alert">{message}</div>
+                        <div className="alert alert-danger d-flex align-items-center" role="alert">{message}</div>
                     </span>}
                     <label className='form-label d-flex text-right mb-1' htmlFor="">אימייל</label>
                     <input data-testid="email" type="email" className="form-control left" id="floatingInput" placeholder="name@example.ariel.ac.il"
@@ -71,11 +71,11 @@ function Auth() {
                         value={password} onChange={evt => setPassword(evt.target.value)} />
  
                     <button className="btn btn-primary w-100 py-2" data-testid="loginButton" type="submit" onClick={loginClicked}>התחברות</button>
-                    <div class="text-center text-muted mt-5 mb-0">שכחת את הסיסמא? <a href="/reset_password"
-                    class="fw-bold text-body"><u>איפוס הסיסמא</u></a></div>
+                    <div className="text-center text-muted mt-5 mb-0">שכחת את הסיסמא? <a href="/reset_password"
+                    className="fw-bold text-body"><u>איפוס הסיסמא</u></a></div>
                 </form>
-                <p class="text-center text-muted mt-5 mb-0">עדיין לא נרשמת? <a href="/register"
-                    class="fw-bold text-body"><u>הרשמה כאן!</u></a></p>
+                <p className="text-center text-muted mt-5 mb-0">עדיין לא נרשמת? <a href="/register"
+                    className="fw-bold text-body"><u>הרשמה כאן!</u></a></p>
             </main>
         </div>
     );
