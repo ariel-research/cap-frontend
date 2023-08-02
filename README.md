@@ -4,12 +4,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ### Requirements:
-NVM, Nodejs v14.0.0
+NVM, Nodejs v15.0.0
 1. Install NVM if needed: [Installtion Guide](https://github.com/nvm-sh/nvm#installing-and-updating)
-2. Install nodejs 14.0.0 using nvm: \
-   `nvm install 14.0.0`
+2. Install nodejs 15.0.0 using nvm: \
+   `nvm install 15.0.0`
 3. After installing successfully, run the command:\
-   `nvm use 14.0.0`
+   `nvm use 15.0.0`
 ### Installation:
 1. Clone the repository: \
     `git clone https://github.com/ariel-research/cap-frontend`
