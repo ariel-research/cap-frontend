@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-const HOSTNAME_BACKEND = process.env.REACT_APP_DJANGO_SERVER_HOSTNAME;
+const URL = process.env.REACT_APP_BASE_URL;
 const PORT_BACKEND = process.env.REACT_APP_DJANGO_SERVER_PORT;
 
-const BASE_URL= `http://${HOSTNAME_BACKEND}:${PORT_BACKEND}/`;
+const BASE_URL= `https://csariel.xyz/`;
 
 export class API {
     static loginUser(body)
@@ -79,7 +79,7 @@ export class API {
 
     static getUserStatus(username)
     {
-        return fetch(BASE_URL+"api/users/get_user_status/?username="+username,
+        return fetch(BASE_URL+"api/register/get_user_status/?username="+username,
         {
             method: 'GET',
             headers: 
