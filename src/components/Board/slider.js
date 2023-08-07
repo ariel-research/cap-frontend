@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-const Slider = ({ course_group, i, change }) => {
-  const [value, setValue] = useState(course_group.score);
-
+const Slider = ({ course, i, change }) => {
+  const [value, setValue] = useState(course.score);
   const handleOnChange = (e) => {
     const value = e.target.value;
     setValue(value);
@@ -10,8 +9,8 @@ const Slider = ({ course_group, i, change }) => {
   };
 
   useEffect(() => {
-    setValue(course_group.score);
-  }, [course_group.score]);
+    setValue(course.score);
+  }, [course.score]);
 
   return (
    
@@ -24,6 +23,7 @@ const Slider = ({ course_group, i, change }) => {
         value={value}
         className="slider"
         onChange={handleOnChange}
+        disabled={!course.is_included}
       /> 
     </div>
   );

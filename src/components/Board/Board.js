@@ -32,7 +32,7 @@ function Board(props) {
 
             <div className='course_group bg-light'>
                 <div data-testid="card" className='whiteLines overflow-auto  item-center'>
-                    {course_group.map((course_group, index) => {
+                    {course_group.map((course, index) => {
                     return (
                         <div key={index} className='item'>
                             <div className='item-title'>
@@ -41,22 +41,22 @@ function Board(props) {
 
                                     <div data-testid="groupIndex" className='index ml-1 '>{index + 1}.</div>
 
-                                    {/*course_group.overlap && <div style={{color: 'red'}} data-testid="groupName">{course_group.name}</div>*/}
-                                    {!course_group.overlap && <div data-testid="groupName" className='name ml-2 text-right'>{course_group.name}</div>}
+                                    {/*course.overlap && <div style={{color: 'red'}} data-testid="groupName">{course.name}</div>*/}
+                                    {!course.overlap && <div data-testid="groupName" className='name ml-2 text-right'>{course.name}</div>}
                                 </div>
 
-                                <div className="money number">{course_group.score} נק'</div>
+                                <div className="money number">{course.score} נק'</div>
 
                             </div>
                             <div className='item-details'>
-                                <div data-testid="groupName" className='lecturer'>{course_group.lecturer}</div>
+                                <div data-testid="groupName" className='lecturer'>{course.lecturer}</div>
                             </div>
 
 
                             <div className='d-flex'>
-                                <div data-testid="groupName " className="ml-2" >סמסטר {course_group.semester}'</div>
-                                <div data-testid="groupName " className="ml-2">יום {course_group.day}'</div>
-                                <div data-testid="groupName">{(course_group.time_start).substring(0, 5)}-{(course_group.time_end).substring(0, 5)}</div>
+                                <div data-testid="groupName " className="ml-2" >סמסטר {course.semester}'</div>
+                                <div data-testid="groupName " className="ml-2">יום {course.day}'</div>
+                                <div data-testid="groupName">{(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}</div>
                             </div>
                         </div>
                     )
