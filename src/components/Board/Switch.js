@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Switch = ({ course, i, change }) => {
-  const [is_checked, setisChecked] = useState(course.is_included);
+  const [is_checked, setisChecked] = useState(course.is_acceptable);
   const handleOnChange = (e) => {
     const value =e.target.checked;
     setisChecked(value);
@@ -9,8 +9,8 @@ const Switch = ({ course, i, change }) => {
   };
 
   useEffect(() => {
-    setisChecked(course.is_included);
-  }, [course.is_included]);
+    setisChecked(course.is_acceptable);
+  }, [course.is_acceptable]);
 
   return (
    

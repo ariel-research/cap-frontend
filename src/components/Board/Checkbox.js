@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Checkbox = ({ course, i, change }) => {
-  const [is_checked, setisChecked] = useState(course.is_included);
+  const [is_checked, setisChecked] = useState(course.is_acceptable);
 
   const handleOnChange = (e) => {
     const value =e.target.checked;
@@ -10,12 +10,12 @@ const Checkbox = ({ course, i, change }) => {
   };
 
   useEffect(() => {
-    setisChecked(course.is_included);
-  }, [course.is_included]);
+    setisChecked(course.is_acceptable);
+  }, [course.is_acceptable]);
 
   return (
    
-    <div className="form-check end-50">
+    <div className="form-check">
         <input className="form-check-input" type="checkbox" checked={is_checked} id="flexCheckChecked" onChange={handleOnChange}/>
         <label className="form-check-label" htmlFor="flexCheckChecked">
         אופציונאלי

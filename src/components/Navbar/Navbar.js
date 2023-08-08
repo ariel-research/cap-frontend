@@ -21,7 +21,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark bg-primary navbar-expand-lg ">
+      <nav className="navbar sticky-top navbar-dark bg-primary navbar-expand-lg ">
         <div className="container-fluid">
           <div className="navbar-brand">
             <img src={logo1} alt="Logo" />

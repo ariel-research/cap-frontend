@@ -4,8 +4,8 @@ import { API } from "../../api/api-service";
 import { useCookies } from "react-cookie";
 import Slider from './slider';
 import Checkbox from './Checkbox'
+import Toast from './Toast'
 import Switch from './Switch'
-import assi from './assi.png';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { usolve } from "mathjs"
@@ -21,7 +21,7 @@ function BoardEditable(props) {
   const MAX_POINTS = 1000;  
   const getNumAcceptableCourses = () => { 
     return course_group.reduce((accumulator, currentValue) => {
-      return  currentValue.is_included? accumulator + 1 : accumulator 
+      return  currentValue.is_acceptable? accumulator + 1 : accumulator 
      },0)
   }
 
@@ -44,7 +44,7 @@ function BoardEditable(props) {
 
       let weight = MAX_POINTS / num_courses_acceptable;
       for (let i = 0; i < options; i++) {
-        if (updatedCourseGroup[i].is_included)
+        if (updatedCourseGroup[i].is_acceptable)
           partition(i, weight);
       }
     }
@@ -56,7 +56,7 @@ function BoardEditable(props) {
       const x = usolve(a, b)[0][0];
       let i_partition = 0;
       for (let i=0; i<options; i++){
-        if (updatedCourseGroup[i].is_included){
+        if (updatedCourseGroup[i].is_acceptable){
           const weight = x * (num_courses_acceptable - i_partition)
           partition(i, weight);
           i_partition++;
@@ -68,10 +68,7 @@ function BoardEditable(props) {
         partition(i, 0);
       }
     }
-    else if (selectedOption === 'c') { 
-      updatedCourseGroup[0].score += balance
-    }
-
+    
     const temp_balance = (MAX_POINTS - updatedCourseGroup.reduce(function (prev, current) {
       return prev + +current.score
     }, 0))
@@ -102,7 +99,7 @@ function BoardEditable(props) {
   const changeCheckbox = (is_checked,i) => {      
     const updatedCourseGroup = Array.from(course_group); 
     
-    updatedCourseGroup[i].is_included = is_checked;
+    updatedCourseGroup[i].is_acceptable = is_checked;
     if (!is_checked){   
       setBalance(balance+updatedCourseGroup[i].score)
       updatedCourseGroup[i].score = 0;
@@ -125,6 +122,7 @@ function BoardEditable(props) {
     setBalance(MAX_POINTS - course_group.reduce(function (prev, current) {
       return prev + +current.score
     }, 0))
+    
   }
 
   useEffect(() => {
@@ -162,11 +160,24 @@ function BoardEditable(props) {
             <button type="button" value="o" className="btn btn-outline-primary" >חלוקה לפי הסדר</button>
             <button type="button" value="e" className="btn btn-outline-primary" >חלוקה שווה</button>
             <button type="button" value="z" className="btn btn-outline-primary" >איפוס הכל</button>
-            <button type="button" value ="c" className="btn btn-outline-primary" >השלמת יתרה לראשון</button>
           </div>
         </div>
       </div>
       
+      <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+<div class="position-fixed bottom-0 end-0 p-3 toast-score">
+  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>
+</div>
       <div className='course_group bg-light'>
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="course-group">
@@ -197,7 +208,7 @@ function BoardEditable(props) {
                             {/*course.overlap && <div style={{color: 'red'}} data-testid="groupName">{course.name}</div>*/}
                             {!course.overlap && <div data-testid="groupName" className='name ml-2 text-right'>{course.name}</div>}
                           </div>
-                          {<Slider course={course} i={index} change={changeSlide} />}
+                          {<Slider course={course} i={index} balance={balance} change={changeSlide}/>}
                           
                         </div>
                         <div className='item-details'>
@@ -205,12 +216,14 @@ function BoardEditable(props) {
                         </div>
 
                         <div className='d-flex'>
+                          
                           {<div data-testid="groupName " className="ml-2" >סמסטר {course.semester}'</div>}
                           {<div data-testid="groupName " className="ml-2">יום {course.day}'</div>}
                           {<div data-testid="groupName">{(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}</div>}
-                          {<Checkbox course={course} i={index} change={changeCheckbox} />}
-                          {/*<Switch course={course} i={index} change={changeCheckbox} />*/}
-
+                          <div className="mr-auto">
+                            {<Checkbox course={course} i={index} change={changeCheckbox} />}
+                            {/*<Switch course={course} i={index} change={changeCheckbox} />*/}
+                          </div>
                         </div>
                       </div>
                     )}

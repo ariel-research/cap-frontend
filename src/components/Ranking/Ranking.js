@@ -99,7 +99,7 @@ function Ranking(props) {
                             <div id="collapseTwo" className="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accor-danger">
                                 <div className="accordion-body">
                                     <ul>
-                                        <li>לא ניתן לקבל קורס שדורג עם 0 נקודות</li>
+                                        <li>לא ניתן לקבל קורס שלא סומן כאופציונלי</li>
                                         <li>בעת שמירת הדירוג, יתרת הדירוג חייבת לעמוד על 0 נקודות בדיוק</li>
                                     </ul>
                                 </div>

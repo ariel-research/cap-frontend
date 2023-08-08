@@ -1,10 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-const URL = process.env.REACT_APP_BASE_URL;
-const PORT_BACKEND = process.env.REACT_APP_DJANGO_SERVER_PORT;
-
-const BASE_URL= `https://csariel.xyz/`;
+const BASE_URL= process.env.REACT_APP_BASE_URL;;
 
 export class API {
     static loginUser(body)
