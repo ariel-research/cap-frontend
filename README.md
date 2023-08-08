@@ -20,7 +20,6 @@ NVM, Nodejs v15.0.0
 4. Install dependencies: \
   `npm i`
 6. Create an .env file and customize the project's environment variables. You can see [here](.env-example) an example.
-	> Please ensure that that your `.gitignore` file includes the `.env` file.
    
 ## Available Scripts
 
