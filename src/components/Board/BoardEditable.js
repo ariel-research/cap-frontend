@@ -157,6 +157,7 @@ function BoardEditable(props) {
       <div className="rowC justify-content-center container-fluid mt-3">
         <div>
           <div className="btn-group" role="group" aria-label="Basic outlined example" onClick={suggestClicked}>
+            דוגמאות לניקוד: &nbsp;&nbsp;&nbsp;
             <button type="button" value="o" className="btn btn-outline-primary" >חלוקה לפי הסדר</button>
             <button type="button" value="e" className="btn btn-outline-primary" >חלוקה שווה</button>
             <button type="button" value="z" className="btn btn-outline-primary" >איפוס הכל</button>
@@ -185,7 +186,7 @@ function BoardEditable(props) {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className="item"
+                        className={course.is_acceptable? 'item': 'item unacceptable'}
                       >
                         <div className="item-title">
                           <div className="i-name">

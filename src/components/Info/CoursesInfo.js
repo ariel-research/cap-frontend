@@ -62,7 +62,9 @@ function App() {
 
       <h2 className='text-center mt-5'><b>מערכת שעות</b>
       <br/>
+      {/*
       שימו לב: המערכת עדיין לא מעודכנת לשנת ה'תשפ"ד
+      */}
       </h2>
       <div className="con-btn item-center">
         <button data-testid="semesterA" className="btn btn-primary" onClick={buttonClicked(false)}>סמסטר א</button>        

@@ -34,7 +34,7 @@ function Board(props) {
                 <div data-testid="card" className='whiteLines overflow-auto  item-center'>
                     {course_group.map((course, index) => {
                     return (
-                        <div key={index} className='item'>
+                        <div key={index} className={course.is_acceptable? 'item': 'item unacceptable'}>
                             <div className='item-title'>
 
                                 <div className="i-name">
@@ -57,6 +57,8 @@ function Board(props) {
                                 <div data-testid="groupName " className="ml-2" >סמסטר {course.semester}'</div>
                                 <div data-testid="groupName " className="ml-2">יום {course.day}'</div>
                                 <div data-testid="groupName">{(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}</div>
+
+                                <div className="left">{course.is_acceptable? '': 'לא מוכן/ה לקחת'}</div>
                             </div>
                         </div>
                     )

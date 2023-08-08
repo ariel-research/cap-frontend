@@ -63,9 +63,9 @@ function Ranking(props) {
 
     return (
         <div className="Rank" data-testid="Rank">
-            <Navbar active='דירוג קורסי בחירה' />
+            <Navbar active='דירוג הקורסים' />
             <div className='text text-center '>
-                <h1 className='Headline' >דירוג קורסי בחירה</h1>
+                <h1 className='Headline' >דירוג הקורסים</h1>
                 <div className=" justify-content-center">
                     <div className="accordion mt-2 " id="accor-how">
                         <div className="accordion-item">
@@ -77,14 +77,14 @@ function Ranking(props) {
                             <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accor-how">
                                 <div className="accordion-body">
                                     <ul>
-
-                                        <li>יש לחלק 1000 נקודות בין קורסי הבחירה לפי העדפה</li>
-                                        <li>ניתן להשתמש בחיצי המקלדת לדירוג מדויק יותר</li>
-                                        <li>ניתן לגרור את הקורסים על מנת להשתמש בהצעות לחלוקת ניקוד</li>
-                                        <li>ככל שיש יותר נקודות עבור קורס מסויים - גדל הסיכוי לקבלו</li>
+                                       <li>לחצו על "עריכה" על מנת להתחיל בדירוג.</li>
+                                       <li>החליטו איזה קורסים אתם מוכנים לקחת, סמנו אותם ב-V  ומחקו את הסימון מהקורסים שאתם לא מוכנים לקחת.</li>
+                                       <li>גררו וסדרו את הקורסים שאתם מוכנים לקחת לפי סדר העדיפות שלכם - שימו למעלה את הקורסים שאתם הכי רוצים. </li>
+                                       <li>חלקו את 1000 הנקודות שלכם בין הקורסים שאתם מוכנים לקחת - תנו יותר נקודות לקורסים שאתם רוצים יותר.</li>
+                                       <li>ניתן להשתמש בחיצי המקלדת לניקוד מדויק יותר.</li>
+                                       <li>לאחר שסיימתם, לחצו על "שמירת הדירוג".</li>
                                     </ul>
-                                    <hr />
-                                    <div className='text-right fw-bold'>יש ללחוץ על עריכה על מנת להתחיל בדירוג</div>
+                                    <div className='text-right fw-bold'></div>
                                 </div>
                             </div>
                         </div>
@@ -99,8 +99,8 @@ function Ranking(props) {
                             <div id="collapseTwo" className="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accor-danger">
                                 <div className="accordion-body">
                                     <ul>
-                                        <li>לא ניתן לקבל קורס שלא סומן כאופציונלי</li>
-                                        <li>בעת שמירת הדירוג, יתרת הדירוג חייבת לעמוד על 0 נקודות בדיוק</li>
+                                        <li>אם לא סימנתם  V  ליד "מוכן/ה לקחת", לא תקבלו את הקורס בשום מקרה - גם אם לא יישאר מקום בקורסים אחרים. </li>
+                                        <li>בעת שמירת הדירוג, יתרת הדירוג חייבת לעמוד על 0 נקודות בדיוק.</li>
                                     </ul>
                                 </div>
                             </div>

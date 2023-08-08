@@ -20,7 +20,7 @@ body
     right: 0;
     left: 0;
     margin: auto;
-  }
+}
 
 .ranking{
     /* font-size: 50px !important;
@@ -58,7 +58,6 @@ h3{
     margin-top: 15px;
     font-weight: bold;
     color: rgb(85, 83, 83);
- 
 }
 .course_group .item{
     /* width: 90%; */
@@ -69,6 +68,14 @@ h3{
     box-shadow: 4px 4px rgba(0, 0, 0, 0.2) ;
     margin:10px;    
 }
+
+.course_group .unacceptable {
+  color:#aaa;
+  /*text-decoration: line-through;*/
+}
+
+
+
 .i-name{
   display: flex;
   align-items: flex-end;
@@ -231,4 +238,10 @@ option {
 }
 .toast-score{
   z-index: 11;
+}
+
+
+
+.left {
+  margin-right: 15em;
 }
