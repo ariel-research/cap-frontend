@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-const Slider = ({ course, i, change }) => {
+const Slider = ({ course, i, balance, change }) => {
   const [value, setValue] = useState(course.score);
   const handleOnChange = (e) => {
     const value = e.target.value;
+    const diff = value - course.score;
+    if (diff>0 && (balance-diff)<0) {
+      if (balance>0){
+        const max_value = course.score+balance
+        setValue(max_value)
+        change(course.score+balance, i);
+      }
+      return;
+    }
     setValue(value);
     change(value, i);
   };
@@ -23,7 +32,7 @@ const Slider = ({ course, i, change }) => {
         value={value}
         className="slider"
         onChange={handleOnChange}
-        disabled={!course.is_included}
+        disabled={!course.is_acceptable}
       /> 
     </div>
   );

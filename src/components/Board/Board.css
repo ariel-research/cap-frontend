@@ -215,19 +215,6 @@ option {
   
 }
 
-.container-bubbletext{
-  background: url("./bubble-text.png") no-repeat top;
-  background-size: 100% 100px;
-  align-items: center;
-  text-align: center;
-  width: fit-content;
-  height: max-content;
-  display:flex; flex-direction:row;
-
-}
-
-
-
 .title {
   flex-grow: 1;
   margin: 0 10px;
@@ -241,4 +228,7 @@ option {
 .list-scroll{
   max-height: 350px;
   width: 100%;
+}
+.toast-score{
+  z-index: 11;
 }
