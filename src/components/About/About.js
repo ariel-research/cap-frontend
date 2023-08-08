@@ -11,16 +11,28 @@ function About() {
         <div className="about">
             {token['mr-token']? <Navbar/> : null }
             <div className="container-fluid mt-2">
-            <h1>קצת על האתר...</h1>
-                <p>ד"ר אראל דוד סגל-הלוי</p>
-                <br/>
+            <h1>אודות האתר</h1>
+            <p>
+                תהליך הרישום הנוכחי לקורסי בחירה מתנהל בשיטת "כל הקודם זוכה".
+                </p>
+            <p>         
+                בעקבות בקשות רבות של סטודנטים, הוחלט בבית-הספר למדעי המחשב לנסות שיטה חדשה,
+                שמטרתה להשיג חלוקה הוגנת של קורסים.
+                </p>                
+            <p>
+                האתר הוקם כדי להדגים ולנסות את השיטה, על-מנת שנוכל להחליט בהמשך אם היא אכן טובה יותר מהשיטה הקיימת.
+            </p>
+            <br/>
               
                 {Releases.map((item, index) => (
                     <div key={index}>
                     <h4>גרסא <b>{item.version}</b> {item.year}</h4>
-                    <p>{`מתכנתים: ${item.programmers}`}</p>
+                    <p>{`תיכנות: ${item.programmers}`}</p>
                     </div>
                 ))}
+                <div>
+                    הנחיה: ד"ר אראל סגל-הלוי.
+                </div>
                 <br/>
                      <ul className="list-unstyled d-flex justify-content-center ">
                  <li className="ms-3"><a href='https://github.com/ariel-research' className="link-body-emphasis"><Github/></a></li>
