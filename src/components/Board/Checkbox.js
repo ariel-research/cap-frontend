@@ -18,7 +18,7 @@ const Checkbox = ({ course, i, change }) => {
     <div className="form-check">
         <input className="form-check-input" type="checkbox" checked={is_checked} id="flexCheckChecked" onChange={handleOnChange}/>
         <label className="form-check-label" htmlFor="flexCheckChecked">
-        אופציונאלי
+        מוכן/ה לקחת
         </label>
     </div>
   );
