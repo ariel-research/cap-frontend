@@ -58,7 +58,7 @@ function Board(props) {
                                 <div data-testid="groupName " className="ml-2">יום {course.day}'</div>
                                 <div data-testid="groupName">{(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}</div>
 
-                                <div className="checkbox-left">{course.is_acceptable? '': 'לא מוכן/ה לקחת'}</div>
+                                <div className="ml-2">{course.is_acceptable? '': 'לא מוכן/ה לקחת'}</div>
                             </div>
                         </div>
                     )

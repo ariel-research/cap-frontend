@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './Board.css';
 import { API } from "../../api/api-service";
 import { useCookies } from "react-cookie";
 import Slider from './slider';
 import Checkbox from './Checkbox'
-import Toast from './Toast'
-import Switch from './Switch'
+//import Switch from './Switch'
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { usolve } from "mathjs"
@@ -19,11 +18,13 @@ function BoardEditable(props) {
   const [num_courses_acceptable, setNumCoursesAcceptable] = useState(0)
   const [initializationDone, setInitializationDone] = useState(false); // New state variable
   const MAX_POINTS = 1000;  
-  const getNumAcceptableCourses = () => { 
+
+  
+  const getNumAcceptableCourses = useCallback(() => { 
     return course_group.reduce((accumulator, currentValue) => {
       return  currentValue.is_acceptable? accumulator + 1 : accumulator 
      },0)
-  }
+  },[course_group])
 
   const handleEditClicked = () => {
     window.location.reload(false);
@@ -131,7 +132,7 @@ function BoardEditable(props) {
       setNumCoursesAcceptable(getNumAcceptableCourses());
       setInitializationDone(true); // Set the flag to true after initialization
     }
-  }, [course_group]);
+  }, [course_group,initializationDone,getNumAcceptableCourses]);
 
 
   useEffect(() => {
