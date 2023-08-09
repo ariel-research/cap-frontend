@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './CoursesInfo.css';
-import CourseGroupList from './CourseGroupList';
 import Navbar from "../Navbar/Navbar";
 import { API } from '../../api/api-service';
 import Timetable from "./Timetable";
@@ -9,7 +8,7 @@ import { useCookies } from "react-cookie";
 
 function App() {
 
-  const [course_group, setCourse_group] = useState([]);
+  /*const [course_group, setCourse_group] = useState([]);*/
   const [courses_A, setCourses_A] = useState([]);
   const [courses_B, setCourses_B] = useState([]);
   const [A_or_B, setA_or_B] = useState(false); //false is A
@@ -17,9 +16,9 @@ function App() {
   const [token] = useCookies(['mr-token']);
 
   useEffect(() => {
-    API.getCourse_group(token['mr-token'])
+    /*API.getCourse_group(token['mr-token'])
       .then(resp => setCourse_group(resp))
-      .catch(error => console.log(error))
+      .catch(error => console.log(error))*/
     API.getCoursesA(token['mr-token'])
       .then(resp => setCourses_A(resp))
       .catch(error => console.log(error))
@@ -54,12 +53,6 @@ function App() {
       <header className="App-header">
       <h1 className="Headline">פרטי הקורסים</h1>
       </header>
-      <h4>לחצו על הקורס הרצוי לפרטים נוספים</h4>
-      <div className="layout">
-        
-        <CourseGroupList course_group={course_group} />
-      </div>
-
       <h2 className='text-center mt-5'><b>מערכת שעות</b>
       <br/>
       {/*
@@ -70,7 +63,7 @@ function App() {
         <button data-testid="semesterA" className="btn btn-primary" onClick={buttonClicked(false)}>סמסטר א</button>        
         <button data-testid="semesterB" className="btn btn-primary" onClick={buttonClicked(true)}>סמסטר ב</button>
       </div>
-      <div style={{width:'90%'}}>
+      <div className="item-center" style={{width:'90%'}}>
         {A_or_B ? (
           <Timetable course_group={courses_B} />
         ) : <Timetable course_group={courses_A} />
