@@ -15,7 +15,8 @@ function Board(props) {
 
     useEffect(() => {
         API.getLast_ranking(token['mr-token'])
-            .then(resp => setCourse_group(resp))
+            .then(resp => {setCourse_group(resp)
+            console.log(resp)})
             .catch(error => console.log(error))
     }, [token])
 
@@ -51,15 +52,24 @@ function Board(props) {
                             <div className='item-details'>
                                 <div data-testid="groupName" className='lecturer'>{course.lecturer}</div>
                             </div>
-
-
                             <div className='d-flex'>
-                                <div data-testid="groupName " className="ml-2" >סמסטר {course.semester}'</div>
+                            <div data-testid="groupName " className="ml-2" >סמסטר {course.semester}'</div>
+                            <div className="mr-auto">{course.is_acceptable? '': 'לא מוכן/ה לקחת'}</div>
+                            </div>
+                            <div className='d-flex'>
+                                
                                 <div data-testid="groupName " className="ml-2">יום {course.day}'</div>
                                 <div data-testid="groupName">{(course.time_start).substring(0, 5)}-{(course.time_end).substring(0, 5)}</div>
-
-                                <div className="ml-2">{course.is_acceptable? '': 'לא מוכן/ה לקחת'}</div>
                             </div>
+                            
+                            {course.course_time? (
+                                course.course_time.map((time,i_time) => (
+                                    <div className='d-flex' key={i_time}>
+                                        <div data-testid="groupName " className="ml-2">יום {time.day}'</div>
+                                        <div data-testid="groupName">{(time.time_start).substring(0, 5)}-{(time.time_end).substring(0, 5)}</div>
+                                    </div>
+                                ))): null }
+                               
                         </div>
                     )
                 })}
