@@ -1,31 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import Navbar from "../Navbar/Navbar";
-import { API } from "../../api/api-service";
-import { useCookies } from "react-cookie";
+import UserRoleRedirect from "../Manage/UserRoleRedirect"
 import './Results.css'
 
 function Results(props)
 {
     const [courses, setCourses] = useState([]);
-    const [ token ] = useCookies(['mr-token']);
-
-    useEffect( () => {
-        if(!token['mr-token']) window.location.href = '/';
-        API.studentOrOffice(token['mr-token'])
-        .then(resp => {                
-            if(resp === 2) //office
-                window.location.href = '/office';
-            if(resp === 3) //error
-                alert("error")
-        })
-        .catch(error => console.log(error))
-
-        API.getResults(token['mr-token'])
-        .then(resp => setCourses(resp))
-        .catch(error => console.log(error))
-    }, [token])
-
-    
+    UserRoleRedirect()
 
     if(courses.length === 0)
     {

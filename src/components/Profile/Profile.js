@@ -4,28 +4,14 @@ import { API } from '../../api/api-service';
 import { isValidIsraeliID } from '../Registration/FieldValidators'
 import './Profile.css';
 import Navbar from "../Navbar/Navbar";
+import UserRoleRedirect from "../Manage/UserRoleRedirect"
+
 function Homepage() {
   const [token] = useCookies(['mr-token']);
   const [profile, setProfile] = useState(null);
 
-  useEffect(() => {
-    if (!token['mr-token']) {
-      window.location.href = '/';
-    } else {
-      API.studentOrOffice(token['mr-token'])
-        .then((resp) => {
-          if (resp === 2) {
-            // office
-            window.location.href = '/office';
-          }
-          if (resp === 3) {
-            // error
-            alert('error');
-          }
-        })
-        .catch((error) => console.log(error));
-    }
-  }, [token]);
+  UserRoleRedirect()
+
 
   useEffect(() => {
 
@@ -136,7 +122,7 @@ function Homepage() {
               <label className="col-sm-4 col-form-label">מסלול לימודים:</label>
                 <div className="dropdown">
                 <select name="program" value={profile.program} onChange={(e) => handleStudentFieldChange('program', parseInt(e.target.value))}>
-                  <option value="1">בסיסי</option>
+                  <option value="1">אחר</option>
                   <option value="2">מצטיינים</option>
                 </select>
             </div>
