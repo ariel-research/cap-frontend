@@ -4,14 +4,15 @@ import { API } from '../../api/api-service';
 import { isValidIsraeliID } from '../Registration/FieldValidators'
 import './Profile.css';
 import Navbar from "../Navbar/Navbar";
-import UserRoleRedirect from "../Manage/UserRoleRedirect"
+import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
 
 function Homepage() {
   const [token] = useCookies(['mr-token']);
   const [profile, setProfile] = useState(null);
 
-  UserRoleRedirect()
-
+  useEffect(() => {
+    UserRoleRedirect(token)
+  },[token])
 
   useEffect(() => {
 

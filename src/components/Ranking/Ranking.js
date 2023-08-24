@@ -3,7 +3,7 @@ import BoardEditable from "../Board/BoardEditable";
 import "./Ranking.css"
 import Board from "../Board/Board";
 import Navbar from "../Navbar/Navbar";
-import UserRoleRedirect from "../Manage/UserRoleRedirect"
+import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
 import { API } from "../../api/api-service";
 import { useCookies } from "react-cookie";
 
@@ -13,8 +13,10 @@ function Ranking(props) {
     const [time_message, setTime_message] = useState("");
     const [ranking_start, setRanking_start] = useState(false);
     const [token] = useCookies(['mr-token']);
-    UserRoleRedirect()
 
+    useEffect(() => {
+        UserRoleRedirect(token)
+    },[token])
 
     useEffect(() => {
         API.getTime(token['mr-token'])

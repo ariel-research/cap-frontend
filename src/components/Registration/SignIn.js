@@ -4,6 +4,7 @@ import { API_AUTH } from '../../api/auth-service';
 import { useCookies } from "react-cookie";
 import './SignForms.css';
 import logo1 from '../../logo.png';
+import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
 
 function Auth() {
     const [username, setUsername] = useState('');
@@ -24,6 +25,7 @@ function Auth() {
                     if (resp.token) {
                         setToken('mr-token', resp.token)
                         console.log(token)
+
                     } else {
                         API.getUserStatus(username)
                             .then(resp => {
@@ -38,19 +40,8 @@ function Auth() {
     }
 
     useEffect(() => {
-        if (token['mr-token']) {
-            API.studentOrOffice(token['mr-token'])
-                .then(resp => {
-                    if (resp === 1) //student
-                        window.location.href = '/home';
-                    if (resp === 2) //office
-                        window.location.href = '/office';
-                    if (resp === 3) //error
-                        alert("error")
-                })
-                .catch(error => console.log(error))
-        }
-    }, [token])
+        UserRoleRedirect(token,true)
+    },[token])
 
     return (
         <div className="login">

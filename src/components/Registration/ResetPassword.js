@@ -1,5 +1,4 @@
 import React, { useState} from 'react';
-import { API } from '../../api/api-service';
 import { API_AUTH } from '../../api/auth-service';
 
 import './SignForms.css';
@@ -8,9 +7,6 @@ import { useHistory } from 'react-router-dom';
 
 function ResetPass() {
     const [email, setEmail] = useState('');
-    const [code, setCode] = useState('');
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-    const history = useHistory();
     const [message, setMessage] = useState('');
    
 
@@ -19,7 +15,6 @@ function ResetPass() {
 
         if (!email) {
             setMessage("כתובת האימייל חסרה")
-            setIsButtonDisabled(true)
         } else {
 
             API_AUTH.SendResetPasswordLink({'login': email})

@@ -1,12 +1,17 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import Navbar from "../Navbar/Navbar";
-import UserRoleRedirect from "../Manage/UserRoleRedirect"
+import { useCookies } from "react-cookie";
+import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
 import './Results.css'
 
 function Results(props)
 {
     const [courses, setCourses] = useState([]);
-    UserRoleRedirect()
+    const [token] = useCookies(['mr-token']);
+
+    useEffect(() => {
+        UserRoleRedirect(token)
+    },[token])
 
     if(courses.length === 0)
     {

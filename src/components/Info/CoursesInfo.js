@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CoursesInfo.css';
 import Navbar from "../Navbar/Navbar";
-import UserRoleRedirect from "../Manage/UserRoleRedirect"
+import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
 import { API } from '../../api/api-service';
 import Timetable from "./Timetable";
 import { useCookies } from "react-cookie";
@@ -15,7 +15,9 @@ function App() {
   const [A_or_B, setA_or_B] = useState(false); //false is A
 
   const [token] = useCookies(['mr-token']);
-  UserRoleRedirect()
+  useEffect(() => {
+    UserRoleRedirect(token)
+},[token])
 
   useEffect(() => {
     /*API.getCourse_group(token['mr-token'])
