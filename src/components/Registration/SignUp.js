@@ -256,7 +256,7 @@ function Register() {
           <div className="dropdown">
             <select name="program" value={program} onChange={handleInputChange}  required>
               <option value="">בחרו מסלול</option>
-              <option value="1">בסיסי</option>
+              <option value="1">אחר</option>
               <option value="2">מצטיינים</option>
             </select>
           </div>
