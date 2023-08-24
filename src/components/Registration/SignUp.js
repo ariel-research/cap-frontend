@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { API } from '../../api/api-service';
+import { API_AUTH } from '../../api/auth-service';
+
 import './SignForms.css';
 import { validate } from 'email-validator';
 import {isValidIsraeliID, isEmailAriel} from './FieldValidators'
@@ -10,11 +12,12 @@ import { isNumber } from 'mathjs';
 function Register() {
 
   const [student_id, setStudentId] = useState('');
+  const [username,setUserName] = useState('');
   const [first_name, setFirstname] = useState('');
   const [last_name, setLastname] = useState('');
   const [email, setEmail] = useState('');
-  const [password1, setPassword1] = useState('');
-  const [password2, setPassword2] = useState('');
+  const [password, setpassword] = useState('');
+  const [password_confirm, setpassword_confirm] = useState('');
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState('');
   const [validated, setValidated] = useState('');
@@ -29,11 +32,11 @@ function Register() {
     if (name === 'last_name') setLastname(value);
     if (name === 'email') {
       setEmail(value);
-
+      setUserName(value);
     }
-    if (name === 'password1') setPassword1(value);
+    if (name === 'password') setpassword(value);
 
-    if (name === 'password2') setPassword2(value);
+    if (name === 'password_confirm') setpassword_confirm(value);
 
     if (name === 'amount_elective') {
       if (isNumber(value) &&(value > 0 && value <= 6))
@@ -67,14 +70,14 @@ function Register() {
       errors.email = 'כתובת האימייל חייבת להסתיים בariel.ac.il';
     }
 
-    if (!password1) {
-      errors.password1 = 'סיסמא נדרשת';
+    if (!password) {
+      errors.password = 'סיסמא נדרשת';
     }
 
-    if (!password2) {
-      errors.password2 = 'אימות סיסמא נדרש';
-    } else if (password1 !== password2) {
-      errors.password2 = 'סיסמאות לא תואמות';
+    if (!password_confirm) {
+      errors.password_confirm = 'אימות סיסמא נדרש';
+    } else if (password !== password_confirm) {
+      errors.password_confirm = 'סיסמאות לא תואמות';
     }
     if (!amount_elective){
       errors.amount_elective = 'מספר קורסי בחירה נדרש'
@@ -100,9 +103,42 @@ function Register() {
       setValidated(true)
       return;
     }
-  
+
+    let user_req = {
+      'username': username,
+      'first_name': first_name, 
+      'last_name':last_name,
+      'email': email,
+      'password': password,
+      'password_confirm': password_confirm
+    }
+
+    API_AUTH.RegisterUser(user_req)
+    .then((resp) => {
+      console.log(resp); 
+      let student_req = {
+        'user_id': resp['id'],
+        'student_id': student_id,
+        'amount_elective':amount_elective,
+        'program': program,
+      }
+      API_AUTH.RegisterAsStudent(student_req)
+      .then((resp) => {
+        console.log(resp);
+        setMessage(resp['message'])
+      })
+      .catch((error) => {
+        console.log(error);
+        setMessage(resp['error'])
+
+      })
+
+    })
+    .catch((error) => {
+      console.log(error);
+    })
     //add user_type if needed
-    API.registerUser({student_id,first_name, last_name, email, password1, password2, amount_elective,program })
+    /*API.registerUser({student_id,first_name, last_name, email, password, password_confirm, amount_elective,program })
       .then((resp) => {
         console.log(resp); // Add this line
         setMessage(resp['message'])
@@ -110,7 +146,7 @@ function Register() {
       .catch((error) => {
         console.log(error);
         setMessage(error);
-      })
+      })*/
   };
 
   return (
@@ -189,13 +225,13 @@ function Register() {
               className="form-control field-input left "
               type="password"
               placeholder="סיסמה"
-              name="password1"
-              value={password1}
+              name="password"
+              value={password}
               onChange={handleInputChange}
               required
             />
 
-            {errors.password1 && <span className="invalid-feedback">{errors.password1}</span>}
+            {errors.password && <span className="invalid-feedback">{errors.password}</span>}
           </div>
 
           <div className=" mb-2">
@@ -204,14 +240,14 @@ function Register() {
               className="form-control field-input left "
               type="password"
               placeholder="אימות סיסמא"
-              name="password2"
-              value={password2}
+              name="password_confirm"
+              value={password_confirm}
               onChange={handleInputChange}
               required
             />
 
-            {errors.password2 && (
-              <span className="invalid-feedback">{errors.password2}</span>
+            {errors.password_confirm && (
+              <span className="invalid-feedback">{errors.password_confirm}</span>
             )}
           </div>
           <div className=" mb-2">

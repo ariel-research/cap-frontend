@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { API } from '../../api/api-service';
+import { API_AUTH } from '../../api/auth-service';
 import './SignForms.css';
 import logo1 from '../../logo.png';
 import { useLocation } from 'react-router-dom';
@@ -15,6 +15,8 @@ function NewPassword() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const token = params.get('token');
+  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'password1') setPassword1(value);
@@ -51,8 +53,13 @@ function NewPassword() {
       setValidated(true)
       return;
     }
-
-    API.ResetPasswordConfirm({token, password: password1})
+    const body = {
+      'user_id': params.get('user_id'),
+      'timestamp': params.get('timestamp'),
+      'signature' :params.get('signature'),
+      'password': password1
+    }
+    API_AUTH.ResetPassword(body)
       .then((resp) => {
         alert("סיסמתך החדשה נשמרה בהצלחה") // Add this line
         window.location.href='/'

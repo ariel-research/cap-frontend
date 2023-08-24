@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API } from '../../api/api-service';
+import { API_AUTH } from '../../api/auth-service';
 import { useCookies } from "react-cookie";
 import './SignForms.css';
 import logo1 from '../../logo.png';
@@ -17,8 +18,9 @@ function Auth() {
         if (!username || !password) {
             setMessage("אימייל או סיסמא ריקים")
         } else {
-            API.loginUser({ username, password })
+            API_AUTH.LoginUser({ 'login': username, 'password': password })
                 .then(resp => {
+                    console.log(resp)
                     if (resp.token) {
                         setToken('mr-token', resp.token)
                         console.log(token)
@@ -71,7 +73,7 @@ function Auth() {
                         value={password} onChange={evt => setPassword(evt.target.value)} />
  
                     <button className="btn btn-primary w-100 py-2" data-testid="loginButton" type="submit" onClick={loginClicked}>התחברות</button>
-                    <div className="text-center text-muted mt-5 mb-0">שכחת את הסיסמא? <a href="/reset_password"
+                    <div className="text-center text-muted mt-5 mb-0">שכחת את הסיסמא? <a href="/send-email-reset-password"
                     className="fw-bold text-body"><u>איפוס הסיסמא</u></a></div>
                 </form>
                 <p className="text-center text-muted mt-5 mb-0">עדיין לא נרשמת? <a href="/register"

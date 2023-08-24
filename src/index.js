@@ -11,6 +11,7 @@ import Office from './components/Office/Office'
 import Auth from './components/Registration/SignIn';
 import Reg from './components/Registration/SignUp'
 import ResetPass from './components/Registration/ResetPassword'
+import VerifyUser from './components/Registration/VerifyUser'
 import NewPassword from './components/Registration/NewPassword'
 import Homepage from './components/Profile/Profile'
 import About from './components/About/About';
@@ -32,8 +33,9 @@ export default function Router() {
           <Route exact path="/office" component={Office} />
           <Route exact path="/home" component={Homepage} />
           <Route exact path="/about" component={About}/>
-          <Route exact path="/reset_password" component={ResetPass} />
-          <Route exact path="/new_password" component={NewPassword} />
+          <Route exact path="/send-email-reset-password" component={ResetPass} />
+          <Route exact path="/reset-password" component={NewPassword} />
+          <Route exact path="/verify-user" component={VerifyUser} />
         </BrowserRouter>
         <Footer/>
       </CookiesProvider>

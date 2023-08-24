@@ -1,5 +1,7 @@
 import React, { useState} from 'react';
 import { API } from '../../api/api-service';
+import { API_AUTH } from '../../api/auth-service';
+
 import './SignForms.css';
 import logo1 from '../../logo.png';
 import { useHistory } from 'react-router-dom';
@@ -10,6 +12,7 @@ function ResetPass() {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const history = useHistory();
     const [message, setMessage] = useState('');
+   
 
     const resetClicked = (event) => {
         event.preventDefault(); // Prevent form submission and page refresh
@@ -19,11 +22,9 @@ function ResetPass() {
             setIsButtonDisabled(true)
         } else {
 
-            API.ResetPasswordEmail({email})
+            API_AUTH.SendResetPasswordLink({'login': email})
                 .then(resp => {
-                    setMessage("קוד לאיפוס סיסמא נשלח לכתובת האימייל שהזנת");
-                    if( resp.status === 1)
-                        setIsButtonDisabled(false)
+                    setMessage("קישור לאיפוס סיסמא נשלח לכתובת האימייל שהזנת");
                 })
                 .catch(error => {
                      console.log(error)
@@ -32,16 +33,7 @@ function ResetPass() {
         }
 
     }
-    const resetCodeClicked = (event) => {
-        event.preventDefault(); // Prevent form submission and page refresh
-        API.ResetPasswordCode({"token" : code})
-        .then(resp => {
-            history.push('/new_password?token=' + code);
 
-        })
-        .catch(error => console.log(error))
-
-    }
 
     return (
         <div className="login">
@@ -62,11 +54,6 @@ function ResetPass() {
 
                     <button className="btn btn-primary mt-2 py-2 d-flex item-center" data-testid="resetButton" type="submit" onClick={resetClicked}>שליחה</button>
 
-                    <label className='form-label d-flex text-right mt-2 mb-1' htmlFor="">קוד האיפוס</label>
-                    <input type="text" data-testid="code" className="form-control left" id="floatingInput" placeholder="קוד איפוס סיסמא"
-                        value={code} onChange={evt => setCode(evt.target.value)} />
-                    <button className="btn btn-primary mt-2 w-100 py-2" data-testid="ResetCodeButton"
-                     type="submit" onClick={resetCodeClicked} disabled={isButtonDisabled}>איפוס</button>
 
                 </form>
                 <p className="text-center text-muted mt-5 mb-0">נזכרת בסיסמא?<a href="/"
