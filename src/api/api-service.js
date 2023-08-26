@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-const BASE_URL= process.env.REACT_APP_BASE_URL;;
+const BASE_URL= process.env.REACT_APP_BASE_URL;
 
 export class API {
     static loginUser(body)
@@ -304,6 +304,22 @@ export class API {
         })
         .then(resp => resp.json())
     }
+
+    static save_results_feedback(course_group, token)
+    {
+        return fetch(BASE_URL+"api/ranking/save_results_feedback/",
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            },
+            body: JSON.stringify( {ranks: course_group} )
+        })
+        .then(resp => resp.json())
+    }
+    
     static createStudents(token, jsonData)
     {
         return fetch(BASE_URL+"api/student/create_objects/",

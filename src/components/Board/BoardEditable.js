@@ -10,7 +10,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { usolve } from "mathjs"
 
 function BoardEditable(props) {
-  const [course_group, setCourse_group] = useState([]);
+  const {course_group, setCourse_group}= props;
   const [token] = useCookies(['mr-token']);
   const [balance, setBalance] = useState(props.balance);
   //let student_details = JSON.parse(localStorage.getItem('student_details'));

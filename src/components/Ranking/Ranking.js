@@ -9,6 +9,7 @@ import { useCookies } from "react-cookie";
 
 function Ranking(props) {
     const [edit, setEdit] = useState(false);
+    const [course_group, setCourse_group] = useState([]);
     const [balance, setBalance] = useState();
     const [time_message, setTime_message] = useState("");
     const [ranking_start, setRanking_start] = useState(false);
@@ -27,6 +28,12 @@ function Ranking(props) {
             .catch(error => console.log(error))
     }, [token, time_message])
 
+    useEffect(() => {
+        API.getLast_ranking(token['mr-token'])
+            .then(resp => {setCourse_group(resp)
+            console.log(resp)})
+            .catch(error => console.log(error))
+    }, [token])
 
     const EditClicked = b => evt => {
         if (ranking_start) {
@@ -103,10 +110,10 @@ function Ranking(props) {
                 <div className='container-rank item-center'>
 
                     {!edit ?
-                        <Board EditClicked={EditClicked} time_message={time_message} />
+                        <Board course_group = {course_group} setCourse_group = {setCourse_group} EditClicked={EditClicked} time_message={time_message} />
 
                         :
-                        <BoardEditable SaveClicked={SaveClicked} time_message={time_message} balance={balance} />
+                        <BoardEditable course_group = {course_group} setCourse_group = {setCourse_group} SaveClicked={SaveClicked} time_message={time_message} balance={balance} />
                     }
 
                 </div>

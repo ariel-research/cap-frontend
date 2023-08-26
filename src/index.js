@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { Route, BrowserRouter } from 'react-router-dom';
 import Ranking from './components/Ranking/Ranking';
 import Results from './components/Results/Results';
+import Feedback from './components/Feedback/Feedback';
 import Algo from './components/Office/algo';
 import Office from './components/Office/Office'
 import Auth from './components/Registration/SignIn';
@@ -29,6 +30,7 @@ export default function Router() {
           <Route exact path="/courses_info" component={App} />
           <Route exact path="/ranking" component={Ranking} />
           <Route exact path="/results" component={Results} />
+          <Route exact path="/feedback" component={Feedback} />
           <Route exact path="/algorithm" component={Algo} />
           <Route exact path="/office" component={Office} />
           <Route exact path="/home" component={Homepage} />

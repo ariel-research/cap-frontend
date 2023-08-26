@@ -19,5 +19,10 @@ export const MenuItems = [
         url:'/results',
         cName: 'nav-links'
     },
+    {
+        title: 'משוב',
+        url:'/feedback',
+        cName: 'nav-links'
+    },
 
 ]

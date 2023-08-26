@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Board.css';
+import Checkbox from '../Feedback/Checkbox'
 import { API } from "../../api/api-service";
 import { useCookies } from "react-cookie";
 
 function Board(props) {
 
-    const [course_group, setCourse_group] = useState([]);
+    const {course_group, setCourse_group}= props;
     const [token] = useCookies(['mr-token']);
     let balance = 1000 - course_group.reduce(function (prev, current) {
         return prev + +current.score
@@ -13,23 +14,18 @@ function Board(props) {
 
 
 
-    useEffect(() => {
-        API.getLast_ranking(token['mr-token'])
-            .then(resp => {setCourse_group(resp)
-            console.log(resp)})
-            .catch(error => console.log(error))
-    }, [token])
-
-
     return (
 
         <div className='item-center' >
-            <div className="justify-items-center item-center">
+            {!props.feedback? <div className="justify-items-center item-center">
                 <p className="ramainingTime">{props.time_message}</p>
                 <div style={{ width: 'fit-content' }} className="alert alert-secondary item-center mb-2" role="alert">יתרת ניקוד: {balance}
                 </div>
                 <button data-testid="editButton" className="btn btn-lg btn-primary" onClick={props.EditClicked(balance)}>עריכה</button>
-            </div>
+            </div>: 
+                  <button className="btn btn-primary ml-2" onClick={props.SaveClicked(course_group)}>שמירת המשוב</button>
+
+}
 
             <div className='course_group bg-light'>
                 <div data-testid="card" className='whiteLines overflow-auto  item-center'>
@@ -54,7 +50,7 @@ function Board(props) {
                             </div>
                             <div className='d-flex'>
                             <div data-testid="groupName " className="ml-2" >סמסטר {course.semester}'</div>
-                            <div className="mr-auto">{course.is_acceptable? '': 'לא מוכן/ה לקחת'}</div>
+                            <div className="mr-auto">{course.is_acceptable? props.feedback? <Checkbox course={course} i={index} change={props.changeCheckbox}/> : '' : 'לא מוכן/ה לקחת'}</div>
                             </div>
                             <div className='d-flex'>
                                 

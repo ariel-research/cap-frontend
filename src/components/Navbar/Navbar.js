@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { MenuItems } from "./MenuItems"
 import './Navbar.css'
 import { Link } from 'react-router-dom'
+//import { API_AUTH } from '../../api/auth-service';
 import logo1 from '../../logo.png';
 import Cookies from 'js-cookie';
 
@@ -15,6 +16,7 @@ class Navbar extends Component {
   };
 
   logoutUser = () => {
+    //API_AUTH.LogoutUser({'remove_token': true},token: token['mr-token'])
     Cookies.remove('mr-token');
     window.location.href = '/';
   };
