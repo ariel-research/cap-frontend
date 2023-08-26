@@ -30,8 +30,7 @@ function Ranking(props) {
 
     useEffect(() => {
         API.getLast_ranking(token['mr-token'])
-            .then(resp => {setCourse_group(resp)
-            console.log(resp)})
+            .then(resp => {setCourse_group(resp)})
             .catch(error => console.log(error))
     }, [token])
 

@@ -9,7 +9,7 @@ import { useCookies } from "react-cookie";
 function Feedback(props) {
    
     const [token] = useCookies(['mr-token']); 
-    const [ranking_start, setRanking_start] = useState(false);
+    const [ranking_end, setRanking_end] = useState(false);
     const [course_group, setCourse_group] = useState([]);
 
     useEffect(() => {
@@ -19,15 +19,14 @@ function Feedback(props) {
     useEffect(() => {
         API.getTime(token['mr-token'])
             .then(resp => {
-                setRanking_start(resp['value'])
+                setRanking_end(resp['feedback'])
             })
             .catch(error => console.log(error))
     }, [token])
 
     useEffect(() => {
         API.getLast_ranking(token['mr-token'])
-            .then(resp => {setCourse_group(resp)
-            console.log(resp)})
+            .then(resp => {setCourse_group(resp)})
             .catch(error => console.log(error))
     }, [token])
 
@@ -40,7 +39,6 @@ function Feedback(props) {
     const SaveClicked = (course_group) => async (evt) => {
             API.save_results_feedback(course_group, token['mr-token'])
                 .then(resp => {
-                    console.log(resp)
                     alert("תודה על מילוי המשוב!")
                 })
                 .catch(error => console.log(error))
@@ -56,7 +54,7 @@ function Feedback(props) {
                 <h2 className='text-center mt-5'><b>סמנו את הקורסים שקיבלתם</b></h2>
                 </div>
                 <div className='container-rank item-center'>
-                    {<Board course_group = {course_group} setCourse_group = {setCourse_group} changeCheckbox = {changeCheckbox} feedback = {true} SaveClicked = {SaveClicked}/>}
+                    {ranking_end? <Board course_group = {course_group} setCourse_group = {setCourse_group} changeCheckbox = {changeCheckbox} feedback = {true} SaveClicked = {SaveClicked}/> : 'מילוי המשוב יהיה זמין לאחר הדירוג'}
                 </div>
             </div>
         </div>

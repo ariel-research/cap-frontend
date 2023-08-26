@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './Board.css';
-import { API } from "../../api/api-service";
-import { useCookies } from "react-cookie";
 import Slider from './slider';
 import Checkbox from './Checkbox'
 //import Switch from './Switch'
@@ -11,7 +9,6 @@ import { usolve } from "mathjs"
 
 function BoardEditable(props) {
   const {course_group, setCourse_group}= props;
-  const [token] = useCookies(['mr-token']);
   const [balance, setBalance] = useState(props.balance);
   //let student_details = JSON.parse(localStorage.getItem('student_details'));
   const [num_options, setNumOptions] = useState(0);
@@ -74,10 +71,6 @@ function BoardEditable(props) {
       return prev + +current.score
     }, 0))
 
-    /* if (temp_balance < MAX_POINTS)
-      //add the reminder(balance) to the top course
-      updatedCourseGroup[0].score += temp_balance
-    */
     setCourse_group(updatedCourseGroup);
     setBalance(temp_balance)
 
@@ -105,11 +98,6 @@ function BoardEditable(props) {
       setBalance(balance+updatedCourseGroup[i].score)
       updatedCourseGroup[i].score = 0;
       setNumCoursesAcceptable(num_courses_acceptable-1);
-      /*if (i!=course_group.length-1){
-        const finalIndex = course_group.length - 1;  
-        const [removed] = updatedCourseGroup.splice(i, 1);
-        updatedCourseGroup.splice(finalIndex, 0, removed);
-      }*/
     }
     else{
       setNumCoursesAcceptable(num_courses_acceptable+1);
@@ -133,16 +121,6 @@ function BoardEditable(props) {
       setInitializationDone(true); // Set the flag to true after initialization
     }
   }, [course_group,initializationDone,getNumAcceptableCourses]);
-
-
-  useEffect(() => {
-    API.getLast_ranking(token['mr-token'])
-      .then(resp => {
-        setCourse_group(resp)
-      })
-      .catch(error => console.log(error))
-  }, [token])
-
 
 
   return (

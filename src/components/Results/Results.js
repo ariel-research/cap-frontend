@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import Navbar from "../Navbar/Navbar";
 import { useCookies } from "react-cookie";
 import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
+import { API } from "../../api/api-service";
 import './Results.css'
 
 function Results(props)
@@ -11,6 +12,9 @@ function Results(props)
 
     useEffect(() => {
         UserRoleRedirect(token)
+        API.getResults(token['mr-token'])
+        .then(resp => setCourses(resp))
+        .catch(error => console.log(error))
     },[token])
 
     if(courses.length === 0)
@@ -19,7 +23,7 @@ function Results(props)
             <div className="Rank">
                 <Navbar active='תוצאות'/>
                 <h1 className='Headline'>קורסי הבחירה שקיבלת הם:</h1>
-                <div className='container-rank' style={{width: '65%', marginLeft: '17.5%',marginTop:'50px'}}>
+                <div className='container-rank item-center' style={{width: '65%', marginLeft: '17.5%',marginTop:'50px'}}>
                     <div className='course_group'>
                        
                         <div className='whiteLines'>

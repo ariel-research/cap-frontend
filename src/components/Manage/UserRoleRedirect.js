@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { useCookies } from 'react-cookie';
 import { API } from "../../api/api-service";
 
 export const UserRoleRedirect = (token,login=false) => {

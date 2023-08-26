@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from "react-router-dom"
 import logo1 from '../../logo.png';
 import {API_AUTH} from '../../api/auth-service'
@@ -19,7 +19,7 @@ function VerifyUser() {
             console.log(resp)
         })
         .catch(error => console.log(error))
-    },[params])
+    })
 
 
     return (

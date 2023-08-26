@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { API } from '../../api/api-service';
 import { API_AUTH } from '../../api/auth-service';
 
 import './SignForms.css';

@@ -3,7 +3,6 @@ import { API_AUTH } from '../../api/auth-service';
 
 import './SignForms.css';
 import logo1 from '../../logo.png';
-import { useHistory } from 'react-router-dom';
 
 function ResetPass() {
     const [email, setEmail] = useState('');

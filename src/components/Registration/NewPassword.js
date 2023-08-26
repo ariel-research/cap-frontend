@@ -14,7 +14,6 @@ function NewPassword() {
   const [validated, setValidated] = useState('');
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const token = params.get('token');
   
 
   const handleInputChange = (e) => {

@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Board.css';
 import Checkbox from '../Feedback/Checkbox'
-import { API } from "../../api/api-service";
-import { useCookies } from "react-cookie";
 
 function Board(props) {
 
-    const {course_group, setCourse_group}= props;
-    const [token] = useCookies(['mr-token']);
+    const {course_group}= props;
     let balance = 1000 - course_group.reduce(function (prev, current) {
         return prev + +current.score
     }, 0);
