@@ -1,9 +1,7 @@
 import { API } from "../../api/api-service";
 
 export const UserRoleRedirect = (token,login=false) => {
-  if (!token['mr-token']) {
-    window.location.href = '/';
-  } else {
+  if (token['mr-token']) { 
     return API.studentOrOffice(token['mr-token'])
       .then(role => {
         if (login){
