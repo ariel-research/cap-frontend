@@ -290,6 +290,20 @@ export class API {
         .then(resp => resp.json())
     }
 
+    static getAllocation(token)
+    {
+        return fetch(BASE_URL+"api/student/get_allocation/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
+
     static rank_courses(course_group, token)
     {
         return fetch(BASE_URL+"api/ranking/rank_courses/",
@@ -305,7 +319,7 @@ export class API {
         .then(resp => resp.json())
     }
 
-    static save_results_feedback(course_group, token)
+    static SaveResultsFeedback(course_group, token)
     {
         return fetch(BASE_URL+"api/ranking/save_results_feedback/",
         {
@@ -320,6 +334,8 @@ export class API {
         .then(resp => resp.json())
     }
     
+
+
     static createStudents(token, jsonData)
     {
         return fetch(BASE_URL+"api/student/create_objects/",
