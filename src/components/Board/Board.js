@@ -33,8 +33,8 @@ function Board(props) {
 
                                 <div className="i-name">
 
-                                    <div data-testid="groupIndex" className='index ml-1 '>{index + 1}.</div>
-
+                                    <div data-testid="groupIndex" className='index ml-1 '>
+                                    {props.feedback? <Checkbox course={course} i={index} change={props.changeCheckbox}/> : `${index + 1}.`}</div>
                                     {/*course.overlap && <div style={{color: 'red'}} data-testid="groupName">{course.name}</div>*/}
                                     {!course.overlap && <div data-testid="groupName" className='name ml-2 text-right'>{course.name}</div>}
                                 </div>
@@ -47,7 +47,7 @@ function Board(props) {
                             </div>
                             <div className='d-flex'>
                             <div data-testid="groupName " className="ml-2" >סמסטר {course.semester}'</div>
-                            <div className="mr-auto">{course.is_acceptable? props.feedback? <Checkbox course={course} i={index} change={props.changeCheckbox}/> : '' : 'לא מוכן/ה לקחת'}</div>
+                            <div className="mr-auto">{course.is_acceptable? '' : 'לא מוכן/ה לקחת'}</div>                            
                             </div>
                             <div className='d-flex'>
                                 
