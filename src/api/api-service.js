@@ -4,76 +4,6 @@ dotenv.config();
 const BASE_URL= process.env.REACT_APP_BASE_URL;
 
 export class API {
-    static loginUser(body)
-    {
-        return fetch(BASE_URL+"auth/",
-        {
-            method: 'POST',
-            headers: 
-            {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        })
-        .then(resp => resp.json())
-    }
-
-    static sendResetEmail(body)
-    {
-        return fetch(BASE_URL+"api/register/send_reset_email/",
-        {
-            method: 'POST',
-            headers: 
-            {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        })
-        .then(resp => resp.json())
-    }
-
-    static ResetPasswordEmail(body)
-    {
-        return fetch(BASE_URL+"api/auth/passwordreset/",
-        {
-            method: 'POST',
-            headers: 
-            {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        })
-        .then(resp => resp.json())
-    }
-
-    static ResetPasswordCode(body)
-    {
-        return fetch(BASE_URL+"api/auth/passwordreset/validate_token/",
-        {
-            method: 'POST',
-            headers: 
-            {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        })
-        .then(resp => resp.json())
-    }
-
-    static ResetPasswordConfirm(body)
-    {
-        return fetch(BASE_URL+"api/auth/passwordreset/confirm/",
-        {
-            method: 'POST',
-            headers: 
-            {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        })
-        .then(resp => resp.json())
-    }
-
     static getUserStatus(username)
     {
         return fetch(BASE_URL+"api/register/get_user_status/?username="+username,
@@ -86,19 +16,7 @@ export class API {
         })
         .then(resp => resp.json())
     }
-    static registerUser(body)
-    {
-        return fetch(BASE_URL+"api/register/post/",
-        {
-            method: 'POST',
-            headers: 
-            {
-                'Content-Type':  'application/json',
-            },
-            body: JSON.stringify(body)
-        })
-        .then(resp => resp.json())
-    }
+
     static studentOrOffice(token)
     {
         return fetch(BASE_URL+"api/student/student_or_office/",
@@ -112,6 +30,7 @@ export class API {
         })
         .then(resp => resp.json())
     }
+    
     static getUserDetails(token)
     {
         return fetch(BASE_URL+"api/users/get_user_details/",
@@ -290,6 +209,20 @@ export class API {
         .then(resp => resp.json())
     }
 
+    static getResultsInfo(token)
+    {
+        return fetch(BASE_URL+"api/result/get_results_info/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
+
     static getAllocation(token)
     {
         return fetch(BASE_URL+"api/student/get_allocation/",
@@ -319,6 +252,34 @@ export class API {
         .then(resp => resp.json())
     }
 
+    static getQuestions(token)
+    {
+        return fetch(BASE_URL+"api/question/get_questions/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
+
+    static getQ_A(token)
+    {
+        return fetch(BASE_URL+"api/question/get_questions_answers/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
+
     static SaveResultsFeedback(course_group, token)
     {
         return fetch(BASE_URL+"api/ranking/save_results_feedback/",
@@ -334,7 +295,20 @@ export class API {
         .then(resp => resp.json())
     }
     
-
+    static saveAnswers(course_group, token)
+    {
+        return fetch(BASE_URL+"api/question/save_answers/",
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            },
+            body: JSON.stringify( {ranks: course_group} )
+        })
+        .then(resp => resp.json())
+    }
 
     static createStudents(token, jsonData)
     {

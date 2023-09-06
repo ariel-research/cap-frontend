@@ -2,19 +2,25 @@ import React, { useState, useEffect} from 'react';
 import Navbar from "../Navbar/Navbar";
 import { useCookies } from "react-cookie";
 import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
+import TextArea from "./TextArea"
 import { API } from "../../api/api-service";
 import './Results.css'
 
 function Results(props)
 {
     const [courses, setCourses] = useState([]);
+    const [courses_txt, setCoursesTxt] = useState('');
+    const [explanation, setExplanation] = useState('');
+
     const [token] = useCookies(['mr-token']);
 
     useEffect(() => {
         UserRoleRedirect(token)
-        API.getResults(token['mr-token'])
-        .then(resp => setCourses(resp))
-        .catch(error => console.log(error))
+        API.getResultsInfo(token['mr-token']).
+        then(resp => {
+            setCoursesTxt(resp.courses_txt)
+            setExplanation(resp.explanation)
+        })
     },[token])
 
     if(courses.length === 0)
@@ -28,7 +34,14 @@ function Results(props)
                        
                         <div className='whiteLines'>
                             <div className='item' >
-                                <div style={{marginLeft:'40%'}}>אין עדין תוצאות </div>
+                                { courses_txt?
+                                    <div>
+                                        
+                                        <TextArea title='קורסי הבחירה שקבלת' text={courses_txt} rows='10'/>
+                                        <TextArea title='הסבר תהליך האלגוריתם' text={explanation} rows='15'/>
+                                    </div>
+                                    : <div style={{marginLeft:'40%'}}>אין עדין תוצאות </div>
+                                }
                             </div>
                         </div>
                     </div>
