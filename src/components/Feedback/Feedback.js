@@ -59,34 +59,40 @@ function Feedback(props) {
 
     return (
         <div className="Rank" data-testid="Rank">
-            <Navbar active='משוב' />
-            <div className='text text-center '>
-                <h1 className='Headline' >משוב שיבוצים</h1>
-                <div className=" justify-content-center">
-                <ul className="nav nav-tabs justify-content-center">
-                    <li className="nav-item">
-                        <a className="nav-link" aria-current="page" href="/feedback/#">שאלון</a>
-                        <div>
-                        <iframe src={`https://docs.google.com/forms/d/e/1FAIpQLSfJbjvgR8bv3-iGhkOD8CBqIhGuQCU_lfu7znoa8UZbbdUI9w/viewform?usp=pp_url&entry.348055013=${email}&embedded=true`} width="640" height="746" frameBorder="0" marginHeight="0" marginWidth="0">בטעינה…</iframe>
-                            {/*q_a_list.map((q_a, index) => {
-                                return (
-                                    <div key={index} >
-                                        {<Survey q_a= {q_a}/>}
-                                    </div>
-                                )})*/}
-                        </div>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link active" aria-current="page" href="/feedback/#" >מה קיבלתי</a>
-                            <h2 className='text-center mt-5'><b>סמנו את הקורסים שקיבלתם</b></h2>
-                            <div className='container-rank item-center'>
-                                {ranking_end? <Board course_group = {course_group} setCourse_group = {setCourse_group} changeCheckbox = {changeCheckbox} feedback = {true} SaveClicked = {SaveClicked}/> : 'מילוי המשוב יהיה זמין לאחר הדירוג'}
-                            </div>
-                    </li>
-                </ul>
+    <Navbar active='משוב' />
+    <div className='text text-center '>
+        <h1 className='Headline'>משוב שיבוצים</h1>
+        <h4 className='text-center'>אנא השיבו על שני חלקי המשוב: שאלון וסימון הקורסים</h4>
+
+        <div className=" justify-content-center">
+            <ul className="nav nav-tabs justify-content-center" id="myTabs">
+                <li className="nav-item" role="presentation">
+                    <a className="nav-link active" id="survey-tab" data-bs-toggle="tab" href="#survey" role="tab" aria-controls="survey" aria-selected="true">שאלון</a>
+                </li>
+                <li className="nav-item" role="presentation">
+                    <a className="nav-link" id="feedback-tab" data-bs-toggle="tab" href="#feedback" role="tab" aria-controls="feedback" aria-selected="false">סימון קורסים</a>
+                </li>
+            </ul>
+            <div className="tab-content" id="myTabsContent">
+                <div className="tab-pane fade show active" id="survey" role="tabpanel" aria-labelledby="survey-tab">
+                    <iframe src={`https://docs.google.com/forms/d/e/1FAIpQLSfJbjvgR8bv3-iGhkOD8CBqIhGuQCU_lfu7znoa8UZbbdUI9w/viewform?usp=pp_url&entry.348055013=${email}&embedded=true`} width="640" height="746" frameBorder="0" marginHeight="0" marginWidth="0">בטעינה…</iframe>
+                </div>
+                <div className="tab-pane fade" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
+                    <h2 className='text-center mt-5'><b>סמנו את הקורסים שאליהם נרשמתם</b></h2>
+                    <h4 className='text-center'>(דרך המידע האישי של האוניברסיטה)</h4>
+
+                    <div className='container-rank item-center'>
+                        {ranking_end ? (
+                            <Board course_group={course_group} setCourse_group={setCourse_group} changeCheckbox={changeCheckbox} feedback={true} SaveClicked={SaveClicked} />
+                        ) : (
+                            'מילוי המשוב יהיה זמין לאחר הדירוג'
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
     )
 }
 
