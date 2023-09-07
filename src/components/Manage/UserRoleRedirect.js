@@ -15,4 +15,8 @@ export const UserRoleRedirect = (token,login=false) => {
       })
       .catch(error => console.log(error));
   }
+  else if (!login){
+    alert('לגלישה באתר יש צורך בהתחברות')
+        window.location.href = `/`;
+  }
 };
