@@ -16,8 +16,8 @@ function Results(props)
 
     useEffect(() => {
         UserRoleRedirect(token)
-        API.getResultsInfo(token['mr-token']).
-        then(resp => {
+        API.getResultsInfo(token['mr-token'])
+        .then(resp => {
             setCoursesTxt(resp.courses_txt)
             setExplanation(resp.explanation)
         })
@@ -29,7 +29,7 @@ function Results(props)
             <div className="Rank">
                 <Navbar active='תוצאות'/>
                 <h1 className='Headline'>קורסי הבחירה שקיבלת הם:</h1>
-                <div className='container-rank item-center' style={{width: '65%', marginLeft: '17.5%',marginTop:'50px'}}>
+                <div className='container-rank item-center'>
                     <div className='course_group'>
                        
                         <div className='whiteLines'>

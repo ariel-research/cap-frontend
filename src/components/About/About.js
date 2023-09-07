@@ -36,7 +36,7 @@ function About() {
                 <br/>
                      <ul className="list-unstyled d-flex justify-content-center ">
                  <li className="ms-3"><a href='https://github.com/ariel-research' className="link-body-emphasis"><Github/></a></li>
-                 <li className="ms-3"><a href='mailto:ariel-research23@gmail.com' className="link-body-emphasis"><EnvelopeAtFill/>ariel-research23@gmail.com</a></li>
+                 <li className="ms-3"><a href='mailto:support@csariel.xyz' className="link-body-emphasis"><EnvelopeAtFill/>ariel-research23@gmail.com</a></li>
                  </ul>
 
             </div>

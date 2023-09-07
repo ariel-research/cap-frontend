@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import "../Ranking/Ranking.css"
 import Board from "../Board/Board";
 import Navbar from "../Navbar/Navbar";
-import Survey from "./Survey"
 
 import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
 import { API } from "../../api/api-service";
@@ -14,7 +13,6 @@ function Feedback(props) {
     const [token] = useCookies(['mr-token']); 
     const [ranking_end, setRanking_end] = useState(false);
     const [course_group, setCourse_group] = useState([]);
-    const [q_a_list, setQ_AList] = useState([]);
     const [email,setEmail] = useState('')
 
     useEffect(() => {
@@ -35,10 +33,6 @@ function Feedback(props) {
         API.getStudentDetails(token['mr-token'])
         .then(resp => setEmail(resp['user']['email']))
         .catch(error => console.log(error))
-        /*API.getQ_A(token['mr-token'])
-        .then(resp => {setQ_AList(resp['q_a'])})
-        .catch(error => console.log(error))*/
-
     }, [token])
 
 
@@ -75,7 +69,10 @@ function Feedback(props) {
             </ul>
             <div className="tab-content" id="myTabsContent">
                 <div className="tab-pane fade show active" id="survey" role="tabpanel" aria-labelledby="survey-tab">
-                    <iframe src={`https://docs.google.com/forms/d/e/1FAIpQLSfJbjvgR8bv3-iGhkOD8CBqIhGuQCU_lfu7znoa8UZbbdUI9w/viewform?usp=pp_url&entry.348055013=${email}&embedded=true`} width="640" height="746" frameBorder="0" marginHeight="0" marginWidth="0">בטעינה…</iframe>
+                <div className='container-rank item-center'>
+                    <iframe title="survey" className="iframe" src={`https://docs.google.com/forms/d/e/1FAIpQLSfJbjvgR8bv3-iGhkOD8CBqIhGuQCU_lfu7znoa8UZbbdUI9w/viewform?usp=pp_url&entry.348055013=${email}&embedded=true`}
+                        width="100%" height= "766" frameBorder="0" marginHeight="0" marginWidth="0">בטעינה…</iframe>
+                </div>
                 </div>
                 <div className="tab-pane fade" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
                     <h2 className='text-center mt-5'><b>סמנו את הקורסים שאליהם נרשמתם</b></h2>

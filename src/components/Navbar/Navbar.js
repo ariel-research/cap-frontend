@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { MenuItems } from "./MenuItems"
 import './Navbar.css'
 import { Link } from 'react-router-dom'
@@ -8,15 +8,10 @@ import Cookies from 'js-cookie';
 import { useCookies } from 'react-cookie';
 
 function Navbar(props) {
-  const [token, setToken] = useCookies(['mr-token']);
-  const [clicked,setClicked] = useState(false)
-
-  const handleClicked = () => {
-    setClicked(!clicked)
-  };
+  const [token] = useCookies(['mr-token']);
 
   const logoutUser = () => {
-    //API_AUTH.LogoutUser({'revoke_token': true},token['mr-token'])
+    API_AUTH.LogoutUser({'revoke_token': true},token['mr-token'])
     Cookies.remove('mr-token');
     Cookies.remove('sessionid');
     window.location.href = '/';

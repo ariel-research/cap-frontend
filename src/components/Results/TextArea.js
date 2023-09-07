@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { API } from "../../api/api-service";
+import React from 'react';
 
 function TextArea ({title, text, rows}) {
 
