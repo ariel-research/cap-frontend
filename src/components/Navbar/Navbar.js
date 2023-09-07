@@ -1,27 +1,28 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react';
 import { MenuItems } from "./MenuItems"
 import './Navbar.css'
 import { Link } from 'react-router-dom'
-//import { API_AUTH } from '../../api/auth-service';
+import { API_AUTH } from '../../api/auth-service';
 import logo1 from '../../logo.png';
 import Cookies from 'js-cookie';
+import { useCookies } from 'react-cookie';
 
-class Navbar extends Component {
-  state = {
-    clicked: false
+function Navbar(props) {
+  const [token, setToken] = useCookies(['mr-token']);
+  const [clicked,setClicked] = useState(false)
+
+  const handleClicked = () => {
+    setClicked(!clicked)
   };
 
-  handleClicked = () => {
-    this.setState({ clicked: !this.state.clicked });
-  };
-
-  logoutUser = () => {
-    //API_AUTH.LogoutUser({'remove_token': true},token: token['mr-token'])
+  const logoutUser = () => {
+    //API_AUTH.LogoutUser({'revoke_token': true},token['mr-token'])
     Cookies.remove('mr-token');
+    Cookies.remove('sessionid');
     window.location.href = '/';
   };
 
-  render() {
+
     return (
       <nav className="navbar sticky-top navbar-dark bg-primary navbar-expand-lg ">
         <div className="container-fluid">
@@ -37,7 +38,7 @@ class Navbar extends Component {
               {MenuItems.map((item, index) => (
                 <li className="nav-item" key={index}>
                   <Link
-                    className={`nav-link ${this.props.active === item.title ? 'active' : ''}`}
+                    className={`nav-link ${props.active === item.title ? 'active' : ''}`}
                     to={item.url}
                   >
                     {item.title}
@@ -48,7 +49,7 @@ class Navbar extends Component {
                 <i
                   className="fas fa-sign-out-alt"
                   style={{ color: 'white', fontSize: '1.8rem', cursor: 'pointer' }}
-                  onClick={this.logoutUser}
+                  onClick={logoutUser}
                 ></i>
               </li>
             </ul>
@@ -56,6 +57,5 @@ class Navbar extends Component {
         </div>
       </nav>
     );
-  }
 }
 export default Navbar;
