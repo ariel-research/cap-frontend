@@ -14,6 +14,7 @@ function Feedback(props) {
     const [ranking_end, setRanking_end] = useState(false);
     const [course_group, setCourse_group] = useState([]);
     const [email,setEmail] = useState('')
+    const [status,setStatus] = useState(true)
 
     useEffect(() => {
         UserRoleRedirect(token)
@@ -26,8 +27,12 @@ function Feedback(props) {
             })
             .catch(error => console.log(error))
         
-        API.getLast_ranking(token['mr-token'])
-        .then(resp => {setCourse_group(resp)})
+        API.studentRankingStatus(token['mr-token'])
+        .then(resp => {
+            if (!resp)
+                setStatus(false)
+            else
+                setCourse_group(resp)})
         .catch(error => console.log(error))
 
         API.getStudentDetails(token['mr-token'])
@@ -43,7 +48,7 @@ function Feedback(props) {
     }
 
     const SaveClicked = (course_group) => async (evt) => {
-            API.save_results_feedback(course_group, token['mr-token'])
+            API.SaveResultsFeedback(course_group, token['mr-token'])
                 .then(resp => {
                     alert("תודה על מילוי המשוב!")
                 })
@@ -56,6 +61,7 @@ function Feedback(props) {
     <Navbar active='משוב' />
     <div className='text text-center '>
         <h1 className='Headline'>משוב שיבוצים</h1>
+        
         <h4 className='text-center'>אנא השיבו על שני חלקי המשוב: שאלון וסימון הקורסים</h4>
 
         <div className=" justify-content-center">
@@ -80,14 +86,18 @@ function Feedback(props) {
 
                     <div className='container-rank item-center'>
                         {ranking_end ? (
+                            status?
                             <Board course_group={course_group} setCourse_group={setCourse_group} changeCheckbox={changeCheckbox} feedback={true} SaveClicked={SaveClicked} />
-                        ) : (
+                            : 
+                            'סימון הקורסים זמין עבור סטודנטים שדירגו את הקורסים'
+                            ) : (
                             'מילוי המשוב יהיה זמין לאחר הדירוג'
                         )}
                     </div>
                 </div>
             </div>
         </div>
+           
     </div>
 </div>
     )
