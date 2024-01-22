@@ -3,14 +3,13 @@ import { API_AUTH } from '../../api/auth-service';
 
 import './SignForms.css';
 import { validate } from 'email-validator';
-import {isValidIsraeliID, isEmailAriel} from './FieldValidators'
+import {isEmailAriel} from './FieldValidators'
 import logo1 from '../../logo.png';
 import { isNumber } from 'mathjs';
 
 
 function Register() {
 
-  const [student_id, setStudentId] = useState('');
   const [username,setUserName] = useState('');
   const [first_name, setFirstname] = useState('');
   const [last_name, setLastname] = useState('');
@@ -26,7 +25,6 @@ function Register() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'student_id') setStudentId(value);
     if (name === 'first_name') setFirstname(value);
     if (name === 'last_name') setLastname(value);
     if (name === 'email') {
@@ -48,11 +46,7 @@ function Register() {
 
   const validateForm = () => {
     const errors = {};
-    if (!student_id) {
-      errors.student_id = ' מספר ת.ז נדרש';
-    }else if (!isValidIsraeliID(student_id)){
-      errors.student_id = 'מספר ת.ז לא תקין';
-    }
+    
     if (!first_name) {
       errors.firstname = 'שם פרטי נדרש';
     }
@@ -109,31 +103,25 @@ function Register() {
       'last_name':last_name,
       'email': email,
       'password': password,
-      'password_confirm': password_confirm
+      'password_confirm': password_confirm,
+      'amount_elective':amount_elective,
+      'program': program,
     }
 
     API_AUTH.RegisterUser(user_req)
     .then((resp) => {
-      console.log(resp); 
-      let student_req = {
-        'user_id': resp['id'],
-        'student_id': student_id,
-        'amount_elective':amount_elective,
-        'program': program,
-      }
-      API_AUTH.RegisterAsStudent(student_req)
-      .then((resp) => {
-        console.log(resp);
-        setMessage(resp['message'])
-      })
-      .catch((error) => {
-        console.log(error);
-        setMessage(resp['error'])
+      if (resp['id'])
+        {alert('קישור לאימות חשבונך נשלח לכתובת האימייל שהזנת (בדקו בספאם)')}
+      else
+      {console.log(resp);
 
-      })
+      setErrors(resp)
+    }
 
     })
     .catch((error) => {
+      console.log(user_req)
+      setMessage(error);
       console.log(error);
     })
     //add user_type if needed
@@ -157,22 +145,6 @@ function Register() {
           {message && <span>
             <div className="alert alert-danger d-flex align-items-center text-center" role="alert">{message}</div>
           </span>}
-
-          <div className=" mb-2">
-            <label className="d-flex text-right form-label is-invalid">מספר תעודת זהות</label>
-            <input
-              className="form-control field-input "
-              type="text"
-              placeholder="מס' תעודת זהות"
-              name="student_id"
-              value={student_id}
-              onChange={handleInputChange}
-              pattern="[0-9]+"
-              required
-            />
-
-            {errors.student_id && <span className="invalid-feedback">{errors.student_id}</span>}
-          </div>
           <div className="mb-2 ">
             <label className=" d-flex text-right form-label is-invalid">שם פרטי</label>
             <input
@@ -216,6 +188,8 @@ function Register() {
             />
 
             {errors.email && <span className="invalid-feedback">{errors.email}</span>}
+            {errors.username && <span className="invalid-feedback">{errors.username}. אם נרשמתם בעבר אנו וודאו כי אימתתם את חשבנוכם באמצעות כתובת המייל.</span>}
+
           </div>
 
           <div className=" mb-2">

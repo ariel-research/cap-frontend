@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { API } from '../../api/api-service';
-import { isValidIsraeliID } from '../Registration/FieldValidators'
 import './Profile.css';
 import Navbar from "../Navbar/Navbar";
 import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
@@ -48,9 +47,6 @@ function Homepage() {
     if (!profile.user.first_name || !profile.user.last_name) {
       alert("שם נדרש");
     }
-    else if (!isValidIsraeliID(profile.student_id)) {
-      alert("מספר תעודת זהות לא תקין ");
-    }
 
     else {
       console.log("trying to save changes...")
@@ -82,17 +78,6 @@ function Homepage() {
                   value={profile.user.email}
                   disabled
 
-                />
-              </div>
-            </div>
-            <div className="form-group row">
-              <label className="col-sm-4 col-form-label">מספר תעודת זהות:</label>
-              <div className="col-sm-8">
-                <input
-                  type="text"
-                  className="form-control"
-                  value={profile.student_id}
-                  onChange={(e) => handleStudentFieldChange('student_id', e.target.value)}
                 />
               </div>
             </div>

@@ -129,6 +129,20 @@ export class API {
         .then(resp => resp.json())
     }
 
+    static studentRankingStatus(token)
+    {
+        return fetch(BASE_URL+"api/course_group/student_ranking_status/",
+        {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(resp => resp.json())
+    }
+
     static getTime(token)
     {
         return fetch(BASE_URL+"api/office/get_time/",
