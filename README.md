@@ -15,11 +15,9 @@ NVM, Nodejs v15.0.0
     `git clone https://github.com/ariel-research/cap-frontend`
 2. Run: \
    `cd cap-frontend`
-3. Switch to 'ariel' branch: \
-  `git checkout ariel`
-4. Install dependencies: \
+3. Install dependencies: \
   `npm i`
-6. Create an .env file and customize the project's environment variables. You can see [here](.env-example) an example.
+4. Create an .env file and customize the project's environment variables. You can see [here](.env-example) an example.
    
 ## Available Scripts
 
