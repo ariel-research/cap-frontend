@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { API } from '../../api/api-service';
 import './Profile.css';
 import Navbar from "../Navbar/Navbar";
-import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
 
 function Homepage() {
-  const [token] = useCookies(['mr-token']);
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
-    UserRoleRedirect(token)
-  },[token])
 
-  useEffect(() => {
-
-    API.getStudentDetails(token['mr-token'])
+    API.getStudentDetails()
       .then((resp) => {
-        //localStorage.setItem('studentDetails', JSON.stringify(resp));
         setProfile(resp);
       })
       .catch((error) => console.log(error));
-  }, [token]);
+  }, []);
 
 
   const handleUserFieldChange = (fieldName, value) => {
@@ -50,7 +42,7 @@ function Homepage() {
 
     else {
       console.log("trying to save changes...")
-      API.updateStudentDetails({ profile }, token['mr-token'])
+      API.updateStudentDetails({ profile })
         .then((resp) => {
           localStorage.setItem('studentDetails', JSON.stringify(profile));
           alert(resp["message"]);
@@ -140,7 +132,11 @@ function Homepage() {
           </div>
         </div>
       ) : (
-        <p className="loading-message">Loading...</p>
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
       )}
     </div>
   );

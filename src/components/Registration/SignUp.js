@@ -124,16 +124,7 @@ function Register() {
       setMessage(error);
       console.log(error);
     })
-    //add user_type if needed
-    /*API.registerUser({student_id,first_name, last_name, email, password, password_confirm, amount_elective,program })
-      .then((resp) => {
-        console.log(resp); // Add this line
-        setMessage(resp['message'])
-      })
-      .catch((error) => {
-        console.log(error);
-        setMessage(error);
-      })*/
+
   };
 
   return (

@@ -21,7 +21,7 @@ class Office extends Component {
       CourseFile: null,
       StartDate: '',
       EndDate: '',
-      token: Cookies.get('mr-token'),
+      token: Cookies.get('csrftoken'),
       myStu: '',
       myCour:''
     }

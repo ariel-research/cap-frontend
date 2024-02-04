@@ -1,15 +1,14 @@
 import {Releases} from "./Releases"
 import './About.css'
 import {Github, EnvelopeAtFill,} from 'react-bootstrap-icons'
-import { useCookies } from 'react-cookie';
 import Navbar from "../Navbar/Navbar";
+import Cookies from 'js-cookie';
 
 function About() {
-    const [token] = useCookies(['mr-token']);
   
     return (
         <div className="about">
-            {token['mr-token']? <Navbar/> : null }
+            {Cookies.get('csrftoken')? <Navbar/> : null }
             <div className="container-fluid mt-2">
             <h1>אודות האתר</h1>
             <p>
@@ -40,7 +39,7 @@ function About() {
                  </ul>
 
             </div>
-            {!token['mr-token']?
+            {!Cookies.get('csrftoken')?
             <p className="text-center text-muted mt-5 mb-0"><a href="/"
             className="fw-bold text-body pr"><u>התחברו כאן!</u></a></p> 
             : null }

@@ -1,48 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/Info/CoursesInfo';
 import reportWebVitals from './reportWebVitals';
-import { Route, BrowserRouter } from 'react-router-dom';
-import Ranking from './components/Ranking/Ranking';
-import Results from './components/Results/Results';
-import Feedback from './components/Feedback/Feedback';
-import Algo from './components/Office/algo';
-import Office from './components/Office/Office'
-import Auth from './components/Registration/SignIn';
-import Reg from './components/Registration/SignUp'
-import ResetPass from './components/Registration/ResetPassword'
-import VerifyUser from './components/Registration/VerifyUser'
-import NewPassword from './components/Registration/NewPassword'
-import Homepage from './components/Profile/Profile'
-import About from './components/About/About';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from './components/Footer/Footer'
-import { CookiesProvider } from "react-cookie";
+import StudentRoutes from "./routes/StudentRoutes";
+import PublicRoutes from "./routes/PublicRoutes";
+import UnauthRoutes from "./routes/UnauthRoutes";
+import Cookies from 'js-cookie';
+
 
 export default function Router() {
 
-  return (
-    <React.StrictMode>
-      <CookiesProvider>
-        <BrowserRouter>
-          <Route exact path="/" component={Auth}/>
-          <Route exact path="/register" component={Reg}/>
-          <Route exact path="/courses_info" component={App} />
-          <Route exact path="/ranking" component={Ranking} />
-          <Route exact path="/results" component={Results} />
-          <Route exact path="/feedback" component={Feedback} />
-          <Route exact path="/algorithm" component={Algo} />
-          <Route exact path="/office" component={Office} />
-          <Route exact path="/home" component={Homepage} />
-          <Route exact path="/about" component={About}/>
-          <Route exact path="/send-email-reset-password" component={ResetPass} />
-          <Route exact path="/reset-password" component={NewPassword} />
-          <Route exact path="/verify-user" component={VerifyUser} />
-        </BrowserRouter>
+  const router = createBrowserRouter([
+    Cookies.get('csrftoken') ? StudentRoutes() : UnauthRoutes(),
+     ...PublicRoutes()
+  ]);
+
+  return (    
+      <React.StrictMode>
+        <RouterProvider router={router} />
         <Footer/>
-      </CookiesProvider>
-    </React.StrictMode>
-  )
+        </React.StrictMode>
+          );
 }
 
 ReactDOM.render(<Router/>, document.getElementById('root'));

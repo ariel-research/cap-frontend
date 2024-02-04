@@ -1,5 +1,8 @@
+import Cookies from 'js-cookie';
+
 import dotenv from 'dotenv';
 dotenv.config();
+
 
 const BASE_URL= process.env.REACT_APP_BASE_URL;
 
@@ -32,26 +35,13 @@ export class API_AUTH {
         .then(resp => resp.json())
     }
 
-    static RegisterAsStudent(body)
-    {
-        return fetch(BASE_URL+"api/register/register_student/",
-        {
-            method: 'POST',
-            headers: 
-            {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        })
-        .then(resp => resp.json())
-    }
-
     
     static LoginUser(body)
     {
         return fetch(BASE_URL+"api/accounts/login/",
         {
             method: 'POST',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
@@ -61,18 +51,17 @@ export class API_AUTH {
         .then(resp => resp.json())
     }
 
-    static LogoutUser(body,token)
+    static LogoutUser()
     {
         return fetch(BASE_URL+"api/accounts/logout/",
         {
             method: 'POST',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
-
+                'X-CSRFToken': Cookies.get('csrftoken')
             },
-            body: JSON.stringify(body)
         })
         .then(resp => resp.json())
     }

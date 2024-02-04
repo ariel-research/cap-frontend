@@ -5,17 +5,19 @@ import { Link } from 'react-router-dom'
 import { API_AUTH } from '../../api/auth-service';
 import logo1 from '../../logo.png';
 import Cookies from 'js-cookie';
-import { useCookies } from 'react-cookie';
 
 function Navbar(props) {
-  const [token] = useCookies(['mr-token']);
 
   const logoutUser = () => {
-    API_AUTH.LogoutUser({'revoke_token': true},token['mr-token'])
-    Cookies.remove('mr-token');
-    Cookies.remove('sessionid');
-    window.location.href = '/';
-  };
+    API_AUTH.LogoutUser()
+      .then(resp => {
+      Cookies.remove('csrftoken')
+      console.log(resp)
+      window.location.href = '/';
+
+      })
+      .catch(error => console.log(error))
+    };
 
 
     return (

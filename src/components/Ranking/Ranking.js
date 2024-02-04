@@ -3,9 +3,7 @@ import BoardEditable from "../Board/BoardEditable";
 import "./Ranking.css"
 import Board from "../Board/Board";
 import Navbar from "../Navbar/Navbar";
-import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
 import { API } from "../../api/api-service";
-import { useCookies } from "react-cookie";
 
 function Ranking(props) {
     const [edit, setEdit] = useState(false);
@@ -13,26 +11,21 @@ function Ranking(props) {
     const [balance, setBalance] = useState();
     const [time_message, setTime_message] = useState("");
     const [ranking_start, setRanking_start] = useState(false);
-    const [token] = useCookies(['mr-token']);
 
     useEffect(() => {
-        UserRoleRedirect(token)
-    },[token])
-
-    useEffect(() => {
-        API.getTime(token['mr-token'])
+        API.getTime()
             .then(resp => {
                 setTime_message(resp['message'])
                 setRanking_start(resp['value'])
             })
             .catch(error => console.log(error))
-    }, [token, time_message])
+    },  [time_message])
 
     useEffect(() => {
-        API.getLast_ranking(token['mr-token'])
+        API.getLast_ranking()
             .then(resp => {setCourse_group(resp)})
             .catch(error => console.log(error))
-    }, [token])
+    }, [])
 
     const EditClicked = b => evt => {
         if (ranking_start) {
@@ -47,11 +40,10 @@ function Ranking(props) {
     }
     const SaveClicked = (course_group, bal) => async (evt) => {
         if (bal === 0) {
-            API.rank_courses(course_group, token['mr-token'])
+            API.rank_courses(course_group)
                 .then(resp => console.log(resp))
                 .catch(error => console.log(error))
             await timeout(1000);
-            window.location.reload(false);
             setEdit(false);
         }
         else
@@ -112,7 +104,7 @@ function Ranking(props) {
                         <Board course_group = {course_group} setCourse_group = {setCourse_group} EditClicked={EditClicked} time_message={time_message} />
 
                         :
-                        <BoardEditable course_group = {course_group} setCourse_group = {setCourse_group} SaveClicked={SaveClicked} time_message={time_message} balance={balance} />
+                        <BoardEditable course_group = {course_group} setCourse_group = {setCourse_group} setEdit={setEdit} SaveClicked={SaveClicked} time_message={time_message} balance={balance} />
                     }
 
                 </div>

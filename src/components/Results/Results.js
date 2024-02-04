@@ -1,7 +1,5 @@
 import React, { useState, useEffect} from 'react';
 import Navbar from "../Navbar/Navbar";
-import { useCookies } from "react-cookie";
-import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
 import TextArea from "./TextArea"
 import { API } from "../../api/api-service";
 import './Results.css'
@@ -12,16 +10,13 @@ function Results(props)
     const [courses_txt, setCoursesTxt] = useState('');
     const [explanation, setExplanation] = useState('');
 
-    const [token] = useCookies(['mr-token']);
-
     useEffect(() => {
-        UserRoleRedirect(token)
-        API.getResultsInfo(token['mr-token'])
+        API.getResultsInfo()
         .then(resp => {
             setCoursesTxt(resp.courses_txt)
             setExplanation(resp.explanation)
         })
-    },[token])
+    },[])
 
     if(courses.length === 0)
     {

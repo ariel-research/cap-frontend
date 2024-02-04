@@ -2,32 +2,25 @@ import React, { useState, useEffect } from 'react';
 import "../Ranking/Ranking.css"
 import Board from "../Board/Board";
 import Navbar from "../Navbar/Navbar";
-
-import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
 import { API } from "../../api/api-service";
-import { useCookies } from "react-cookie";
+
 
 
 function Feedback(props) {
    
-    const [token] = useCookies(['mr-token']); 
     const [ranking_end, setRanking_end] = useState(false);
     const [course_group, setCourse_group] = useState([]);
     const [email,setEmail] = useState('')
     const [status,setStatus] = useState(true)
 
     useEffect(() => {
-        UserRoleRedirect(token)
-    },[token])
-
-    useEffect(() => {
-        API.getTime(token['mr-token'])
+        API.getTime()
             .then(resp => {
                 setRanking_end(resp['feedback'])
             })
             .catch(error => console.log(error))
         
-        API.studentRankingStatus(token['mr-token'])
+        API.studentRankingStatus()
         .then(resp => {
             if (!resp)
                 setStatus(false)
@@ -35,10 +28,10 @@ function Feedback(props) {
                 setCourse_group(resp)})
         .catch(error => console.log(error))
 
-        API.getStudentDetails(token['mr-token'])
+        API.getStudentDetails()
         .then(resp => setEmail(resp['user']['email']))
         .catch(error => console.log(error))
-    }, [token])
+    }, [])
 
 
     const changeCheckbox = (is_checked,i) => {      
@@ -48,7 +41,7 @@ function Feedback(props) {
     }
 
     const SaveClicked = (course_group) => async (evt) => {
-            API.SaveResultsFeedback(course_group, token['mr-token'])
+            API.SaveResultsFeedback(course_group)
                 .then(resp => {
                     alert("תודה על מילוי המשוב!")
                 })

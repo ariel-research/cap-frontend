@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -17,29 +19,29 @@ export class API {
         .then(resp => resp.json())
     }
 
-    static studentOrOffice(token)
+    static studentOrOffice()
     {
         return fetch(BASE_URL+"api/student/student_or_office/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
     
-    static getUserDetails(token)
+    static getUserDetails()
     {
         return fetch(BASE_URL+"api/users/get_user_details/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
@@ -50,332 +52,335 @@ export class API {
         return fetch(BASE_URL+"api/student/get_student_details/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static updateStudentDetails(body,token)
+    static updateStudentDetails(body)
     {
         return fetch(BASE_URL+"api/student/update_student_details/",
         {
             method: 'POST',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             },
             body: JSON.stringify(body)
         })
         .then(resp => resp.json())
     }
-    static getCourse_group(token)
+    static getCourse_group()
     {
         return fetch(BASE_URL+"api/course_group/get_course_group/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static getCoursesA(token)
+    static getCoursesA()
     {
         return fetch(BASE_URL+"api/courses/get_semester_a/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static getCoursesB(token)
+    static getCoursesB()
     {
         return fetch(BASE_URL+"api/courses/get_semester_b/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static getLast_ranking(token)
+    static getLast_ranking()
     {
         return fetch(BASE_URL+"api/course_group/get_last_rating/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static studentRankingStatus(token)
+    static studentRankingStatus()
     {
         return fetch(BASE_URL+"api/course_group/student_ranking_status/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static getTime(token)
+    static getTime()
     {
         return fetch(BASE_URL+"api/office/get_time/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
-    static isClose(token)
+    static isClose()
     {
         return fetch(BASE_URL+"api/office/close_ranking/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
-    static getDates(token)
+    static getDates()
     {
         return fetch(BASE_URL+"api/office/get_dates/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
-    static MyStudents(token)
+    static MyStudents()
     {
         return fetch(BASE_URL+"api/office/my_students/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
-    static MyCourses(token)
+    static MyCourses()
     {
         return fetch(BASE_URL+"api/office/my_courses/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
     
-    static getResults(token)
+    static getResults()
     {
         return fetch(BASE_URL+"api/result/get_results/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static getResultsInfo(token)
+    static getResultsInfo()
     {
         return fetch(BASE_URL+"api/result/get_results_info/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static getAllocation(token)
+    static getAllocation()
     {
         return fetch(BASE_URL+"api/student/get_allocation/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static rank_courses(course_group, token)
+    static rank_courses(course_group)
     {
         return fetch(BASE_URL+"api/ranking/rank_courses/",
         {
             method: 'POST',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
+                'X-CSRFToken': Cookies.get('csrftoken'),
+
             },
             body: JSON.stringify( {ranks: course_group} )
         })
         .then(resp => resp.json())
     }
 
-    static getQuestions(token)
+    static getQuestions()
     {
         return fetch(BASE_URL+"api/question/get_questions/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static getQ_A(token)
+    static getQ_A()
     {
         return fetch(BASE_URL+"api/question/get_questions_answers/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())
     }
 
-    static SaveResultsFeedback(course_group, token)
+    static SaveResultsFeedback(course_group)
     {
         return fetch(BASE_URL+"api/ranking/save_results_feedback/",
         {
             method: 'POST',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             },
             body: JSON.stringify( {ranks: course_group} )
         })
         .then(resp => resp.json())
     }
     
-    static saveAnswers(course_group, token)
+    static saveAnswers(course_group)
     {
         return fetch(BASE_URL+"api/question/save_answers/",
         {
             method: 'POST',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
+
             },
             body: JSON.stringify( {ranks: course_group} )
         })
         .then(resp => resp.json())
     }
 
-    static createStudents(token, jsonData)
+    static createStudents(jsonData)
     {
         return fetch(BASE_URL+"api/student/create_objects/",
         {
             method: 'POST',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             },
             body: JSON.stringify( {students: jsonData} )
         })
         .then(resp => resp.json())
     }
-    static createCourses(token, jsonData)
+    static createCourses(jsonData)
     {
         return fetch(BASE_URL+"api/courses/create_objects/",
         {
             method: 'POST',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             },
             body: JSON.stringify( {courses: jsonData} )
         })
         .then(resp => resp.json())
     }
     
-    static createDate(token, StartDate, EndDate, StartTime, EndTime)
+    static createDate(StartDate, EndDate, StartTime, EndTime)
     {
         return fetch(BASE_URL+"api/office/set_date/",
         {
             method: 'POST',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             },
             body: JSON.stringify( {StartDate, EndDate, StartTime, EndTime} )
         })
         .then(resp => resp.json())
     }
-    static doAlgo(token)
+    static doAlgo()
     {
         return fetch(BASE_URL+"api/office/algo/",
         {
             method: 'GET',
+            credentials: 'include',
             headers: 
             {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`
             }
         })
         .then(resp => resp.json())

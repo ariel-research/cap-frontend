@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NavbarOffice from './Navbar_Office';
 import { API } from '../../api/api-service';
-import { useCookies } from "react-cookie";
+
 import './office.css'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
@@ -11,11 +11,10 @@ function Algo(props)
 {
     const [close, setClose] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [ token ] = useCookies(['mr-token']);
     
     const algo = () => {
         setLoading(true);
-        API.doAlgo(token['mr-token'])
+        API.doAlgo()
         .then(resp => {
             setLoading(false);
             alert(resp)})
@@ -23,8 +22,8 @@ function Algo(props)
     };
 
     useEffect( () => {
-        if(!token['mr-token']) window.location.href = '/';
-        API.studentOrOffice(token['mr-token'])
+        //if(!token['mr-token']) window.location.href = '/';
+        API.studentOrOffice()
         .then(resp => {                
             if(resp === 1) //student
                 window.location.href = '/courses_info';
@@ -32,10 +31,10 @@ function Algo(props)
                 alert("error")
         })
         .catch(error => console.log(error))
-        API.isClose(token['mr-token'])
+        API.isClose()
         .then(resp => setClose(resp))
         .catch(error => console.log(error))
-    }, [token])
+    }, [])
 
     
 

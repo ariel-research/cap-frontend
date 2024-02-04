@@ -12,7 +12,7 @@ class NavbarOffice extends Component
     state = { clicked: false }
     handleClicked = () => this.setState({clicked: !this.state.clicked})
     logoutUser = () => {
-        Cookies.remove('mr-token');
+        Cookies.remove('csrftoken');
         window.location.href = '/';
     }
 

@@ -23,9 +23,6 @@ function BoardEditable(props) {
      },0)
   },[course_group])
 
-  const handleEditClicked = () => {
-    window.location.reload(false);
-  }
 
 
 
@@ -131,7 +128,7 @@ function BoardEditable(props) {
         <div style={{ width: 'fit-content' }} className="alert alert-secondary item-center mb-2" role="alert">יתרת ניקוד: {balance}</div>
       </div>
       <button className="btn btn-primary ml-2" onClick={props.SaveClicked(course_group, balance)}>שמירת הדירוג</button>
-      <button className="btn btn-secondary " onClick={() => handleEditClicked(false)}>ביטול</button>
+      <button className="btn btn-secondary " onClick={() => props.setEdit(false)}>ביטול</button>
 
       <div className="rowC justify-content-center container-fluid mt-3">
         <div>

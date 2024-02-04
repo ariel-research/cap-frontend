@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { API } from '../../api/api-service';
 import { API_AUTH } from '../../api/auth-service';
-import { useCookies } from "react-cookie";
 import './SignForms.css';
 import logo1 from '../../logo.png';
-import {UserRoleRedirect} from "../Manage/UserRoleRedirect"
 
 function Auth() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const [token, setToken] = useCookies(['mr-token']);
     const [message, setMessage] = useState('');
 
     const loginClicked = (event) => {
@@ -22,9 +19,8 @@ function Auth() {
             API_AUTH.LoginUser({ 'login': username, 'password': password })
                 .then(resp => {
                     console.log(resp)
-                    if (resp.token) {
-                        setToken('mr-token', resp.token)
-                        console.log(token)
+                    if (resp.detail === 'Login successful') {
+                        window.location.href = `/home`;
 
                     } else {
                         API.getUserStatus(username)
@@ -39,9 +35,6 @@ function Auth() {
         }
     }
 
-    useEffect(() => {
-        UserRoleRedirect(token,true)
-    },[token])
 
     return (
         <div className="login">
