@@ -17,7 +17,9 @@ NVM, Nodejs v15.0.0
    `cd cap-frontend`
 3. Install dependencies: \
   `npm i`
-4. Create an .env file and customize the project's environment variables. You can see [here](.env-example) an example.
+
+   If you encounter an error with react and react-dates, attempt to resolve it by running the command: `npm i --force`.
+5. Create an .env file and customize the project's environment variables. You can see [here](.env-example) an example.
    
 ## Available Scripts
 
