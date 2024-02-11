@@ -8,6 +8,7 @@ import { API } from "../../api/api-service";
 function Ranking(props) {
     const [edit, setEdit] = useState(false);
     const [course_group, setCourse_group] = useState([]);
+    const [origin_course_group, setOriginCourseGroup] = useState(null)
     const [balance, setBalance] = useState();
     const [time_message, setTime_message] = useState("");
     const [ranking_start, setRanking_start] = useState(false);
@@ -23,7 +24,8 @@ function Ranking(props) {
 
     useEffect(() => {
         API.getLast_ranking()
-            .then(resp => {setCourse_group(resp)})
+            .then(resp => {setCourse_group(resp)
+                setOriginCourseGroup(JSON.parse(JSON.stringify(resp)));})
             .catch(error => console.log(error))
     }, [])
 
@@ -104,7 +106,7 @@ function Ranking(props) {
                         <Board course_group = {course_group} setCourse_group = {setCourse_group} EditClicked={EditClicked} time_message={time_message} />
 
                         :
-                        <BoardEditable course_group = {course_group} setCourse_group = {setCourse_group} setEdit={setEdit} SaveClicked={SaveClicked} time_message={time_message} balance={balance} />
+                        <BoardEditable course_group = {course_group} setCourse_group = {setCourse_group} origin={origin_course_group} setEdit={setEdit} SaveClicked={SaveClicked} time_message={time_message} balance={balance} />
                     }
 
                 </div>

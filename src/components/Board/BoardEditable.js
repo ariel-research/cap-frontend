@@ -9,7 +9,9 @@ import { usolve } from "mathjs"
 
 function BoardEditable(props) {
   const {course_group, setCourse_group}= props;
+  const origin_course_group= props.origin
   const [balance, setBalance] = useState(props.balance);
+  const original_balance = props.balance
   //let student_details = JSON.parse(localStorage.getItem('student_details'));
   const [num_options, setNumOptions] = useState(0);
   const [num_courses_acceptable, setNumCoursesAcceptable] = useState(0)
@@ -67,9 +69,11 @@ function BoardEditable(props) {
     const temp_balance = (MAX_POINTS - updatedCourseGroup.reduce(function (prev, current) {
       return prev + +current.score
     }, 0))
+    console.log("course:",course_group)
 
     setCourse_group(updatedCourseGroup);
     setBalance(temp_balance)
+    console.log("orignal:",origin)
 
   };
 
@@ -110,6 +114,14 @@ function BoardEditable(props) {
     }, 0))
     
   }
+  
+  const handleCancel = () => {
+    console.log(origin)
+    setCourse_group(JSON.parse(JSON.stringify(origin_course_group)));
+    setBalance(original_balance)
+    props.setEdit(false)
+    
+  }
 
   useEffect(() => {
     if (course_group.length>0 && !initializationDone) { // Check if initialization is done
@@ -128,7 +140,7 @@ function BoardEditable(props) {
         <div style={{ width: 'fit-content' }} className="alert alert-secondary item-center mb-2" role="alert">יתרת ניקוד: {balance}</div>
       </div>
       <button className="btn btn-primary ml-2" onClick={props.SaveClicked(course_group, balance)}>שמירת הדירוג</button>
-      <button className="btn btn-secondary " onClick={() => props.setEdit(false)}>ביטול</button>
+      <button className="btn btn-secondary " onClick={() => handleCancel()}>ביטול</button>
 
       <div className="rowC justify-content-center container-fluid mt-3">
         <div>
