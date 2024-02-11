@@ -70,6 +70,7 @@ export class API {
             headers: 
             {
                 'Content-Type': 'application/json',
+                'X-CSRFToken': Cookies.get('csrftoken'),
             },
             body: JSON.stringify(body)
         })
@@ -263,7 +264,6 @@ export class API {
             {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': Cookies.get('csrftoken'),
-
             },
             body: JSON.stringify( {ranks: course_group} )
         })
@@ -307,6 +307,7 @@ export class API {
             headers: 
             {
                 'Content-Type': 'application/json',
+                'X-CSRFToken': Cookies.get('csrftoken'),
             },
             body: JSON.stringify( {ranks: course_group} )
         })
@@ -322,6 +323,7 @@ export class API {
             headers: 
             {
                 'Content-Type': 'application/json',
+                'X-CSRFToken': Cookies.get('csrftoken'),
 
             },
             body: JSON.stringify( {ranks: course_group} )
@@ -338,6 +340,7 @@ export class API {
             headers: 
             {
                 'Content-Type': 'application/json',
+                'X-CSRFToken': Cookies.get('csrftoken'),
             },
             body: JSON.stringify( {students: jsonData} )
         })
@@ -352,6 +355,7 @@ export class API {
             headers: 
             {
                 'Content-Type': 'application/json',
+                'X-CSRFToken': Cookies.get('csrftoken'),
             },
             body: JSON.stringify( {courses: jsonData} )
         })
