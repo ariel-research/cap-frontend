@@ -10,8 +10,8 @@ export default function PublicRoutes() {
     children:[   
       { path: "/login", element: <Auth /> },
       { path: "/register", element: <Reg /> },
-      { path: "/send-email-reset-password", element: <NewPassword /> },
-      { path: "/reset-password", element: <ResetPass /> },
+      { path: "/send-email-reset-password", element: <ResetPass /> },
+      { path: "/reset-password", element: <NewPassword /> },
       { path: "/verify-user", element: <VerifyUser /> },
       { path: "*", element: <Navigate to="/login" replace /> },
     ]
