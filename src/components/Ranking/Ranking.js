@@ -16,8 +16,9 @@ function Ranking(props) {
     useEffect(() => {
         API.getTime()
             .then(resp => {
-                setTime_message(resp['message'])
-                setRanking_start(resp['value'])
+                if (resp['value'])
+                {setTime_message(resp['message'])}
+                setRanking_start(resp['message'])
             })
             .catch(error => console.log(error))
     },  [time_message])
@@ -30,12 +31,12 @@ function Ranking(props) {
     }, [])
 
     const EditClicked = b => evt => {
-        if (ranking_start) {
+        //if (ranking_start) {
             setEdit(true);
             setBalance(b);
-        }
-        else
-            alert("ההרשמה סגורה");
+        //}
+        //else
+           // alert("ההרשמה סגורה");
     }
     function timeout(delay) {
         return new Promise(res => setTimeout(res, delay));
